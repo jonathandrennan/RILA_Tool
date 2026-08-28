@@ -4838,7 +4838,7 @@ setTimeout(updateModals, 10);
 </script>
 <!-- START DATE INFO MODAL -->
 <div id="startdate-info-modal" onclick="if(event.target===this)startDateInfoClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:460px;width:92%;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
+  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:460px;width:92%;max-height:90vh;overflow-y:auto;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="startDateInfoClose()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--a1-text-s);line-height:1;">&times;</button>
     <div id="startdate-modal-title" style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:16px;">Apply Returns From</div>
     <div id="startdate-modal-body" style="font-size:13px;color:var(--a1-text-s);line-height:1.7;margin-bottom:16px;"></div>
@@ -4846,7 +4846,7 @@ setTimeout(updateModals, 10);
   </div>
 </div>
 <div id="benchmark-info-modal" onclick="if(event.target===this)benchmarkInfoClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:460px;width:92%;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
+  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:460px;width:92%;max-height:90vh;overflow-y:auto;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="benchmarkInfoClose()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--a1-text-s);line-height:1;">&times;</button>
     <div id="benchmark-modal-title" style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:16px;">Compare against</div>
     <div style="display:flex;flex-direction:column;">
@@ -4883,7 +4883,7 @@ setTimeout(updateModals, 10);
 </div>
 <!-- SCENARIO INFO MODAL -->
 <div id="cap-info-modal" onclick="if(event.target===this)capInfoClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:480px;width:92%;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
+  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:480px;width:92%;max-height:90vh;overflow-y:auto;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="capInfoClose()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--a1-text-s);line-height:1;">&times;</button>
     <div id="cap-modal-title" style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:16px;">Annual Cap Rate</div>
     <div id="cap-modal-body" style="font-size:13px;color:var(--a1-text-s);line-height:1.7;margin-bottom:16px;">Each policy year, your index participation is subject to a cap — the maximum credited return regardless of how strongly the market performs. The cap is reviewed and reset by Allianz at each annual policy anniversary.</div>
@@ -4894,7 +4894,7 @@ setTimeout(updateModals, 10);
   </div>
 </div>
 <div id="dyo-scenario-info-modal" onclick="if(event.target===this)dyoScenarioInfoClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:460px;width:92%;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
+  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:460px;width:92%;max-height:90vh;overflow-y:auto;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="dyoScenarioInfoClose()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--a1-text-s);line-height:1;">&times;</button>
     <div style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:16px;" data-i18n="dyo_scenario_info_title">Annual Return Scenarios</div>
     <div style="font-size:13px;color:var(--a1-text-s);line-height:1.7;" data-i18n="dyo_scenario_info_body">
@@ -4907,21 +4907,21 @@ setTimeout(updateModals, 10);
   </div>
 </div>
 <div id="crisis-info-modal" onclick="if(event.target===this)crisisInfoClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:480px;width:92%;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
+  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:480px;width:92%;max-height:90vh;overflow-y:auto;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="crisisInfoClose()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--a1-text-s);line-height:1;">&times;</button>
     <div id="crisis-modal-title" style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:16px;" data-i18n="crisis_info_title">Market Crash Scenario</div>
     <div id="crisis-modal-body" style="font-size:13px;color:var(--a1-text-s);line-height:1.7;" data-i18n="crisis_info_body">One year's simulated return is replaced with a historical return from a period when the Euro Stoxx 50® fell by more than 10%. This shows how the buffer or floor absorbs losses in a genuine downturn. The severity reflects a typical historical crash — not the most extreme on record. All other years remain unchanged.</div>
   </div>
 </div>
 <div id="cap-stress-info-modal" onclick="if(event.target===this)capStressInfoClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:480px;width:92%;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
+  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:480px;width:92%;max-height:90vh;overflow-y:auto;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="capStressInfoClose()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--a1-text-s);line-height:1;">&times;</button>
     <div style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:16px;" data-i18n="cap_stress_info_title">Cap Rate Stress Test</div>
     <div style="font-size:13px;color:var(--a1-text-s);line-height:1.7;" data-i18n="cap_stress_info_body">The cap is only guaranteed for Year 1. From Year 2 onwards it resets annually — so the Lower and Higher lines stress-test what happens if future caps settle consistently below or above today's rate. All three lines start from the same point because Year 1 is fixed.</div>
   </div>
 </div>
 <div id="strat-info-modal" onclick="if(event.target===this)stratInfoClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:580px;width:92%;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
+  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:580px;width:92%;max-height:90vh;overflow-y:auto;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="stratInfoClose()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--a1-text-s);line-height:1;">&times;</button>
     <div style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:6px;" id="strat-modal-title" data-i18n="crediting_strategies">Crediting Strategies</div>
     <div style="font-size:13px;color:var(--a1-text-s);margin-bottom:22px;" id="strat-modal-intro" data-i18n="strategies_intro">Each strategy applies a different level of downside protection in exchange for a cap on upside participation. Higher protection means a lower cap rate.</div>
@@ -4958,7 +4958,7 @@ setTimeout(updateModals, 10);
   </div>
 </div>
 <div id="s-info-modal" onclick="if(event.target===this)sCloseInfo()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;">
-  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:560px;width:92%;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
+  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:560px;width:92%;max-height:90vh;overflow-y:auto;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="sCloseInfo()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--a1-text-s);line-height:1;">&times;</button>
     <div style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:6px;" id="scen-modal-title" data-i18n="performance_scenarios">Performance Scenarios</div>
     <div style="font-size:13px;color:var(--a1-text-s);margin-bottom:22px;" id="scen-modal-intro" data-i18n="scenarios_intro">Each scenario is one simulated return path, ranked by percentile across the full simulation set. Together they show the range of outcomes the current product terms could produce — they are not forecasts.</div>
