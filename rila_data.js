@@ -6,20 +6,42 @@ var RILA_DATA = {
       "name": "Opportunity",
       "description": "10% Buffer – first 10% of losses absorbed",
       "type": "buffer",
-      "level": 10
+      "level": 10,
+      "sri": 3
     },
     "balance": {
       "name": "Balance",
       "description": "-5% Floor – losses capped at 5%",
       "type": "floor",
-      "level": -5
+      "level": -5,
+      "sri": 2
     },
     "protection": {
       "name": "Protection",
       "description": "0% Floor – no downside risk",
       "type": "floor",
-      "level": 0
+      "level": 0,
+      "sri": 1
     }
+  },
+  "equity_risk_premium": {
+    "value": 5.5,
+    "source": "Damodaran Western Europe",
+    "url": "https://pages.stern.nyu.edu/~adamodar",
+    "last_reviewed": "2026",
+    "review_frequency": "annual"
+  },
+  "index_dividend_yield": {
+    "value": 2.90,
+    "description": "Euro Stoxx 50 net total return vs price return annual differential — represents net dividend yield after withholding tax, used to convert the simulated price return index comparison line to a total return basis",
+    "source": "Bloomberg SX5T vs SX5E mean annual differential 2005-2025",
+    "last_reviewed": "2026",
+    "review_frequency": "annual"
+  },
+  "etf_replication_cost": {
+    "value": 1.60,
+    "description": "Total annual cost for ETF replication comparison — covers tracker TER, platform charges, and advisory commission",
+    "last_reviewed": "2026"
   },
   "premium_tiers": [
     {
@@ -103,11 +125,5 @@ var RILA_DATA = {
     { "name": "Growth Slowdown", "start": 2018, "startMo": 1,  "end": 2019, "endMo": 3  },
     { "name": "Covid-19",        "start": 2020, "startMo": 2,  "end": 2020, "endMo": 5  },
     { "name": "Inflation Surge", "start": 2021, "startMo": 11, "end": 2022, "endMo": 9  }
-  ],
-  "forward_scenarios": {
-    "bull":  { "name": "Bull Market",   "description": "Strong sustained growth",    "icon": "🚀", "annual_returns": [22, 18, 25, 20, 16] },
-    "base":  { "name": "Base Case",     "description": "Moderate steady growth",     "icon": "📈", "annual_returns": [10,  8, 12,  7,  9] },
-    "bear":  { "name": "Bear Market",   "description": "Weak / flat conditions",     "icon": "🐻", "annual_returns": [-8,  2, -5,  4,  1] },
-    "crash": { "name": "Market Crisis", "description": "Sharp decline and recovery", "icon": "⚠️", "annual_returns": [-35,-15,  8, 12, 10] }
-  }
+  ]
 };
