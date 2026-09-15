@@ -31,41 +31,29 @@ var RILA_DATA = {
     "last_reviewed": "2026",
     "review_frequency": "annual"
   },
-  "index_dividend_yield": {
-    "value": 2.90,
-    "description": "Euro Stoxx 50 net total return vs price return annual differential — represents net dividend yield after withholding tax, used to convert the simulated price return index comparison line to a total return basis",
-    "source": "Bloomberg SX5T vs SX5E mean annual differential 2005-2025",
-    "last_reviewed": "2026",
-    "review_frequency": "annual"
-  },
-  "etf_replication_cost": {
-    "value": 1.60,
-    "description": "Total annual cost for ETF replication comparison — covers tracker TER, platform charges, and advisory commission",
-    "last_reviewed": "2026"
-  },
   "premium_tiers": [
     {
       "min": 0, "max": 1500000, "label": "Tier 1",
       "caps": {
-        "opportunity": { "3": 13.00, "5": 13.50 },
-        "balance":     { "3": 6.25,  "5": 6.75  },
-        "protection":  { "3": 3.40,  "5": 3.90  }
+        "opportunity": { "3": 13.00, "5": 13.75 },
+        "balance":     { "3": 8.00,  "5": 8.50  },
+        "protection":  { "3": 4.50,  "5": 5.00  }
       }
     },
     {
       "min": 1500000, "max": 5000000, "label": "Tier 2-3",
       "caps": {
-        "opportunity": { "3": 14.00, "5": 14.50 },
-        "balance":     { "3": 6.75,  "5": 7.50  },
-        "protection":  { "3": 3.80,  "5": 4.30  }
+        "opportunity": { "3": 14.25, "5": 14.75 },
+        "balance":     { "3": 8.75,  "5": 9.25  },
+        "protection":  { "3": 5.00,  "5": 5.40  }
       }
     },
     {
       "min": 5000000, "max": 20000000, "label": "Tier 4-5",
       "caps": {
-        "opportunity": { "3": 15.00, "5": 15.50 },
-        "balance":     { "3": 7.25,  "5": 7.75  },
-        "protection":  { "3": 4.10,  "5": 4.50  }
+        "opportunity": { "3": 15.50, "5": 15.75 },
+        "balance":     { "3": 9.25,  "5": 9.75  },
+        "protection":  { "3": 5.20,  "5": 5.70  }
       }
     }
   ],
