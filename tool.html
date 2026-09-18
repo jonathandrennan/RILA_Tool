@@ -155,6 +155,18 @@ body::before { content: ''; display: block; height: 4px; background: var(--a1-br
 .cap-vary-link:hover { background: var(--a1-brand); color: #fff; }
 .cap-rst-icn { background: none; border: 1px solid var(--a1-border-t); border-radius: var(--a1-radius-s); padding: 5px 8px; font-size: 12px; cursor: pointer; color: var(--a1-text-s); transition: all .15s; line-height: 1; font-family: 'Allianz Neo', sans-serif; }
 .cap-rst-icn:hover { border-color: var(--a1-brand); color: var(--a1-brand); }
+/* ── Cap edit popup ── */
+.cap-stepper-btn { flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--a1-border-t); background: var(--a1-bg-white); color: var(--a1-brand); font-size: 17px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; padding: 0; transition: all .15s; font-family: 'Allianz Neo', sans-serif; }
+.cap-stepper-btn:hover { border-color: var(--a1-brand); background: var(--a1-tl); }
+.cap-stepper-btn:active { background: var(--a1-surf-active); }
+#cap-edit-modal-inp::-webkit-outer-spin-button, #cap-edit-modal-inp::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+#cap-edit-modal-inp { -moz-appearance: textfield; }
+.cap-modal-reset-btn { display: flex; align-items: center; gap: 6px; background: none; border: none; padding: 8px 4px; font-size: 12.5px; font-weight: 600; color: var(--a1-text-s); cursor: pointer; font-family: 'Allianz Neo', sans-serif; transition: color .15s; }
+.cap-modal-reset-btn:hover { color: var(--a1-brand); }
+.cap-modal-confirm-btn { background: var(--a1-brand); color: #fff; border: none; border-radius: var(--a1-radius-s); padding: 10px 26px; font-size: 13.5px; font-weight: 700; cursor: pointer; font-family: 'Allianz Neo', sans-serif; transition: background .15s; }
+.cap-modal-confirm-btn:hover { background: var(--a1-brand-hover); }
+.cap-modal-close-btn { position: absolute; top: 14px; right: 14px; width: 28px; height: 28px; background: none; border: none; border-radius: 50%; font-size: 20px; cursor: pointer; color: var(--a1-text-s); line-height: 1; display: flex; align-items: center; justify-content: center; transition: background .15s; }
+.cap-modal-close-btn:hover { background: var(--a1-bg); }
 /* ── Cap section ── */
 .cap-src-pill { display:inline-flex;align-items:center;padding:2px 9px;border-radius:var(--a1-radius-s);font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase; }
 .cap-yr-row { display:flex;gap:0;flex-wrap:wrap;align-items:center; }
@@ -521,7 +533,11 @@ tr:last-child td { border-bottom: none; }
           <div style="font-size:11.5px;color:var(--a1-text-s);" id="d-cap-readout-sub" data-i18n="cap_year1_note">Guaranteed for Year 1 only, resets annually.</div>
         </div>
         <div style="text-align:right;">
-          <div style="font-size:18px;font-weight:700;color:var(--a1-brand);line-height:1;" id="d-cap-readout-val">—</div>
+          <div style="display:flex;align-items:center;gap:8px;justify-content:flex-end;margin-bottom:2px;">
+            <span style="font-size:18px;font-weight:700;color:var(--a1-brand);line-height:1;" id="d-cap-readout-val">—</span>
+            <button id="d-cap-edit-btn" class="cap-vary-link" onclick="dCapEditOpen()"><span data-i18n="edit_cap_btn">Edit ›</span></button>
+            <button id="d-cap-rst-btn" class="cap-rst-icn" onclick="dResetCapOverride()" data-i18n-title="reset_cap_title" title="Reset to default cap" style="display:none;">&#8635;</button>
+          </div>
           <a href="info.html#caps" target="_blank" rel="noopener" style="font-size:11px;color:var(--a1-brand);font-weight:600;text-decoration:none;" data-i18n="cap_reset_link">How are cap rates set?</a>
         </div>
       </div>
@@ -714,6 +730,12 @@ var STRINGS = {
     "caps_indicative": "Caps are indicative for premiums above €20m. Confirmed rates only guaranteed once the premium has been received.",
     "cap_reset_link": "How are cap rates set?",
     "cap_year1_note": "Guaranteed for Year 1 only, resets annually.",
+    "edit_cap_btn": "Edit ›",
+    "reset_cap_title": "Reset to default cap",
+    "edit_cap_modal_title": "Set Annual Cap Rate",
+    "edit_cap_modal_sub": "Enter a cap rate to see how it would affect your results, then confirm.",
+    "edit_cap_modal_confirm": "Confirm",
+    "edit_cap_modal_default_note": "Current default rate: {0}",
     "sim_notice_title": "This is a simulation, not a forecast.",
     "sim_model_notice_body": "These scenarios are simulated, not forecast. Actual outcomes could be better or worse than the range shown. The cap rate is guaranteed for the first policy year only and resets annually from Year 2.",
     "sim_model_notice_link": "How are cap rates set?",
@@ -1101,6 +1123,12 @@ var STRINGS = {
     "caps_indicative": "I cap sono indicativi per premi superiori a €20 milioni. I tassi confermati sono garantiti solo dopo la ricezione del premio.",
     "cap_reset_link": "Come vengono fissati i cap rate?",
     "cap_year1_note": "Garantito solo per l'Anno 1, si reimposta ogni anno.",
+    "edit_cap_btn": "Modifica ›",
+    "reset_cap_title": "Ripristina il cap predefinito",
+    "edit_cap_modal_title": "Imposta il Cap Rate Annuale",
+    "edit_cap_modal_sub": "Inserisci un cap rate per vedere come influirebbe sui tuoi risultati, poi confermalo.",
+    "edit_cap_modal_confirm": "Confermare",
+    "edit_cap_modal_default_note": "Tasso predefinito attuale: {0}",
     "sim_notice_title": "Questa è una simulazione, non una previsione.",
     "sim_model_notice_body": "Questi scenari sono simulati, non previsionali. I risultati effettivi potrebbero essere migliori o peggiori dell'intervallo mostrato. Il cap rate è garantito solo per il primo anno di polizza e si reimposta annualmente dall'Anno 2.",
     "sim_model_notice_link": "Come vengono fissati i cap rate?",
@@ -1604,6 +1632,9 @@ function dAmtDebounce(){
     } else {
       tip.style.display='none';
     }
+    /* A different amount can mean a different premium tier, whose default cap the override
+       was never meant to apply to — clear it rather than silently carrying it over. */
+    dCapOverride=null;
     dUpdateCapDisplay();
     dAutoCalc();
   },600);
@@ -1611,6 +1642,11 @@ function dAmtDebounce(){
 var selMethod = 'opportunity';
 var dCapScenario='current';
 var dCapStressOn=false;
+/* User-typed override for the D tab's "today's cap" figure (null = use the computed tier
+   default). Only ever overrides the 'current' scenario — low/high stress bands are then
+   re-derived off it via the same CAP_LOW/HIGH_MULTIPLIER as the computed default, so cap
+   stress stays proportionate to whatever the user has typed in. */
+var dCapOverride=null;
 var dShowBtp=false;
 /* Number of simulated paths per run (see runMonteCarlo) — this constant is the "N" in
    "N paths", not a pool size derived from the data. */
@@ -1685,6 +1721,16 @@ function getCapScenarios(amt,method,term){
     low:     roundCap(current*CAP_LOW_MULTIPLIER,  method),
     current: current,
     high:    roundCap(current*CAP_HIGH_MULTIPLIER, method)
+  };
+}
+/* Substitutes dCapOverride for the computed 'current' cap, if one is set, re-deriving
+   low/high off the override so cap stress stays proportionate to it. D-tab only. */
+function applyDCapOverride(scenarios,method){
+  if(dCapOverride==null) return scenarios;
+  return {
+    low:     roundCap(dCapOverride*CAP_LOW_MULTIPLIER,  method),
+    current: dCapOverride,
+    high:    roundCap(dCapOverride*CAP_HIGH_MULTIPLIER, method)
   };
 }
 function isAboveMaxTier(amt){
@@ -1890,6 +1936,9 @@ function setMethod(val){
   document.querySelectorAll('.strat-btn[data-method]').forEach(function(btn){
     btn.classList.toggle('active',btn.getAttribute('data-method')===val);
   });
+  /* Each strategy has its own default cap at a very different level (e.g. ~13% Opportunity
+     vs ~4.5% Protection) — a manual override typed for one has no bearing on another. */
+  dCapOverride=null;
   dUpdateCapDisplay();
   dAutoCalc();
 }
@@ -2401,15 +2450,77 @@ function dUpdateCapDisplay(){
      whatever the chart/engine is actually using right now: the selected cap-stress line
      (low/current/high) when Cap Stress is on, otherwise today's current cap. Mirrors the
      same scenarios[dCapScenario] value the print-only sbar (d-pcap) already shows. */
-  var scenarios=getCapScenarios(amt,selMethod,dTerm);
+  var scenarios=applyDCapOverride(getCapScenarios(amt,selMethod,dTerm),selMethod);
   var cap=scenarios[dCapScenario];
   var capVal=document.getElementById('d-cap-readout-val');
   if(capVal) capVal.textContent=cap.toFixed(2)+'%';
+  /* Only 'current' is a real, user-editable rate — low/high are illustrative stress bands
+     derived off it, so Edit is disabled while either of those is the selected cap-stress
+     line (and any open edit popup is force-closed, since it'd otherwise be editing a
+     derived figure it can no longer see the base value of). */
+  var editBtn=document.getElementById('d-cap-edit-btn');
+  if(editBtn){
+    var lockedOut=dCapScenario!=='current';
+    editBtn.disabled=lockedOut;
+    editBtn.style.opacity=lockedOut?'.4':'';
+    editBtn.style.cursor=lockedOut?'not-allowed':'';
+    if(lockedOut) dCapEditModalCancel();
+  }
+  var rstBtn=document.getElementById('d-cap-rst-btn');
+  if(rstBtn) rstBtn.style.display=dCapOverride!=null?'':'none';
   /* d-cap-readout-sub carries the static "guaranteed Year 1 only" caption (data-i18n=
      cap_year1_note in the markup, kept in sync here so it survives a language switch
      without depending on translateUI() having already run). */
   var capSub=document.getElementById('d-cap-readout-sub');
   if(capSub) capSub.textContent=T('cap_year1_note');
+}
+/* Opens the cap-edit popup, pre-filled with the current figure, instead of editing inline. */
+function dCapEditOpen(){
+  var btn=document.getElementById('d-cap-edit-btn');
+  if(btn&&btn.disabled) return;
+  var valEl=document.getElementById('d-cap-readout-val'),
+      inp=document.getElementById('cap-edit-modal-inp'),
+      modal=document.getElementById('cap-edit-modal'),
+      defEl=document.getElementById('cap-edit-modal-default');
+  if(!valEl||!inp||!modal) return;
+  inp.value=parseFloat(valEl.textContent)||'';
+  if(defEl){
+    var def=getTierDefault(parseAmt('d-amt')||100000,selMethod,dTerm);
+    defEl.textContent=T('edit_cap_modal_default_note').replace('{0}',def.toFixed(2)+'%');
+  }
+  modal.style.display='flex';
+}
+/* Nudges the popup's input by the given delta (±0.5), clamped to the input's own range. */
+function dCapEditModalStep(delta){
+  var inp=document.getElementById('cap-edit-modal-inp');
+  if(!inp) return;
+  var v=parseFloat(inp.value); if(isNaN(v)) v=0;
+  v=Math.round((v+delta)*100)/100;
+  inp.value=Math.max(0,Math.min(50,v));
+}
+function dCapEditModalKeydown(e){
+  if(e.key==='Enter'){ e.preventDefault(); dCapEditModalConfirm(); }
+  else if(e.key==='Escape'){ dCapEditModalCancel(); }
+}
+function dCapEditModalCancel(){
+  var modal=document.getElementById('cap-edit-modal');
+  if(modal) modal.style.display='none';
+}
+/* Commits the popup's value as the cap override. Blank or invalid input clears the
+   override, reverting to the tier default. */
+function dCapEditModalConfirm(){
+  var inp=document.getElementById('cap-edit-modal-inp');
+  var v=parseFloat(inp.value);
+  dCapOverride=(inp.value===''||isNaN(v))?null:Math.max(0,Math.min(50,v));
+  dCapEditModalCancel();
+  dUpdateCapDisplay();
+  dAutoCalc();
+}
+function dResetCapOverride(){
+  dCapOverride=null;
+  dCapEditModalCancel();
+  dUpdateCapDisplay();
+  dAutoCalc();
 }
 /* ── DESIGN YOUR OWN ── */
 var dScenario='';
@@ -2612,6 +2723,9 @@ function dSetTerm(t){
   var saved=[];
   for(var i=1;i<=dTerm;i++){ var el=document.getElementById('d-y'+i); saved.push(el?el.value:''); }
   dTerm=t;
+  /* 3yr and 5yr caps default to meaningfully different rates — an override typed for one
+     term isn't a meaningful figure for the other. */
+  dCapOverride=null;
   document.getElementById('dt3').classList.toggle('active',t===3);
   document.getElementById('dt5').classList.toggle('active',t===5);
   dRenderCustomInputs();
@@ -2735,7 +2849,7 @@ function dRender(returns,scenarioKey){
   if(!D) return;
   dShowResults();
   var amt=parseAmt('d-amt')||100000;
-  var scenarios=getCapScenarios(amt,selMethod,dTerm);
+  var scenarios=applyDCapOverride(getCapScenarios(amt,selMethod,dTerm),selMethod);
   var cap=scenarios[dCapScenario];
   var capForEngine=dCapArrayFor(dCapScenario,dTerm,scenarios);
   var m=getMethod();
@@ -2893,6 +3007,34 @@ setTimeout(updateModals, 10);
     <div id="cap-modal-default" style="background:var(--a1-tl);border-left:4px solid var(--a1-brand);border-radius:0 var(--a1-radius-m) var(--a1-radius-m) 0;padding:14px 16px;font-size:13px;color:var(--a1-text-s);line-height:1.6;">Rates shown are Allianz's current indicative rates for your investment amount and term. Turn on Cap Stress to see an illustration of how your returns could vary under a stressed cap, applying a ±50% adjustment to today's rate. Actual future caps will differ from this illustration.</div>
     <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--a1-border-t);text-align:center;">
       <a id="cap-modal-link" href="info.html#caps" target="_blank" rel="noopener" onclick="capInfoClose()" style="font-size:12px;color:var(--a1-brand);font-weight:600;text-decoration:none;">How are cap rates set?</a> <span style="font-size:12px;color:var(--a1-brand);">→</span>
+    </div>
+  </div>
+</div>
+<div id="cap-edit-modal" onclick="if(event.target===this)dCapEditModalCancel()" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:9999;align-items:center;justify-content:center;padding:16px;">
+  <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:380px;width:100%;padding:28px 28px 24px;position:relative;box-shadow:var(--a1-shadow-400);">
+    <button onclick="dCapEditModalCancel()" class="cap-modal-close-btn" aria-label="Close">&times;</button>
+    <div style="font-size:17px;font-weight:700;color:var(--a1-brand);margin-bottom:6px;" data-i18n="edit_cap_modal_title">Set Annual Cap Rate</div>
+    <div style="font-size:12.5px;color:var(--a1-text-s);line-height:1.55;margin:0 0 22px;" data-i18n="edit_cap_modal_sub">Enter a cap rate to see how it would affect your results, then confirm.</div>
+
+    <div style="background:var(--a1-bg);border-radius:var(--a1-radius-m);padding:18px;margin-bottom:8px;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:16px;">
+        <button type="button" onclick="dCapEditModalStep(-0.5)" class="cap-stepper-btn" aria-label="Decrease">&minus;</button>
+        <div style="display:flex;align-items:baseline;gap:3px;">
+          <input type="number" inputmode="decimal" id="cap-edit-modal-inp" step="0.5" min="0" max="50"
+            style="width:88px;text-align:right;font-size:30px;font-weight:800;color:var(--a1-brand);border:none;background:none;outline:none;padding:0;font-family:'Allianz Neo', sans-serif;"
+            onkeydown="dCapEditModalKeydown(event)">
+          <span style="font-size:19px;font-weight:800;color:var(--a1-brand);">%</span>
+        </div>
+        <button type="button" onclick="dCapEditModalStep(0.5)" class="cap-stepper-btn" aria-label="Increase">&plus;</button>
+      </div>
+    </div>
+    <div id="cap-edit-modal-default" style="font-size:11.5px;color:var(--a1-text-s);text-align:center;min-height:16px;margin-bottom:18px;"></div>
+
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:18px;border-top:1px solid var(--a1-border-t);">
+      <button onclick="dResetCapOverride()" class="cap-modal-reset-btn">
+        <svg width="13" height="13" aria-hidden="true"><use href="#ico-refresh"/></svg><span data-i18n="reset">Reset</span>
+      </button>
+      <button onclick="dCapEditModalConfirm()" class="cap-modal-confirm-btn" data-i18n="edit_cap_modal_confirm">Confirm</button>
     </div>
   </div>
 </div>
