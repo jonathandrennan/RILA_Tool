@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cap Rate History – Allianz Active4Life Evolution</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="./cap_history_data.js"></script>
+<style>
+/* ── Allianz One Design System tokens ── */
+@font-face { font-family: 'Allianz Neo'; font-weight: 300; font-style: normal; src: url('../Files/one-allianz-portal-home-current/fonts/AllianzNeo-Light.woff2') format('woff2'); }
+@font-face { font-family: 'Allianz Neo'; font-weight: 400; font-style: normal; src: url('../Files/one-allianz-portal-home-current/fonts/AllianzNeo-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'Allianz Neo'; font-weight: 600; font-style: normal; src: url('../Files/one-allianz-portal-home-current/fonts/AllianzNeo-SemiBold.woff2') format('woff2'); }
+@font-face { font-family: 'Allianz Neo'; font-weight: 700; font-style: normal; src: url('../Files/one-allianz-portal-home-current/fonts/AllianzNeo-Bold.woff2') format('woff2'); }
+
+:root {
+  --a1-brand:      #003781;
+  --a1-brand-dark: #002260;
+  --a1-aqua:       #0082C8;
+  --a1-white:      #ffffff;
+  --a1-bg:         #F2F5F9;
+  --a1-text-p:     #1A2430;
+  --a1-text-s:     #5B6E82;
+  --a1-border-t:   #C3D7E9;
+  --a1-surf-row:   #EEF0F5;
+  --a1-warn-bg:    #FBE6A7;
+  --a1-warn-text:  #6A4E00;
+  --a1-warn-border:#DBA103;
+  --a1-radius-s:   4px;
+  --a1-radius-m:   8px;
+  --a1-radius-round: 999px;
+  --a1-shadow-100: 0px 1px 4px 0px #122B5429, 0px 4px 16px 0px #122B541F;
+  --a1-shadow-200: 0px 2px 8px 0px #122B5429, 0px 8px 24px 0px #122B541F;
+
+  --navy:   var(--a1-brand);
+  --blue:   #0066CC;
+  --teal:   var(--a1-aqua);
+  --bg:     var(--a1-bg);
+  --border: var(--a1-border-t);
+  --text:   var(--a1-text-p);
+  --muted:  var(--a1-text-s);
+  --white:  var(--a1-white);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Allianz Neo', 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+body::before { content: ''; display: block; height: 4px; background: var(--navy); }
+
+/* ── Header ── */
+.hdr { background: var(--white); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 72px; border-bottom: 1px solid var(--border); box-shadow: var(--a1-shadow-100); }
+.hdr-l { display: flex; align-items: center; gap: 20px; }
+.hdr-logo { height: 36px; width: auto; display: block; }
+.hdr-divider { width: 1px; height: 32px; background: var(--border); margin: 0 4px; }
+.htitle { color: var(--navy); font-size: 18px; font-weight: 700; line-height: 1.25; }
+.hsub { color: var(--muted); font-size: 11px; margin-top: 2px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; }
+.hdr-r { display: flex; align-items: center; gap: 20px; }
+.hdr-nav { display: flex; align-items: center; gap: 22px; }
+.hdr-link { font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; transition: color .18s; }
+.hdr-link:hover { color: var(--navy); }
+.hdr-link.active { color: var(--navy); font-weight: 700; pointer-events: none; }
+.lang-toggle { display: flex; border: 1px solid var(--border); border-radius: var(--a1-radius-s); overflow: hidden; }
+.ltbtn { background: var(--white); border: none; padding: 6px 13px; font-size: 12px; font-weight: 700; cursor: pointer; color: var(--muted); transition: all .18s; }
+.ltbtn.active { background: var(--navy); color: #fff; }
+
+/* ── Page hero ── */
+.page-hero { background: var(--navy); padding: 44px 48px 40px; color: #fff; }
+.page-hero-inner { max-width: 1040px; margin: 0 auto; }
+.page-hero-title { font-size: 32px; font-weight: 800; letter-spacing: -0.6px; margin-bottom: 10px; }
+.page-hero-sub { font-size: 15px; color: rgba(255,255,255,.8); max-width: 640px; line-height: 1.6; }
+
+/* ── Main content ── */
+.wrap { max-width: 1040px; margin: 0 auto; padding: 32px 48px 64px; }
+
+.panel { background: var(--white); border: 1px solid var(--border); border-radius: var(--a1-radius-m); box-shadow: var(--a1-shadow-100); padding: 24px 26px; margin-bottom: 24px; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-end; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); }
+.field select, .range-inline select { font-family: inherit; font-size: 13.5px; font-weight: 600; color: var(--text); padding: 9px 12px; border: 1px solid var(--border); border-radius: var(--a1-radius-s); background: var(--white); min-width: 150px; }
+.field select.narrow, .range-inline select.narrow { min-width: 150px; }
+.field select:disabled, .range-inline select:disabled { background: var(--a1-surf-row); color: var(--muted); cursor: not-allowed; }
+.filter-divider { border: none; border-top: 1px solid var(--bg); margin: 20px 0; }
+.seg { display: flex; border: 1px solid var(--border); border-radius: var(--a1-radius-s); overflow: hidden; }
+.seg button { background: var(--white); border: none; padding: 9px 14px; font-size: 12.5px; font-weight: 700; color: var(--muted); cursor: pointer; transition: all .15s; border-right: 1px solid var(--border); }
+.seg button:last-child { border-right: none; }
+.seg button.active { background: var(--navy); color: #fff; }
+.range-field { display: flex; flex-direction: column; gap: 6px; }
+.range-field label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); }
+.range-inline { display: flex; align-items: center; gap: 8px; }
+.range-dash { color: var(--muted); font-weight: 700; }
+.variant-note { font-size: 12px; color: var(--teal); font-weight: 600; margin-top: 10px; display: none; }
+.variant-note.show { display: block; }
+
+/* ── Info panel ── */
+.info-panel { background: var(--white); border: 1px solid var(--border); border-left: 4px solid var(--navy); border-radius: 0 var(--a1-radius-m) var(--a1-radius-m) 0; padding: 22px 26px; margin-bottom: 24px; box-shadow: var(--a1-shadow-100); }
+.info-text { font-size: 14px; color: var(--text); line-height: 1.75; margin-bottom: 14px; max-width: 760px; }
+.info-caveat { display: flex; align-items: flex-start; gap: 10px; background: var(--a1-warn-bg); border-left: 4px solid var(--a1-warn-border); border-radius: 0 var(--a1-radius-m) var(--a1-radius-m) 0; padding: 12px 16px; margin-bottom: 14px; max-width: 760px; font-size: 13px; font-weight: 600; color: var(--a1-warn-text); line-height: 1.6; }
+.info-caveat-icon { font-size: 16px; flex-shrink: 0; line-height: 1.4; color: var(--a1-warn-text); }
+.info-link { font-size: 13.5px; font-weight: 700; color: var(--navy); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.info-link:hover { text-decoration: underline; }
+
+/* ── Chart ── */
+.chdr { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 10px; }
+.chtitle { font-size: 14px; font-weight: 700; color: var(--navy); }
+.cwrap { position: relative; height: 320px; }
+
+.method-toggle { display: flex; flex-wrap: wrap; gap: 8px; }
+.mtbtn { display: inline-flex; align-items: center; background: var(--white); border: 1px solid var(--border); border-radius: var(--a1-radius-round); padding: 6px 14px; font-size: 12px; font-weight: 700; color: var(--muted); cursor: pointer; transition: all .15s; font-family: inherit; }
+.mtbtn:hover:not(.active) { border-color: var(--navy); color: var(--navy); }
+.mtbtn.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+.mtbtn#mt-all { border-style: dashed; }
+.mt-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 7px; flex-shrink: 0; }
+
+.twrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; font-family: 'Allianz Neo', sans-serif; table-layout: fixed; border: 1px solid var(--border); }
+th { background: var(--navy); color: #fff; padding: 10px 14px; text-align: right; font-weight: 700; font-size: 10.5px; text-transform: uppercase; letter-spacing: .3px; white-space: normal; line-height: 1.3; }
+th:first-child, td:first-child { width: 25%; }
+th:not(:first-child), td:not(:first-child) { width: 25%; }
+th:first-child { text-align: left; }
+td { padding: 8px 14px; border-bottom: 1px solid var(--bg); text-align: right; font-variant-numeric: tabular-nums; }
+td:first-child { text-align: left; font-weight: 700; color: var(--navy); }
+tr:nth-child(even) td { background: var(--a1-surf-row); }
+tr:hover td { background: var(--a1-bg); }
+tr:last-child td { border-bottom: none; }
+.empty-note { padding: 18px; text-align: center; color: var(--muted); font-size: 13px; }
+
+.footer { text-align: center; padding: 32px 48px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); background: var(--white); line-height: 1.72; }
+
+@media (max-width: 700px) {
+  .hdr { padding: 0 20px; }
+  .page-hero { padding: 32px 20px 32px; }
+  .wrap { padding: 24px 20px 48px; }
+  .panel { padding: 18px; }
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-l">
+    <img src="./allianz-logo.svg" alt="Allianz" class="hdr-logo">
+    <div class="hdr-divider"></div>
+    <div>
+      <div class="htitle">Allianz Active4Life <span id="hdr-evolution">Evolution</span></div>
+      <div class="hsub" id="hdr-sub">Cap rate history</div>
+    </div>
+  </div>
+  <div class="hdr-r">
+    <nav class="hdr-nav">
+      <a href="index.html" class="hdr-link" id="nav-home">Home</a>
+      <a href="info.html" class="hdr-link" id="nav-guide">Product Guide</a>
+      <a href="tool.html" class="hdr-link" id="nav-tool">Illustration Tool</a>
+      <a href="cap-history.html" class="hdr-link active" id="nav-history">Cap Rate History</a>
+    </nav>
+    <div class="hdr-divider"></div>
+    <div class="lang-toggle">
+      <button class="ltbtn" id="lang-en-btn" onclick="setLang('en')">EN</button>
+      <button class="ltbtn" id="lang-it-btn" onclick="setLang('it')">IT</button>
+    </div>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-title" id="hero-title">Cap Rate History</div>
+    <div class="page-hero-sub" id="hero-sub">View the cap rates on each strategy since product launch.</div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="info-panel">
+    <div class="info-text" id="info-text">Each strategy carries an annual cap, the maximum index return it can credit in any policy year. The cap is not fixed for the life of the contract; it is reviewed and may change at each annual policy anniversary based on market conditions. Below are the cap rates on each strategy since product launch.</div>
+    <div class="info-caveat">
+      <span class="info-caveat-icon">&#9432;</span>
+      <span id="info-caveat">Past cap rates are not indicative of future rates.</span>
+    </div>
+    <a href="info.html#caps" class="info-link" id="info-link">Read the full Product Guide to understand what factors influence cap rates →</a>
+  </div>
+
+  <div class="panel">
+    <div class="filters">
+      <div class="field">
+        <label id="lbl-variant">Variant</label>
+        <select id="f-version">
+          <option value="1">Standard</option>
+          <option value="2">Enhanced</option>
+        </select>
+      </div>
+      <div class="field">
+        <label id="lbl-tier">Premium Band</label>
+        <select id="f-tier">
+          <option value="Tier 1">Up to €1.5M</option>
+          <option value="Tier 2-3">€1.5M – €5M</option>
+          <option value="Tier 4-5">€5M – €20M</option>
+        </select>
+      </div>
+      <div class="field">
+        <label id="lbl-term">Index Coverage Term</label>
+        <select id="f-term">
+          <option value="3">3 years</option>
+          <option value="5">5 years</option>
+        </select>
+      </div>
+    </div>
+    <div class="variant-note" id="variant-note">The Enhanced variant applies the same cap regardless of premium band.</div>
+
+    <hr class="filter-divider">
+
+    <div class="filters">
+      <div class="field">
+        <label id="lbl-period">Period</label>
+        <div class="seg" id="period-seg">
+          <button data-n="3" id="p-3">3M</button>
+          <button data-n="6" id="p-6">6M</button>
+          <button data-n="12" id="p-12">12M</button>
+          <button data-n="0" class="active" id="p-all">All</button>
+        </div>
+      </div>
+      <div class="range-field">
+        <label id="lbl-range">Custom range</label>
+        <div class="range-inline">
+          <select id="f-from" class="narrow"></select>
+          <span class="range-dash">–</span>
+          <select id="f-to" class="narrow"></select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="chdr">
+      <div class="chtitle" id="chart-title">Cap rate over time</div>
+      <div class="method-toggle" id="method-toggle">
+        <button type="button" class="mtbtn active" id="mt-all" data-method="ALL">All</button>
+        <button type="button" class="mtbtn active" data-method="GUARANTEE_100"><span class="mt-dot"></span><span class="mt-label">Guarantee 100</span></button>
+        <button type="button" class="mtbtn active" data-method="GUARANTEE_95"><span class="mt-dot"></span><span class="mt-label">Guarantee 95</span></button>
+        <button type="button" class="mtbtn active" data-method="BUFFER_10"><span class="mt-dot"></span><span class="mt-label">Protection Buffer 10</span></button>
+      </div>
+    </div>
+    <div class="cwrap"><canvas id="cap-chart"></canvas></div>
+  </div>
+
+  <div class="panel">
+    <div class="twrap">
+      <table id="cap-table">
+        <thead><tr id="cap-thead"></tr></thead>
+        <tbody id="cap-tbody"></tbody>
+      </table>
+      <div class="empty-note" id="empty-note" style="display:none;"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer" id="footer-text">
+  For illustrative purposes only. Not financial advice. Past performance does not guarantee future results.<br>
+  Allianz Active4Life Evolution is issued by Allianz Global Life Designated Activity Company (Allianz Global Life dac), a company of the Allianz SE Group. Registered address: Maple House, Temple Road, Blackrock, Dublin, A94 Y9E8. Regulated by the Central Bank of Ireland. Company Registration Number: 458565.
+</div>
+
+<script>
+var CURRENT_LANG = localStorage.getItem('rila_lang') || 'en';
+
+var STRINGS = {
+  en: {
+    hsub: 'Cap rate history',
+    navHome: 'Home',
+    navGuide: 'Product Guide',
+    navHistory: 'Cap Rate History',
+    navTool: 'Illustration Tool',
+    title: 'Cap Rate History',
+    sub: 'View the cap rates on each strategy since product launch.',
+    infoText: 'Each strategy carries an annual cap, the maximum index return it can credit in any policy year. The cap is not fixed for the life of the contract; it is reviewed and may change at each annual policy anniversary based on market conditions. Below are the cap rates on each strategy since product launch.',
+    infoCaveat: 'Past cap rates are not indicative of future rates.',
+    infoLink: 'Read the full Product Guide to understand what factors influence cap rates →',
+    variant: 'Variant',
+    tier: 'Premium Band',
+    tierBand1: 'Up to €1.5M',
+    tierBand23: '€1.5M – €5M',
+    tierBand45: '€5M – €20M',
+    term: 'Index Coverage Term',
+    period: 'Period',
+    range: 'Custom range',
+    all: 'All',
+    standard: 'Standard',
+    enhanced: 'Enhanced',
+    years3: '3 years',
+    years5: '5 years',
+    month: 'Month',
+    chartTitle: 'Cap rate over time',
+    variantNote: 'The Enhanced variant applies the same cap regardless of premium band.',
+    empty: 'No rate on file for this combination in the selected period.',
+    methods: { GUARANTEE_100: 'Guarantee 100', GUARANTEE_95: 'Guarantee 95', BUFFER_10: 'Protection Buffer 10' },
+    footer: 'For illustrative purposes only. Not financial advice. Past performance does not guarantee future results.<br>Allianz Active4Life Evolution is issued by Allianz Global Life Designated Activity Company (Allianz Global Life dac), a company of the Allianz SE Group. Registered address: Maple House, Temple Road, Blackrock, Dublin, A94 Y9E8. Regulated by the Central Bank of Ireland. Company Registration Number: 458565.'
+  },
+  it: {
+    hsub: 'Storico dei Parametri finanziari',
+    navHome: 'Home',
+    navGuide: 'Guida al Prodotto',
+    navHistory: 'Storico dei Parametri Finanziari',
+    navTool: 'Strumento di Illustrazione',
+    title: 'Storico dei Parametri Finanziari',
+    sub: 'Visualizza i Parametri finanziari di ogni strategia dal lancio del prodotto.',
+    infoText: 'Ogni strategia ha un Parametro finanziario annuale, il rendimento massimo dell\'indice che può accreditare in un anno di polizza. Il Parametro non è fisso per la durata del contratto; viene rivisto e può cambiare ad ogni anniversario annuale della polizza in base alle condizioni di mercato. Di seguito sono riportati i Parametri finanziari di ogni strategia dal lancio del prodotto.',
+    infoCaveat: 'I Parametri finanziari passati non sono indicativi dei Parametri futuri.',
+    infoLink: 'Leggi la Guida al Prodotto completa per scoprire quali fattori influenzano i Parametri finanziari →',
+    variant: 'Variante',
+    tier: 'Fascia Premio',
+    tierBand1: 'Fino a €1,5M',
+    tierBand23: '€1,5M – €5M',
+    tierBand45: '€5M – €20M',
+    term: 'Durata Copertura Index',
+    period: 'Periodo',
+    range: 'Periodo personalizzato',
+    all: 'Tutti',
+    standard: 'Standard',
+    enhanced: 'Enhanced',
+    years3: '3 anni',
+    years5: '5 anni',
+    month: 'Mese',
+    chartTitle: 'Andamento del Parametro finanziario nel tempo',
+    variantNote: 'La variante Enhanced applica lo stesso Parametro finanziario indipendentemente dalla fascia premio.',
+    empty: 'Nessun Parametro finanziario disponibile per questa combinazione nel periodo selezionato.',
+    methods: { GUARANTEE_100: 'Garanzia 100', GUARANTEE_95: 'Garanzia 95', BUFFER_10: 'Protezione Buffer 10' },
+    footer: 'Ai soli fini illustrativi. Non costituisce consulenza finanziaria. I rendimenti passati non sono indicativi di quelli futuri.<br>Allianz Active4Life Evolution è emesso da Allianz Global Life Designated Activity Company (Allianz Global Life dac), una società del Gruppo Allianz SE. Sede legale: Maple House, Temple Road, Blackrock, Dublin, A94 Y9E8. Regolata dalla Banca Centrale d\'Irlanda. Numero di registrazione societaria: 458565.'
+  }
+};
+
+function T(key) { return STRINGS[CURRENT_LANG][key]; }
+
+function applyLang() {
+  document.getElementById('hdr-sub').textContent = T('hsub');
+  document.getElementById('nav-home').textContent = T('navHome');
+  document.getElementById('nav-guide').textContent = T('navGuide');
+  document.getElementById('nav-history').textContent = T('navHistory');
+  document.getElementById('nav-tool').textContent = T('navTool');
+  document.getElementById('hero-title').textContent = T('title');
+  document.getElementById('hero-sub').textContent = T('sub');
+  document.getElementById('info-text').textContent = T('infoText');
+  document.getElementById('info-caveat').textContent = T('infoCaveat');
+  document.getElementById('info-link').textContent = T('infoLink');
+  document.getElementById('lbl-variant').textContent = T('variant');
+  document.getElementById('lbl-tier').textContent = T('tier');
+  document.getElementById('lbl-term').textContent = T('term');
+  document.getElementById('lbl-period').textContent = T('period');
+  document.getElementById('lbl-range').textContent = T('range');
+  document.getElementById('f-version').options[0].textContent = T('standard');
+  document.getElementById('f-version').options[1].textContent = T('enhanced');
+  document.getElementById('f-tier').options[0].textContent = T('tierBand1');
+  document.getElementById('f-tier').options[1].textContent = T('tierBand23');
+  document.getElementById('f-tier').options[2].textContent = T('tierBand45');
+  document.getElementById('f-term').options[0].textContent = T('years3');
+  document.getElementById('f-term').options[1].textContent = T('years5');
+  METHODS.forEach(function (m) {
+    document.querySelector('.mtbtn[data-method="' + m + '"] .mt-label').textContent = T('methods')[m];
+  });
+  document.getElementById('mt-all').textContent = T('all');
+  document.getElementById('p-all').textContent = T('all');
+  document.getElementById('chart-title').textContent = T('chartTitle');
+  document.getElementById('variant-note').textContent = T('variantNote');
+  document.getElementById('footer-text').innerHTML = T('footer');
+  document.getElementById('lang-en-btn').classList.toggle('active', CURRENT_LANG === 'en');
+  document.getElementById('lang-it-btn').classList.toggle('active', CURRENT_LANG === 'it');
+  renderAll();
+}
+
+function setLang(lang) {
+  CURRENT_LANG = lang;
+  localStorage.setItem('rila_lang', lang);
+  applyLang();
+}
+
+var METHOD_COLORS = {
+  'GUARANTEE_100': '#5BA8D8',
+  'GUARANTEE_95': '#0082C8',
+  'BUFFER_10': '#003781'
+};
+var METHODS = ['GUARANTEE_100', 'GUARANTEE_95', 'BUFFER_10'];
+var capChart = null;
+
+function monthLabel(y, m) {
+  var names = ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return names[m] + ' ' + y;
+}
+
+function populateFromTo() {
+  var fromSel = document.getElementById('f-from');
+  var toSel = document.getElementById('f-to');
+  [fromSel, toSel].forEach(function (sel) {
+    sel.innerHTML = CAP_HISTORY_MONTHS.map(function (label, i) {
+      return '<option value="' + i + '">' + label + '</option>';
+    }).join('');
+  });
+  fromSel.selectedIndex = 0;
+  toSel.selectedIndex = CAP_HISTORY_MONTHS.length - 1;
+}
+
+/* Quick-preset buttons just set the From/To selects to a computed range, so the
+   selects are always the single source of truth for which months are shown. */
+function applyPreset(n) {
+  var last = CAP_HISTORY_MONTHS.length - 1;
+  var from = n > 0 ? Math.max(0, last - (n - 1)) : 0;
+  document.getElementById('f-from').value = String(from);
+  document.getElementById('f-to').value = String(last);
+}
+
+function getSelectedMonths() {
+  var fromIdx = parseInt(document.getElementById('f-from').value, 10);
+  var toIdx = parseInt(document.getElementById('f-to').value, 10);
+  if (fromIdx > toIdx) { var t = fromIdx; fromIdx = toIdx; toIdx = t; }
+  var months = [];
+  for (var i = fromIdx; i <= toIdx; i++) months.push(CAP_HISTORY_MONTHS[i]);
+  return months;
+}
+
+/* Enhanced is confirmed flat across all three premium bands (verified against
+   the source consolidator - 0 mismatches across every month/term/method).
+   The band selector is disabled for it rather than removed, so switching
+   back to Standard restores whichever band was picked before. */
+function updateVariantNote() {
+  var isEnhanced = document.getElementById('f-version').value === '2';
+  document.getElementById('f-tier').disabled = isEnhanced;
+  document.getElementById('variant-note').classList.toggle('show', isEnhanced);
+}
+
+var activeMethods = {};
+METHODS.forEach(function (m) { activeMethods[m] = true; });
+
+function getFilterParams() {
+  return {
+    version: parseInt(document.getElementById('f-version').value, 10),
+    tier: document.getElementById('f-tier').value,
+    term: parseInt(document.getElementById('f-term').value, 10),
+    months: getSelectedMonths()
+  };
+}
+
+function buildMethodValues(method, params) {
+  var values = {};
+  CAP_HISTORY_DATA.forEach(function (r) {
+    if (r.ver !== params.version || r.tier !== params.tier || r.term !== params.term || r.method !== method) return;
+    values[monthLabel(r.y, r.m)] = r.rate;
+  });
+  return values;
+}
+
+function renderTable(params) {
+  var methodValues = {};
+  METHODS.forEach(function (m) { methodValues[m] = buildMethodValues(m, params); });
+
+  var thead = document.getElementById('cap-thead');
+  var headHtml = '<th>' + T('month') + '</th>';
+  METHODS.forEach(function (m) { headHtml += '<th>' + T('methods')[m] + '</th>'; });
+  thead.innerHTML = headHtml;
+
+  var tbody = document.getElementById('cap-tbody');
+  var rowsHtml = '';
+  var anyData = false;
+  params.months.slice().reverse().forEach(function (label) {
+    var rowHasData = METHODS.some(function (m) { return methodValues[m][label] !== undefined; });
+    if (!rowHasData) return;
+    anyData = true;
+    rowsHtml += '<tr><td>' + label + '</td>';
+    METHODS.forEach(function (m) {
+      var v = methodValues[m][label];
+      rowsHtml += '<td>' + (v === undefined ? '—' : v.toFixed(2) + '%') + '</td>';
+    });
+    rowsHtml += '</tr>';
+  });
+
+  tbody.innerHTML = rowsHtml;
+  document.getElementById('cap-table').style.display = anyData ? '' : 'none';
+  var note = document.getElementById('empty-note');
+  note.style.display = anyData ? 'none' : 'block';
+  note.textContent = T('empty');
+}
+
+function renderChart(params) {
+  var datasets = METHODS.filter(function (m) { return activeMethods[m]; }).map(function (m) {
+    var color = METHOD_COLORS[m];
+    var values = buildMethodValues(m, params);
+    return {
+      label: T('methods')[m],
+      data: params.months.map(function (label) { return values[label] !== undefined ? values[label] : null; }),
+      borderColor: color,
+      backgroundColor: color,
+      spanGaps: true,
+      tension: 0.25,
+      pointRadius: 3,
+      pointHoverRadius: 5,
+      borderWidth: 2.5,
+      fill: false
+    };
+  });
+
+  if (capChart) {
+    capChart.data.labels = params.months;
+    capChart.data.datasets = datasets;
+    capChart.update();
+    return;
+  }
+
+  var ctx = document.getElementById('cap-chart').getContext('2d');
+  capChart = new Chart(ctx, {
+    type: 'line',
+    data: { labels: params.months, datasets: datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: true, position: 'top', align: 'end', labels: { boxWidth: 12, boxHeight: 12 } } },
+      scales: {
+        y: { ticks: { precision: 2, callback: function (v) { return Number(v).toFixed(2) + '%'; } }, grid: { color: 'rgba(0,0,0,.05)' } },
+        x: { grid: { display: false } }
+      },
+      interaction: { mode: 'index', intersect: false }
+    }
+  });
+}
+
+function updateMethodToggleUI() {
+  METHODS.forEach(function (m) {
+    document.querySelector('.mtbtn[data-method="' + m + '"]').classList.toggle('active', !!activeMethods[m]);
+  });
+  var allActive = METHODS.every(function (m) { return activeMethods[m]; });
+  document.getElementById('mt-all').classList.toggle('active', allActive);
+}
+
+function renderAll() {
+  updateVariantNote();
+  var params = getFilterParams();
+  document.getElementById('chart-title').textContent = T('chartTitle');
+  renderTable(params);
+  renderChart(params);
+}
+
+document.querySelectorAll('.mtbtn').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var m = btn.dataset.method;
+    if (m === 'ALL') {
+      var allActive = METHODS.every(function (mm) { return activeMethods[mm]; });
+      METHODS.forEach(function (mm) { activeMethods[mm] = !allActive; });
+    } else {
+      activeMethods[m] = !activeMethods[m];
+    }
+    updateMethodToggleUI();
+    renderChart(getFilterParams());
+  });
+});
+
+document.getElementById('f-version').addEventListener('change', renderAll);
+document.getElementById('f-tier').addEventListener('change', renderAll);
+document.getElementById('f-term').addEventListener('change', renderAll);
+document.getElementById('f-from').addEventListener('change', renderAll);
+document.getElementById('f-to').addEventListener('change', renderAll);
+
+['p-3', 'p-6', 'p-12', 'p-all'].forEach(function (id) {
+  document.getElementById(id).addEventListener('click', function () {
+    document.querySelectorAll('#period-seg button').forEach(function (b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    applyPreset(parseInt(this.dataset.n, 10));
+    renderAll();
+  });
+});
+
+METHODS.forEach(function (m) {
+  document.querySelector('.mtbtn[data-method="' + m + '"] .mt-dot').style.background = METHOD_COLORS[m];
+});
+
+populateFromTo();
+applyLang();
+</script>
+
+</body>
+</html>

@@ -48,19 +48,25 @@ body::before { content: ''; display: block; height: 4px; background: var(--navy)
 .hdr-divider { width: 1px; height: 32px; background: var(--border); margin: 0 4px; }
 .htitle { color: var(--navy); font-size: 18px; font-weight: 700; line-height: 1.25; }
 .hsub { color: var(--muted); font-size: 11px; margin-top: 2px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; }
+.hdr-r { display: flex; align-items: center; gap: 20px; }
+.hdr-nav { display: flex; align-items: center; gap: 22px; }
+.hdr-link { font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; transition: color .18s; }
+.hdr-link:hover { color: var(--navy); }
+.hdr-link.active { color: var(--navy); font-weight: 700; pointer-events: none; }
 .lang-toggle { display: flex; border: 1px solid var(--border); border-radius: var(--a1-radius-s); overflow: hidden; }
 .ltbtn { background: var(--white); border: none; padding: 6px 13px; font-size: 12px; font-weight: 700; cursor: pointer; color: var(--muted); transition: all .18s; }
 .ltbtn.active { background: var(--navy); color: #fff; }
 
 /* ── Hero — white, typography-forward ── */
 .hero { background: var(--white); padding: 76px 48px 68px; text-align: center; border-bottom: 1px solid var(--border); }
-.hero-eyebrow { font-size: 10.5px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 22px; }
+.hero-eyebrow { font-size: 13.5px; font-weight: 600; color: var(--muted); max-width: 480px; margin: 0 auto 22px; line-height: 1.5; }
 .hero-title { font-size: 44px; font-weight: 900; letter-spacing: -1.2px; line-height: 1.1; margin-bottom: 16px; color: var(--navy); }
 .hero-title span { color: var(--blue); }
+.hero-tagline { font-size: 16px; font-weight: 700; color: var(--navy); max-width: 500px; margin: 0 auto 10px; line-height: 1.5; }
 .hero-sub { font-size: 16px; color: var(--muted); max-width: 500px; margin: 0 auto 52px; line-height: 1.72; }
 
 /* ── Navigation cards ── */
-.cards { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; max-width: 800px; margin: 0 auto; }
+.cards { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; max-width: 1160px; margin: 0 auto; }
 .card-link { text-decoration: none; flex: 1; min-width: 280px; max-width: 370px; }
 .card-link:hover .nav-card { box-shadow: var(--a1-shadow-400); transform: translateY(-3px); }
 .nav-card { background: var(--white); border: 1px solid var(--border); border-top: 4px solid var(--border); border-radius: var(--a1-radius-m); padding: 32px 28px 24px; transition: transform .22s, box-shadow .22s; display: flex; flex-direction: column; height: 100%; }
@@ -107,25 +113,35 @@ body::before { content: ''; display: block; height: 4px; background: var(--navy)
     <div class="hdr-divider"></div>
     <div>
       <div class="htitle">Allianz Active4Life <span id="hdr-evolution">Evolution</span></div>
-      <div class="hsub" id="hdr-sub">Index Linked Coverage &middot; Euro Stoxx 50®</div>
+      <div class="hsub" id="hdr-sub">Guarantee, Protection and Performance, all in one solution</div>
     </div>
   </div>
-  <div class="lang-toggle">
-    <button class="ltbtn" id="lang-en-btn" onclick="setLang('en')">EN</button>
-    <button class="ltbtn" id="lang-it-btn" onclick="setLang('it')">IT</button>
+  <div class="hdr-r">
+    <nav class="hdr-nav">
+      <a href="index.html" class="hdr-link active" id="nav-home">Home</a>
+      <a href="info.html" class="hdr-link" id="nav-guide">Product Guide</a>
+      <a href="tool.html" class="hdr-link" id="nav-tool">Illustration Tool</a>
+      <a href="cap-history.html" class="hdr-link" id="nav-history">Cap Rate History</a>
+    </nav>
+    <div class="hdr-divider"></div>
+    <div class="lang-toggle">
+      <button class="ltbtn" id="lang-en-btn" onclick="setLang('en')">EN</button>
+      <button class="ltbtn" id="lang-it-btn" onclick="setLang('it')">IT</button>
+    </div>
   </div>
 </div>
 
 <div class="hero">
-  <div class="hero-eyebrow" id="hero-eyebrow">Index Linked Coverage · Euro Stoxx 50®</div>
+  <div class="hero-eyebrow" id="hero-eyebrow">An illustration tool for the product's Index-Linked Coverage.</div>
   <div class="hero-title" id="hero-title">Allianz Active4Life <span>Evolution</span></div>
+  <div class="hero-tagline" id="hero-tagline">A Unit and Index-Linked product by Allianz Global Life</div>
   <div class="hero-sub" id="hero-sub">Four index-linked strategies with built-in downside protection. Understand the mechanics, then build your own scenarios to see how they respond.</div>
 
   <div class="cards">
     <a href="info.html" class="card-link">
       <div class="nav-card">
         <div class="nav-card-title" id="card1-title">Product Guide</div>
-        <div class="nav-card-desc" id="card1-desc">A full walkthrough of the four investment strategies, how protection levels work, and what drives your cap rates each year.</div>
+        <div class="nav-card-desc" id="card1-desc">A full walkthrough of the Index-linked Coverage strategies: how protection levels work, and what drives your caps every year.</div>
         <div class="nav-card-cta" id="card1-cta">Learn more</div>
       </div>
     </a>
@@ -134,6 +150,13 @@ body::before { content: ''; display: block; height: 4px; background: var(--navy)
         <div class="nav-card-title" id="card2-title">Illustration Tool</div>
         <div class="nav-card-desc" id="card2-desc">Choose a strategy and build a market scenario, using a preset pattern or your own year-by-year returns, to see how it would respond at today's cap rates.</div>
         <div class="nav-card-cta" id="card2-cta">Open the tool</div>
+      </div>
+    </a>
+    <a href="cap-history.html" class="card-link">
+      <div class="nav-card">
+        <div class="nav-card-title" id="card3-title">Cap Rate History</div>
+        <div class="nav-card-desc" id="card3-desc">Every cap rate set on the product since launch, month by month.</div>
+        <div class="nav-card-cta" id="card3-cta">View history</div>
       </div>
     </a>
   </div>
@@ -189,16 +212,24 @@ var CURRENT_LANG = localStorage.getItem('rila_lang') || 'en';
 var STRINGS = {
   en: {
     evolution: 'Evolution',
-    hdr_sub: 'Index Linked Coverage · Euro Stoxx 50®',
-    hero_eyebrow: 'Index Linked Coverage · Euro Stoxx 50®',
+    hdr_sub: 'Guarantee, Protection and Performance, all in one solution',
+    nav_home: 'Home',
+    nav_guide: 'Product Guide',
+    nav_history: 'Cap Rate History',
+    nav_tool: 'Illustration Tool',
+    hero_eyebrow: 'An illustration tool for the product\'s Index-Linked Coverage.',
     hero_title: 'Allianz Active4Life <span>Evolution</span>',
+    hero_tagline: 'A Unit and Index-Linked product by Allianz Global Life',
     hero_sub: 'Four index-linked strategies with built-in downside protection. Understand the mechanics, then build your own scenarios to see how they respond.',
     card1_title: 'Product Guide',
-    card1_desc: 'A full walkthrough of the four investment strategies, how protection levels work, and what drives your cap rates each year.',
+    card1_desc: 'A full walkthrough of the Index-linked Coverage strategies: how protection levels work, and what drives your caps every year.',
     card1_cta: 'Learn more',
     card2_title: 'Illustration Tool',
-    card2_desc: 'Choose a strategy and build a market scenario, using a preset pattern or your own year-by-year returns, to see how it would respond at today\'s cap rates.',
+    card2_desc: 'Create a market scenario using preset patterns, or your own personalized returns.',
     card2_cta: 'Open the tool',
+    card3_title: 'Cap Rate History',
+    card3_desc: 'Every cap rate set on the product since launch, month by month.',
+    card3_cta: 'View history',
     features_title: 'What the product offers',
     feat1_title: 'Growth Potential',
     feat1_desc: 'Combine different investment strategies, from direct participation in the European stock index to multi-asset strategies with different risk profiles, diversifying across global and European markets.',
@@ -210,16 +241,24 @@ var STRINGS = {
   },
   it: {
     evolution: 'Evolution',
-    hdr_sub: 'Copertura Index Linked · Euro Stoxx 50®',
-    hero_eyebrow: 'Copertura Index Linked · Euro Stoxx 50®',
+    hdr_sub: 'Garanzia, protezione e rendimento combinate in un\'unica soluzione.',
+    nav_home: 'Home',
+    nav_guide: 'Guida al Prodotto',
+    nav_history: 'Storico dei Parametri Finanziari',
+    nav_tool: 'Strumento di Illustrazione',
+    hero_eyebrow: 'Il presente tool è uno strumento di illustrazione per le strategie inerenti la Copertura Index-Linked del prodotto',
     hero_title: 'Allianz Active4Life <span>Evolution</span>',
+    hero_tagline: 'Prodotto Unit e Index-Linked di Allianz Global Life',
     hero_sub: 'Quattro strategie index-linked con protezione dal ribasso integrata. Comprendi i meccanismi, poi crea i tuoi scenari per vedere come rispondono.',
     card1_title: 'Guida al Prodotto',
-    card1_desc: 'Una guida completa alle quattro strategie di investimento, come funzionano i livelli di protezione e cosa determina i cap rate ogni anno.',
+    card1_desc: 'Una guida completa delle coperture Index-Linked: come funzionano i livelli di protezione e cosa determinano i Parametri finanziari ogni anno.',
     card1_cta: 'Scopri di più',
     card2_title: 'Strumento di Illustrazione',
-    card2_desc: 'Scegli una strategia e crea uno scenario di mercato, usando un pattern predefinito o i tuoi rendimenti anno per anno, per vedere come risponderebbe ai cap rate attuali.',
+    card2_desc: 'Crea uno scenario di mercato utilizzando combinazioni predefinite o personalizzate.',
     card2_cta: 'Apri lo strumento',
+    card3_title: 'Storico dei Parametri Finanziari',
+    card3_desc: 'Tutti i Parametri finanziari fissati sul prodotto dal lancio, mese per mese.',
+    card3_cta: 'Vedi lo storico',
     features_title: 'Cosa offre il prodotto',
     feat1_title: 'Potenzialità di crescita',
     feat1_desc: 'Puoi combinare diverse strategie di investimento tra partecipazione diretta all\'indice azionario europeo e strategie multi-asset con diversi profili di rischio, diversificando tra mercati globali ed europei.',
@@ -245,8 +284,13 @@ function setLang(lang) {
 function translateUI() {
   document.getElementById('hdr-evolution').textContent = T('evolution');
   document.getElementById('hdr-sub').textContent = T('hdr_sub');
+  document.getElementById('nav-home').textContent = T('nav_home');
+  document.getElementById('nav-guide').textContent = T('nav_guide');
+  document.getElementById('nav-history').textContent = T('nav_history');
+  document.getElementById('nav-tool').textContent = T('nav_tool');
   document.getElementById('hero-eyebrow').textContent = T('hero_eyebrow');
   document.getElementById('hero-title').innerHTML = T('hero_title');
+  document.getElementById('hero-tagline').textContent = T('hero_tagline');
   document.getElementById('hero-sub').textContent = T('hero_sub');
   document.getElementById('card1-title').textContent = T('card1_title');
   document.getElementById('card1-desc').textContent = T('card1_desc');
@@ -254,6 +298,9 @@ function translateUI() {
   document.getElementById('card2-title').textContent = T('card2_title');
   document.getElementById('card2-desc').textContent = T('card2_desc');
   document.getElementById('card2-cta').textContent = T('card2_cta');
+  document.getElementById('card3-title').textContent = T('card3_title');
+  document.getElementById('card3-desc').textContent = T('card3_desc');
+  document.getElementById('card3-cta').textContent = T('card3_cta');
   document.getElementById('features-title').textContent = T('features_title');
   document.getElementById('feat1-title').textContent = T('feat1_title');
   document.getElementById('feat1-desc').textContent = T('feat1_desc');

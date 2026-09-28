@@ -2,12 +2,12 @@ var RILA_DATA = {
   "product": "Allianz Active4Life Evolution",
   "version": "v1.0 · May 2026",
   "crediting_methods": {
-    "opportunity": {
-      "name": "Opportunity",
-      "description": "10% Buffer – first 10% of losses absorbed",
-      "type": "buffer",
-      "level": 10,
-      "sri": 3
+    "protection": {
+      "name": "Protection",
+      "description": "0% Floor – no downside risk",
+      "type": "floor",
+      "level": 0,
+      "sri": 1
     },
     "balance": {
       "name": "Balance",
@@ -16,12 +16,12 @@ var RILA_DATA = {
       "level": -5,
       "sri": 2
     },
-    "protection": {
-      "name": "Protection",
-      "description": "0% Floor – no downside risk",
-      "type": "floor",
-      "level": 0,
-      "sri": 1
+    "opportunity": {
+      "name": "Opportunity",
+      "description": "10% Buffer – first 10% of losses absorbed",
+      "type": "buffer",
+      "level": 10,
+      "sri": 3
     }
   },
   "equity_risk_premium": {

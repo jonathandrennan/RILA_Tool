@@ -94,7 +94,11 @@ body::before { content: ''; display: block; height: 4px; background: var(--navy)
 .hdr-divider { width: 1px; height: 32px; background: var(--gb); margin: 0 4px; }
 .htitle { color: var(--navy); font-size: 18px; font-weight: 700; line-height: 1.25; }
 .hsub { color: var(--tm2); font-size: 11px; margin-top: 2px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; }
-.hdr-r { display: flex; align-items: center; }
+.hdr-r { display: flex; align-items: center; gap: 20px; }
+.hdr-nav { display: flex; align-items: center; gap: 22px; }
+.hdr-link { font-size: 13px; font-weight: 600; color: var(--tm2); text-decoration: none; transition: color .18s; }
+.hdr-link:hover { color: var(--navy); }
+.hdr-link.active { color: var(--navy); font-weight: 700; pointer-events: none; }
 .lang-toggle { display: flex; border: 1px solid var(--gb); border-radius: var(--a1-radius-s); overflow: hidden; }
 .ltbtn { background: var(--white); border: none; padding: 6px 13px; font-size: 12px; font-weight: 700; cursor: pointer; color: var(--tm2); transition: all .18s; }
 .ltbtn.active { background: var(--navy); color: #fff; }
@@ -144,24 +148,6 @@ body::before { content: ''; display: block; height: 4px; background: var(--navy)
 }
 .stab-group { display: flex; align-items: center; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
 .stab-group::-webkit-scrollbar { display: none; }
-.nav-back {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--tm2);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: color .18s;
-  white-space: nowrap;
-  flex-shrink: 0;
-  padding: 17px 20px;
-  margin-bottom: -1px;
-  border-bottom: 2px solid transparent;
-  border-right: 1px solid var(--gb);
-}
-.nav-back:hover { color: var(--navy); }
-.nav-back::before { content: '‹'; font-size: 17px; font-weight: 300; line-height: 1; margin-top: -1px; }
 .stab {
   background: transparent;
   border: none;
@@ -179,20 +165,6 @@ body::before { content: ''; display: block; height: 4px; background: var(--navy)
 }
 .stab:hover { color: var(--navy); }
 .stab.active { color: var(--navy); border-bottom-color: var(--navy); font-weight: 700; }
-.nav-tool-pill {
-  font-size: 12px;
-  font-weight: 700;
-  color: #fff;
-  background: var(--navy);
-  text-decoration: none;
-  border: 1px solid var(--navy);
-  border-radius: var(--a1-radius-s);
-  padding: 8px 16px;
-  transition: background .18s, border-color .18s;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.nav-tool-pill:hover { background: var(--a1-brand-dark); border-color: var(--a1-brand-dark); }
 
 /* ── Page sections ── */
 .page-section { padding: 60px 0; scroll-margin-top: 54px; }
@@ -492,6 +464,8 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
   max-width: 960px;
   margin: 0 auto;
 }
+.disc-heading { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.disc p + p { margin-top: 10px; }
 
 /* ── Responsive ── */
 @media (max-width: 760px) {
@@ -686,10 +660,17 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
     <div class="hdr-divider"></div>
     <div>
       <div class="htitle">Allianz Active4Life <span id="hdr-evolution">Evolution</span></div>
-      <div class="hsub" id="hdr-sub">Index Linked Coverage · EURO STOXX 50®</div>
+      <div class="hsub" id="hdr-sub">Guarantee, Protection and Performance, all in one solution</div>
     </div>
   </div>
   <div class="hdr-r">
+    <nav class="hdr-nav">
+      <a href="index.html" class="hdr-link" id="nav-home">Home</a>
+      <a href="info.html" class="hdr-link active" id="nav-guide">Product Guide</a>
+      <a href="tool.html" class="hdr-link" id="nav-tool">Illustration Tool</a>
+      <a href="cap-history.html" class="hdr-link" id="nav-history">Cap Rate History</a>
+    </nav>
+    <div class="hdr-divider"></div>
     <div class="lang-toggle">
       <button class="ltbtn" id="lang-en-btn" onclick="setLang('en')">EN</button>
       <button class="ltbtn" id="lang-it-btn" onclick="setLang('it')">IT</button>
@@ -709,13 +690,11 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
 <!-- ── Sticky nav ── -->
 <div class="section-tabs">
   <div class="stab-group">
-    <a href="index.html" class="nav-back" id="nav-back-lbl">Home</a>
     <a href="#about"    class="stab active" id="anav-about">Il prodotto</a>
     <a href="#g100"        class="stab" id="anav-strategies">Strategies</a>
     <a href="#how-it-works" class="stab" id="anav-how">How your premium is invested</a>
     <a href="#caps"        class="stab" id="anav-caps">Cap rates</a>
   </div>
-  <a href="tool.html" id="nav-tool-lbl" class="nav-tool-pill">Strumento di Illustrazione</a>
 </div>
 
 
@@ -1299,7 +1278,7 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
   </div>
 </div>
 
-<div class="disc" id="cr-disc">This material is for information and illustrative purposes only and does not constitute financial advice. You should seek independent financial advice before making any investment decision. Investment in the Indexed Strategies is subject to investment risk, including the possible loss of some or all of the amount invested. The Guarantee 100 strategy protects the full amount invested; the Guarantee 95 and Protection Buffer 10 strategies do not offer full capital protection and you may lose a portion of your investment in adverse market conditions. Cap rates, coupon values and other financial parameters are indicative, reviewed and may be reset at each annual policy anniversary. Past index performance does not guarantee future results. Although index performance affects your policy values, the policy does not involve direct investment in equities or any index constituent. EURO STOXX 50® performance is referenced for illustrative purposes only and represents a price return index, excluding dividends. EURO STOXX 50® is the intellectual property (including registered trademarks) of STOXX Ltd., Zug, Switzerland ("STOXX"), Deutsche Börse Group or their licensors, which is used under license. Allianz Active4Life Evolution is neither sponsored nor promoted, distributed or in any other manner supported by STOXX, Deutsche Börse Group or their licensors, research partners or data providers and STOXX, Deutsche Börse Group and their licensors, research partners or data providers do not give any warranty, and exclude any liability (whether in negligence or otherwise) with respect thereto generally or specifically in relation to any errors, omissions or interruptions in the EURO STOXX 50® or its data. Allianz Active4Life Evolution is issued by Allianz Global Life Designated Activity Company (Allianz Global Life dac), a company of the Allianz SE Group. Registered address: Maple House, Temple Road, Blackrock, Dublin, A94 Y9E8. Regulated by the Central Bank of Ireland. Company Registration Number: 458565.</div>
+<div class="disc" id="cr-disc"><p class="disc-heading">Important information</p><p>This material is for information and illustrative purposes only and does not constitute financial, investment, or tax advice. You should seek independent financial advice before making any investment decision.</p><p>Capital at risk. Investment in the Indexed Strategies is subject to investment risk, including the possible loss of some or all of the amount invested. The Guarantee 100 strategy protects the full amount invested; the Guarantee 95 and Protection Buffer 10 strategies do not offer full capital protection, and you may lose a portion of your investment in adverse market conditions.</p><p>Cap rates, coupon values, and other financial parameters shown are indicative only. They are reviewed and may be reset by Allianz at each annual policy anniversary and are not guaranteed beyond the first policy year. Past index performance and past cap rates do not guarantee future results.</p><p>Although index performance affects your policy values, the policy does not involve direct investment in equities or any index constituent. EURO STOXX 50® performance is referenced for illustrative purposes only and represents a price return index, excluding dividends.</p><p>EURO STOXX 50® is the intellectual property (including registered trademarks) of STOXX Ltd., Zug, Switzerland ("STOXX"), Deutsche Börse Group or their licensors, which is used under licence. Allianz Active4Life Evolution is neither sponsored nor promoted, distributed, or in any other manner supported by STOXX, Deutsche Börse Group or their licensors, research partners or data providers. STOXX, Deutsche Börse Group and their licensors, research partners or data providers do not give any warranty, and exclude any liability (whether in negligence or otherwise) with respect thereto generally or specifically in relation to any errors, omissions or interruptions in the EURO STOXX 50® or its data.</p><p>Allianz Active4Life Evolution is issued by Allianz Global Life Designated Activity Company (Allianz Global Life dac), a company of the Allianz SE Group. Registered address: Maple House, Temple Road, Blackrock, Dublin, A94 Y9E8. Regulated by the Central Bank of Ireland. Company Registration Number: 458565.</p></div>
 
 <script>
 var CURRENT_LANG = localStorage.getItem('rila_lang') || 'en';
@@ -1307,9 +1286,11 @@ var CURRENT_LANG = localStorage.getItem('rila_lang') || 'en';
 var STRINGS = {
   en: {
     hdr_evolution: 'Evolution',
-    hdr_sub: 'Index Linked Coverage · EURO STOXX 50®',
-    nav_back_lbl: 'Home',
-    nav_tool_lbl: 'Illustration Tool',
+    hdr_sub: 'Guarantee, Protection and Performance, all in one solution',
+    nav_home: 'Home',
+    nav_guide: 'Product Guide',
+    nav_history: 'Cap Rate History',
+    nav_tool: 'Illustration Tool',
     hero_eyebrow: 'Allianz Active4Life Evolution · Product Guide',
     hero_title: 'How Active4Life Evolution works',
     hero_sub: 'The four investment strategies, protection mechanics, and cap rate dynamics — explained.',
@@ -1322,7 +1303,7 @@ var STRINGS = {
     anav_how: 'How your premium is invested',
     anav_caps: 'Cap rates',
 
-    pdf_intro: '<p class="pdf-intro" style="margin-bottom:16px;">Allianz Active4Life Evolution is designed for investors who want to participate in equity market growth without taking on full market risk. Returns are linked to the EURO STOXX 50® index. Gains are credited to your policy each year up to a cap rate, with downside protection built in to limit exposure to any market falls.</p><p class="pdf-intro">Available over a 3 or 5 year term, the product offers three indexed strategies, each with a different balance of upside potential and downside protection, as well as a fixed coupon option for those seeking a predictable annual income. You can invest in one or more strategies and adjust your allocation during the term. All guarantees are provided directly by Allianz Global Life dac.</p>',
+    pdf_intro: '<p class="pdf-intro">Allianz Active4Life Evolution is a mixed Unit and Index Linked insurance investment policy, with a single premium, issued by Allianz Global Life dac. It offers investors the flexibility to choose one or more investment strategies, activate different levels of guarantee or protection, make additional contributions, switch strategies, and make partial withdrawals during the course of their investment.</p><p class="pdf-intro">The product combines two types of investment coverage:</p><p class="pdf-intro"><strong>Unit Linked.</strong> Invest in multiple multi-asset UCITS funds simultaneously, choosing between options with or without a guarantee. The funds offer different risk profiles and include an annual guarantee system, optional and customisable, which can range from 85% to 93%.</p><p class="pdf-intro"><strong>Index Linked.</strong> Three investment strategies offering the opportunity to participate in the EURO STOXX 50® equity index with different levels of guarantee up to 100%. A fourth strategy provides a capital guarantee with a guaranteed annual coupon, independent of index performance.</p><p class="pdf-intro">You can diversify your investment within a single product, by activating multiple coverages, both Index and Unit Linked, and multiple strategies simultaneously.</p><p class="pdf-intro">This guide focuses on the Index Linked element of the product.</p><p class="pdf-intro">Index Linked coverage is available over a fixed term of 3 or 5 years. Gains are credited to your policy each year up to a cap rate, with downside protection built in to limit your exposure to market falls. At each policy anniversary, positive index returns are consolidated into your policy value. You can invest in one or more Index Linked strategies and adjust your allocation during the term.</p><p class="pdf-intro">All guarantees are provided directly by Allianz Global Life dac.</p>',
 
     g100_title: 'Guarantee <span class="strat-title-accent">100</span>',
     g100_b1: 'Exposure to the return of the <strong>EUROSTOXX50® equity index</strong>, up to a maximum ceiling (the Cap) defined annually at each annual anniversary.',
@@ -1442,13 +1423,15 @@ var STRINGS = {
     cta_title: 'Explore the numbers yourself',
     cta_sub: 'Use the illustration tool to build market scenarios for each strategy at today\'s cap rates.',
     cta_btn: 'Open the Illustration Tool →',
-    cr_disc: 'This material is for information and illustrative purposes only and does not constitute financial advice. You should seek independent financial advice before making any investment decision. Investment in the Indexed Strategies is subject to investment risk, including the possible loss of some or all of the amount invested. The Guarantee 100 strategy protects the full amount invested; the Guarantee 95 and Protection Buffer 10 strategies do not offer full capital protection and you may lose a portion of your investment in adverse market conditions. Cap rates, coupon values and other financial parameters are indicative, reviewed and may be reset at each annual policy anniversary. Past index performance does not guarantee future results. Although index performance affects your policy values, the policy does not involve direct investment in equities or any index constituent. EURO STOXX 50® performance is referenced for illustrative purposes only and represents a price return index, excluding dividends. EURO STOXX 50® is the intellectual property (including registered trademarks) of STOXX Ltd., Zug, Switzerland (\"STOXX\"), Deutsche Börse Group or their licensors, which is used under license. Allianz Active4Life Evolution is neither sponsored nor promoted, distributed or in any other manner supported by STOXX, Deutsche Börse Group or their licensors, research partners or data providers and STOXX, Deutsche Börse Group and their licensors, research partners or data providers do not give any warranty, and exclude any liability (whether in negligence or otherwise) with respect thereto generally or specifically in relation to any errors, omissions or interruptions in the EURO STOXX 50® or its data. Allianz Active4Life Evolution is issued by Allianz Global Life Designated Activity Company (Allianz Global Life dac), a company of the Allianz SE Group. Registered address: Maple House, Temple Road, Blackrock, Dublin, A94 Y9E8. Regulated by the Central Bank of Ireland. Company Registration Number: 458565.'
+    cr_disc: '<p class="disc-heading">Important information</p><p>This material is for information and illustrative purposes only and does not constitute financial, investment, or tax advice. You should seek independent financial advice before making any investment decision.</p><p>Capital at risk. Investment in the Indexed Strategies is subject to investment risk, including the possible loss of some or all of the amount invested. The Guarantee 100 strategy protects the full amount invested; the Guarantee 95 and Protection Buffer 10 strategies do not offer full capital protection, and you may lose a portion of your investment in adverse market conditions.</p><p>Cap rates, coupon values, and other financial parameters shown are indicative only. They are reviewed and may be reset by Allianz at each annual policy anniversary and are not guaranteed beyond the first policy year. Past index performance and past cap rates do not guarantee future results.</p><p>Although index performance affects your policy values, the policy does not involve direct investment in equities or any index constituent. EURO STOXX 50® performance is referenced for illustrative purposes only and represents a price return index, excluding dividends.</p><p>EURO STOXX 50® is the intellectual property (including registered trademarks) of STOXX Ltd., Zug, Switzerland (\"STOXX\"), Deutsche Börse Group or their licensors, which is used under licence. Allianz Active4Life Evolution is neither sponsored nor promoted, distributed, or in any other manner supported by STOXX, Deutsche Börse Group or their licensors, research partners or data providers. STOXX, Deutsche Börse Group and their licensors, research partners or data providers do not give any warranty, and exclude any liability (whether in negligence or otherwise) with respect thereto generally or specifically in relation to any errors, omissions or interruptions in the EURO STOXX 50® or its data.</p><p>Allianz Active4Life Evolution is issued by Allianz Global Life Designated Activity Company (Allianz Global Life dac), a company of the Allianz SE Group. Registered address: Maple House, Temple Road, Blackrock, Dublin, A94 Y9E8. Regulated by the Central Bank of Ireland. Company Registration Number: 458565.</p>'
   },
   it: {
     hdr_evolution: 'Evolution',
-    hdr_sub: 'Copertura Index Linked · EURO STOXX 50®',
-    nav_back_lbl: 'Home',
-    nav_tool_lbl: 'Strumento di Illustrazione',
+    hdr_sub: 'Garanzia, protezione e rendimento combinate in un\'unica soluzione.',
+    nav_home: 'Home',
+    nav_guide: 'Guida al Prodotto',
+    nav_history: 'Storico dei Parametri Finanziari',
+    nav_tool: 'Strumento di Illustrazione',
     hero_eyebrow: 'Allianz Active4Life Evolution · Guida al Prodotto',
     hero_title: 'Come funziona Active4Life Evolution',
     hero_sub: 'Le quattro strategie di investimento, i meccanismi di protezione e le dinamiche del cap rate — spiegate.',
@@ -1461,7 +1444,7 @@ var STRINGS = {
     anav_how: 'Come viene investito il tuo premio',
     anav_caps: 'Cap rate',
 
-    pdf_intro: '<p class="pdf-intro" style="margin-bottom:16px;">Allianz Active4Life Evolution è pensata per gli investitori che desiderano partecipare alla crescita dei mercati azionari senza assumere un rischio di mercato pieno. I rendimenti sono collegati all\'indice EURO STOXX 50®. I guadagni vengono accreditati sulla polizza ogni anno fino a un tasso cap, con una protezione al ribasso integrata per limitare l\'esposizione alle eventuali flessioni di mercato.</p><p class="pdf-intro">Disponibile con una durata di 3 o 5 anni, il prodotto offre tre strategie indicizzate — ciascuna con un diverso equilibrio tra potenziale di rendimento e protezione al ribasso — nonché un\'opzione a cedola fissa per chi cerca un reddito annuale prevedibile. È possibile investire in una o più strategie e modificare la ripartizione durante il contratto. Tutte le garanzie sono fornite direttamente da Allianz Global Life dac.</p>',
+    pdf_intro: '<p class="pdf-intro">Allianz Active4Life Evolution è la polizza di investimento assicurativa di tipo misto Unit e Index Linked, a premio unico, emessa da Allianz Global Life dac. Offre la possibilità di scegliere una o più strategie di investimento, di attivare diversi livelli di garanzia o di protezione, di effettuare versamenti aggiuntivi, cambi di strategia e riscatti parziali nel corso del tuo investimento.</p><p class="pdf-intro">Il prodotto combina due tipologie di copertura:</p><p class="pdf-intro"><strong>Unit Linked.</strong> Possibilità di investire su più fondi OICR contemporaneamente, scegliendo tra opzioni con o senza garanzia. I fondi di investimento multi-asset offrono diversi profili di rischio e includono un sistema di garanzia annuale, opzionale e personalizzabile, che può variare dall\'85% al 93%.</p><p class="pdf-intro"><strong>Index Linked.</strong> 3 strategie di investimento che offrono la possibilità di partecipare all\'indice azionario EURO STOXX 50® con diversi livelli di garanzia fino al 100%. Una quarta strategia prevede una garanzia del capitale ed una cedola annua garantita, indipendentemente dall\'andamento dell\'indice.</p><p class="pdf-intro">Puoi diversificare il tuo investimento in un unico prodotto, attivando più coperture, Index e Unit Linked, e più strategie contemporaneamente.</p><p class="pdf-intro"><strong>Questa guida si concentra sulla componente Index Linked del prodotto.</strong></p><p class="pdf-intro">La copertura Index Linked ha una durata prefissata di 3 o di 5 anni. I rendimenti vengono accreditati alla tua polizza ogni anno fino ad un tetto massimo (il CAP), con protezione al ribasso integrata per limitare la tua esposizione alle perdite di mercato. Ad ogni ricorrenza annua, i rendimenti positivi dell\'indice vengono consolidati nel valore di polizza. Puoi investire in una o più strategie Index Linked e modificare la tua allocazione nel corso della durata.</p><p class="pdf-intro">Tutte le garanzie sono fornite direttamente da Allianz Global Life dac.</p>',
 
     g100_title: 'Garanzia <span class="strat-title-accent">100</span>',
     g100_b1: 'Esposizione al rendimento dell\'<strong>indice azionario EUROSTOXX50®</strong>, fino ad un tetto massimo (il Cap) definito annualmente ad ogni ricorrenza annua.',
@@ -1582,7 +1565,7 @@ var STRINGS = {
     cta_title: 'Esplora i numeri tu stesso',
     cta_sub: 'Usa lo strumento di illustrazione per creare scenari di mercato per ciascuna strategia ai cap rate attuali.',
     cta_btn: 'Apri lo Strumento di Illustrazione →',
-    cr_disc: 'Il presente materiale è fornito a scopo informativo e illustrativo e non costituisce una consulenza finanziaria. Prima di prendere qualsiasi decisione di investimento, dovresti richiedere una consulenza finanziaria indipendente. L\'investimento nelle Strategie Indicizzate è soggetto a rischio di investimento, inclusa la possibile perdita di parte o dell\'intero importo investito. La strategia Garanzia 100 protegge l\'intero importo investito; le strategie Garanzia 95 e Protection Buffer 10 non offrono una protezione totale del capitale e, in condizioni di mercato sfavorevoli, potresti perdere una parte del tuo investimento. I cap rate, i valori della cedola e gli altri parametri finanziari sono indicativi, rivisti e soggetti a variazione ad ogni anniversario annuale della polizza. Le performance passate dell\'indice non garantiscono risultati futuri. Sebbene le performance dell\'indice influenzino i valori della polizza, la polizza non comporta un investimento diretto in azioni o in alcun componente dell\'indice. Le performance dell\'EURO STOXX 50® sono riportate solo a scopo illustrativo e rappresentano un indice di rendimento di prezzo, che esclude i dividendi. EURO STOXX 50® è proprietà intellettuale (compresi i marchi registrati) di STOXX Ltd., Zug, Svizzera (\"STOXX\"), Deutsche Börse Group o dei loro concedenti, utilizzata su licenza. Allianz Active4Life Evolution non è sponsorizzato, promosso, distribuito o in alcun modo supportato da STOXX, Deutsche Börse Group o dai loro concedenti, partner di ricerca o fornitori di dati e STOXX, Deutsche Börse Group e i loro concedenti, partner di ricerca o fornitori di dati non forniscono alcuna garanzia ed escludono qualsiasi responsabilità (sia in negligenza che altro) rispetto ad esso in generale o in particolare in relazione a eventuali errori, omissioni o interruzioni nell\'EURO STOXX 50® o nei suoi dati. Allianz Active4Life Evolution è emessa da Allianz Global Life Designated Activity Company, una società del gruppo Allianz SE, con Sede Legale a Maple House, Temple Road, Blackrock, Dublino, A94 Y9E8. Regolamentata dalla Central Bank of Ireland. Registrata in Irlanda, Numero di Registrazione: 458565.'
+    cr_disc: '<p class="disc-heading">Informazioni importanti</p><p>Il presente materiale è fornito a scopo informativo e illustrativo e non costituisce una consulenza finanziaria, di investimento o fiscale. Prima di prendere qualsiasi decisione di investimento, dovresti richiedere una consulenza finanziaria indipendente.</p><p>Capitale a rischio. L\'investimento nelle Strategie Indicizzate è soggetto a rischio di investimento, inclusa la possibile perdita di parte o dell\'intero importo investito. La strategia Garanzia 100 protegge l\'intero importo investito; le strategie Garanzia 95 e Protection Buffer 10 non offrono una protezione totale del capitale e, in condizioni di mercato sfavorevoli, potresti perdere una parte del tuo investimento.</p><p>I cap rate, i valori della cedola e gli altri parametri finanziari indicati sono meramente indicativi. Sono rivisti e possono essere modificati da Allianz ad ogni anniversario annuale della polizza e non sono garantiti oltre il primo anno di polizza. Le performance passate dell\'indice e i cap rate passati non garantiscono risultati futuri.</p><p>Sebbene le performance dell\'indice influenzino i valori della polizza, la polizza non comporta un investimento diretto in azioni o in alcun componente dell\'indice. Le performance dell\'EURO STOXX 50® sono riportate solo a scopo illustrativo e rappresentano un indice di rendimento di prezzo, che esclude i dividendi.</p><p>EURO STOXX 50® è proprietà intellettuale (compresi i marchi registrati) di STOXX Ltd., Zug, Svizzera (\"STOXX\"), Deutsche Börse Group o dei loro concedenti, utilizzata su licenza. Allianz Active4Life Evolution non è sponsorizzato, promosso, distribuito o in alcun modo supportato da STOXX, Deutsche Börse Group o dai loro concedenti, partner di ricerca o fornitori di dati. STOXX, Deutsche Börse Group e i loro concedenti, partner di ricerca o fornitori di dati non forniscono alcuna garanzia ed escludono qualsiasi responsabilità (sia per negligenza che altrimenti) rispetto ad esso in generale o in particolare in relazione a eventuali errori, omissioni o interruzioni nell\'EURO STOXX 50® o nei suoi dati.</p><p>Allianz Active4Life Evolution è emessa da Allianz Global Life Designated Activity Company (Allianz Global Life dac), una società del gruppo Allianz SE. Sede Legale: Maple House, Temple Road, Blackrock, Dublino, A94 Y9E8. Regolamentata dalla Central Bank of Ireland. Numero di Registrazione: 458565.</p>'
   }
 };
 
@@ -1599,7 +1582,7 @@ function setLang(lang) {
 
 function translateUI() {
   var ids = [
-    'hdr-evolution', 'hdr-sub', 'nav-back-lbl', 'nav-tool-lbl',
+    'hdr-evolution', 'hdr-sub', 'nav-home', 'nav-guide', 'nav-history', 'nav-tool',
     'hero-eyebrow', 'hero-title', 'hero-sub',
     'anav-about', 'anav-strategies', 'anav-how', 'anav-caps',
     'slabel-about', 'slabel-strategies', 'slabel-how', 'slabel-caps',
@@ -1633,7 +1616,7 @@ function translateUI() {
     'dr-r2-lbl', 'dr-r2-floor', 'dr-r2-buffer',
     'dr-r3-lbl', 'dr-r3-floor', 'dr-r3-buffer',
     'dr-r4-lbl', 'dr-r4-floor', 'dr-r4-buffer',
-    'cta-title', 'cta-sub', 'cta-btn', 'cr-disc'
+    'cta-title', 'cta-sub', 'cta-btn'
   ];
   ids.forEach(function(id) {
     var el = document.getElementById(id);
@@ -1653,7 +1636,8 @@ function translateUI() {
     'g100-s1-desc', 'g100-s2-desc', 'g100-s3-desc', 'g100-s4-desc',
     'g95-s1-desc', 'g95-s2-desc', 'g95-s3-desc', 'g95-s4-desc',
     'buf10-s1-desc', 'buf10-s2-desc', 'buf10-s3-desc', 'buf10-s4-desc',
-    'cedola-p1', 'cedola-p2'
+    'cedola-p1', 'cedola-p2',
+    'cr-disc'
   ];
   htmlIds.forEach(function(id) {
     var el = document.getElementById(id);
