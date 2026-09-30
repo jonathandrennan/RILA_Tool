@@ -46,14 +46,14 @@ body { font-family: 'Allianz Neo', 'Segoe UI', Arial, sans-serif; background: va
 body::before { content: ''; display: block; height: 4px; background: var(--navy); }
 
 /* ── Header ── */
-.hdr { background: var(--white); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 72px; border-bottom: 1px solid var(--border); box-shadow: var(--a1-shadow-100); }
+.hdr { background: var(--white); padding: 12px 48px; display: flex; flex-wrap: wrap; row-gap: 10px; align-items: center; justify-content: space-between; min-height: 72px; border-bottom: 1px solid var(--border); box-shadow: var(--a1-shadow-100); }
 .hdr-l { display: flex; align-items: center; gap: 20px; }
 .hdr-logo { height: 36px; width: auto; display: block; }
 .hdr-divider { width: 1px; height: 32px; background: var(--border); margin: 0 4px; }
 .htitle { color: var(--navy); font-size: 18px; font-weight: 700; line-height: 1.25; }
 .hsub { color: var(--muted); font-size: 11px; margin-top: 2px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; }
-.hdr-r { display: flex; align-items: center; gap: 20px; }
-.hdr-nav { display: flex; align-items: center; gap: 22px; }
+.hdr-r { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 20px; }
+.hdr-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
 .hdr-link { font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; transition: color .18s; }
 .hdr-link:hover { color: var(--navy); }
 .hdr-link.active { color: var(--navy); font-weight: 700; pointer-events: none; }
@@ -95,7 +95,7 @@ body::before { content: ''; display: block; height: 4px; background: var(--navy)
 .info-text { font-size: 14px; color: var(--text); line-height: 1.75; margin-bottom: 14px; max-width: 760px; }
 .info-caveat { display: flex; align-items: flex-start; gap: 10px; background: var(--a1-warn-bg); border-left: 4px solid var(--a1-warn-border); border-radius: 0 var(--a1-radius-m) var(--a1-radius-m) 0; padding: 12px 16px; margin-bottom: 14px; max-width: 760px; font-size: 13px; font-weight: 600; color: var(--a1-warn-text); line-height: 1.6; }
 .info-caveat-icon { font-size: 16px; flex-shrink: 0; line-height: 1.4; color: var(--a1-warn-text); }
-.info-link { font-size: 13.5px; font-weight: 700; color: var(--navy); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; }
+.info-link { font-size: 13.5px; font-weight: 700; color: var(--navy); text-decoration: none; display: flex; align-items: center; gap: 6px; margin-top: 6px; }
 .info-link:hover { text-decoration: underline; }
 
 /* ── Chart ── */
@@ -125,8 +125,13 @@ tr:last-child td { border-bottom: none; }
 
 .footer { text-align: center; padding: 32px 48px; font-size: 11px; color: var(--muted); border-top: 1px solid var(--border); background: var(--white); line-height: 1.72; }
 
+@media (max-width: 1300px) {
+  .hdr { padding: 10px 28px; }
+  .page-hero { padding: 32px 28px 32px; }
+  .wrap { padding: 24px 28px 48px; }
+}
 @media (max-width: 700px) {
-  .hdr { padding: 0 20px; }
+  .hdr { padding: 10px 20px; }
   .page-hero { padding: 32px 20px 32px; }
   .wrap { padding: 24px 20px 48px; }
   .panel { padding: 18px; }
@@ -172,9 +177,11 @@ tr:last-child td { border-bottom: none; }
     <div class="info-text" id="info-text">Each strategy carries an annual cap, the maximum index return it can credit in any policy year. The cap is not fixed for the life of the contract; it is reviewed and may change at each annual policy anniversary based on market conditions. Below are the cap rates on each strategy since product launch.</div>
     <div class="info-caveat">
       <span class="info-caveat-icon">&#9432;</span>
-      <span id="info-caveat">Past cap rates are not indicative of future rates.</span>
+      <span>
+        <span id="info-caveat">Past cap rates are not indicative of future rates. Cap rates are only guaranteed for the first policy year.</span>
+        <a href="info.html#caps" class="info-link" id="info-link">Read the full Product Guide to understand what factors influence cap rates →</a>
+      </span>
     </div>
-    <a href="info.html#caps" class="info-link" id="info-link">Read the full Product Guide to understand what factors influence cap rates →</a>
   </div>
 
   <div class="panel">
@@ -270,7 +277,7 @@ var STRINGS = {
     title: 'Cap Rate History',
     sub: 'View the cap rates on each strategy since product launch.',
     infoText: 'Each strategy carries an annual cap, the maximum index return it can credit in any policy year. The cap is not fixed for the life of the contract; it is reviewed and may change at each annual policy anniversary based on market conditions. Below are the cap rates on each strategy since product launch.',
-    infoCaveat: 'Past cap rates are not indicative of future rates.',
+    infoCaveat: 'Past cap rates are not indicative of future rates. Cap rates are only guaranteed for the first policy year.',
     infoLink: 'Read the full Product Guide to understand what factors influence cap rates →',
     variant: 'Variant',
     tier: 'Premium Band',
@@ -301,7 +308,7 @@ var STRINGS = {
     title: 'Storico dei Parametri Finanziari',
     sub: 'Visualizza i Parametri finanziari di ogni strategia dal lancio del prodotto.',
     infoText: 'Ogni strategia ha un Parametro finanziario annuale, il rendimento massimo dell\'indice che può accreditare in un anno di polizza. Il Parametro non è fisso per la durata del contratto; viene rivisto e può cambiare ad ogni anniversario annuale della polizza in base alle condizioni di mercato. Di seguito sono riportati i Parametri finanziari di ogni strategia dal lancio del prodotto.',
-    infoCaveat: 'I Parametri finanziari passati non sono indicativi dei Parametri futuri.',
+    infoCaveat: 'I Parametri finanziari passati non sono indicativi dei Parametri futuri. I Parametri finanziari sono garantiti solo per il primo anno di polizza.',
     infoLink: 'Leggi la Guida al Prodotto completa per scoprire quali fattori influenzano i Parametri finanziari →',
     variant: 'Variante',
     tier: 'Fascia Premio',

@@ -86,12 +86,12 @@ body { font-family: 'Allianz Neo', 'Segoe UI', Arial, sans-serif; background: va
 body::before { content: ''; display: block; height: 4px; background: var(--a1-brand); }
 
 /* ── Custom header ── */
-.hdr { background: var(--a1-bg-white); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 72px; border-bottom: 1px solid var(--a1-border-t); box-shadow: var(--a1-shadow-100); }
+.hdr { background: var(--a1-bg-white); padding: 12px 48px; display: flex; flex-wrap: wrap; row-gap: 10px; align-items: center; justify-content: space-between; min-height: 72px; border-bottom: 1px solid var(--a1-border-t); box-shadow: var(--a1-shadow-100); }
 .hdr-l { display: flex; align-items: center; gap: 20px; }
 .hdr-logo { height: 36px; width: auto; display: block; }
 .hdr-divider { width: 1px; height: 32px; background: var(--a1-border-t); margin: 0 4px; }
-.hdr-r { display: flex; align-items: center; gap: 18px; }
-.hdr-nav { display: flex; align-items: center; gap: 22px; }
+.hdr-r { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 18px; }
+.hdr-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
 .hdr-link { font-size: 13px; font-weight: 600; color: var(--hdr-muted); text-decoration: none; transition: color .18s; }
 .hdr-link:hover { color: var(--a1-brand); }
 .hdr-link.active { color: var(--a1-brand); font-weight: 700; pointer-events: none; }
@@ -183,6 +183,7 @@ body::before { content: ''; display: block; height: 4px; background: var(--a1-br
 .cap-stepper-btn { flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--a1-border-t); background: var(--a1-bg-white); color: var(--a1-brand); font-size: 17px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; padding: 0; transition: all .15s; font-family: 'Allianz Neo', sans-serif; }
 .cap-stepper-btn:hover { border-color: var(--a1-brand); background: var(--a1-tl); }
 .cap-stepper-btn:active { background: var(--a1-surf-active); }
+.cap-stepper-btn-sm { width: 26px; height: 26px; font-size: 13px; }
 #cap-edit-modal-inp::-webkit-outer-spin-button, #cap-edit-modal-inp::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 #cap-edit-modal-inp { -moz-appearance: textfield; }
 #fixedrate-modal-inp::-webkit-outer-spin-button, #fixedrate-modal-inp::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
@@ -303,9 +304,19 @@ tr:last-child td { border-bottom: none; }
 .tabnav-info:hover { background: var(--a1-brand-hover); border-color: var(--a1-brand-hover); }
 
 /* ── Notices ── */
-.inline-notice { display:flex; align-items:flex-start; gap:10px; background:var(--a1-warn-bg); border-left:4px solid var(--a1-warn-border); border-radius:0 var(--a1-radius-m) var(--a1-radius-m) 0; padding:12px 16px; margin-bottom:16px; font-size:13px; color:var(--a1-warn-text); line-height:1.6; }
-.inline-notice-icon { font-size:16px; flex-shrink:0; line-height:1.4; color:var(--a1-warn-text); }
-.cap-reset-note { font-size:11px; color:var(--a1-warn-text); margin-top:6px; padding:5px 10px 5px 12px; background:var(--a1-warn-bg); border-left:3px solid var(--a1-warn-border); border-radius:0 var(--a1-radius-s) var(--a1-radius-s) 0; }
+.inline-notice { display:flex; align-items:flex-start; gap:10px; background:var(--a1-warn-bg); border-left:3px solid var(--a1-warn-border); border-radius:0 var(--a1-radius-m) var(--a1-radius-m) 0; padding:12px 16px; margin-bottom:16px; font-size:13px; color:var(--a1-warn-text); line-height:1.6; box-shadow:var(--a1-shadow-100); }
+.inline-notice strong { font-weight:800; }
+.inline-notice-icon { flex-shrink:0; margin-top:2px; color:var(--a1-warn-text); }
+.inline-notice-icon svg { display:block; }
+/* Softer, informational variant (blue, not amber) for context notes that aren't risk
+   warnings — e.g. flagging a figure as hypothetical rather than flagging a loss risk. Keeps
+   amber reserved for genuine warnings elsewhere (indicative-premium note, risk callouts). */
+.inline-notice-info { background:var(--a1-info-bg); border-left-color:var(--a1-brand); color:var(--a1-info-text); }
+.inline-notice-info .inline-notice-icon { color:var(--a1-brand); }
+.inline-notice-info a { color:var(--a1-brand); font-weight:700; text-decoration:none; }
+.inline-notice-info a:hover { text-decoration:underline; }
+.inline-notice-body { flex:1; min-width:0; }
+.inline-notice-link { display:block; margin-top:6px; font-size:12px; }
 
 /* ── Scenario / DYO grids ── */
 .sc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 18px; }
@@ -461,9 +472,15 @@ tr:last-child td { border-bottom: none; }
   .disc, .sumbox, p { orphans: 3; widows: 3; }
   /* Disclosure font */
   .disc { font-size: 10px; }
-}@media(max-width:750px) { .dyo-grid { grid-template-columns: 1fr; } }
+}
+@media (max-width: 1300px) {
+  .hdr { padding: 10px 28px; }
+  .tool-actions { padding: 10px 28px; }
+  .main { padding: 24px 20px; }
+}
+@media(max-width:1100px) { .dyo-grid { grid-template-columns: 1fr; } }
 @media(max-width:600px) {
-  .hdr { padding: 0 16px; height: auto; padding-top: 12px; padding-bottom: 12px; }
+  .hdr { padding: 10px 16px; }
   .tool-actions { padding: 10px 16px; }
   .tabs { padding: 0 16px; overflow-x: auto; }
   .main { padding: 16px 14px; }
@@ -538,7 +555,7 @@ tr:last-child td { border-bottom: none; }
 
 <div class="print-meta">
   <div class="print-meta-row"><span id="print-meta-generated">Generated:</span> <span id="print-date"></span> &nbsp;&middot;&nbsp; Allianz Active4Life Evolution</div>
-  <div class="print-meta-warning" id="print-meta-disclaimer"><strong>For product demonstration purposes only</strong> &ndash; not a formal client illustration. Cap rates, index performance and all figures shown are illustrative and subject to change.</div>
+  <div class="print-meta-warning" id="print-meta-disclaimer"><strong>For illustrative purposes only</strong> &ndash; not a formal client quotation. Cap rates, index performance and all figures shown are indicative and subject to change.</div>
 </div>
 
 <div class="main">
@@ -596,7 +613,7 @@ tr:last-child td { border-bottom: none; }
                 <svg width="14" height="14" aria-hidden="true"><use href="#ico-info"/></svg><span data-i18n="info_label">Info</span>
               </button>
             </div>
-            <div style="font-size:11.5px;color:var(--a1-text-s);margin-top:4px;" id="d-cap-readout-sub" data-i18n="cap_year1_note">Guaranteed for Year 1 only, resets annually.</div>
+            <div style="font-size:11.5px;color:var(--a1-text-s);margin-top:4px;" id="d-cap-readout-sub" data-i18n="cap_year1_note">Cap rate guaranteed for Year 1 only. Reviewed at each policy anniversary.</div>
           </div>
           <div id="d-cap-readout" style="text-align:right;">
             <div style="display:flex;align-items:center;gap:8px;justify-content:flex-end;margin-bottom:2px;">
@@ -606,8 +623,15 @@ tr:last-child td { border-bottom: none; }
             <a href="info.html#caps" target="_blank" rel="noopener" style="font-size:11px;color:var(--a1-brand);font-weight:600;text-decoration:none;" data-i18n="cap_reset_link">How are cap rates set?</a>
           </div>
         </div>
+        <div id="d-cap-modified-note" class="inline-notice" style="display:none;margin-top:10px;margin-bottom:0;width:fit-content;max-width:100%;">
+          <span class="inline-notice-icon"><svg width="16" height="16" aria-hidden="true"><use href="#ico-info"/></svg></span>
+          <span id="d-cap-modified-note-text"></span>
+        </div>
       </div>
-      <div id="d-indicative-note" style="display:none;font-size:11px;color:var(--a1-text-s);margin-top:14px;margin-bottom:12px;padding:6px 10px;background:var(--a1-warn-bg);border-left:3px solid var(--a1-warn-border);border-radius:0 var(--a1-radius-s) var(--a1-radius-s) 0;" data-i18n="caps_indicative">&#9432; Caps are indicative for premiums above &euro;20m. Confirmed rates only guaranteed once the premium has been received.</div>
+      <div id="d-indicative-note" class="inline-notice" style="display:none;margin-top:14px;margin-bottom:12px;font-size:11px;">
+        <span class="inline-notice-icon"><svg width="14" height="14" aria-hidden="true"><use href="#ico-info"/></svg></span>
+        <span data-i18n="caps_indicative">Cap rates shown are indicative for premiums above &euro;20m.</span>
+      </div>
       <div class="cg no-print" style="margin-top:20px;padding-top:20px;border-top:1px solid var(--a1-border-t);width:100%;">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
           <span class="qlbl" data-i18n="scenario_select_label">Choose a market scenario:</span>
@@ -639,6 +663,10 @@ tr:last-child td { border-bottom: none; }
         </div>
       </div>
       <div id="d-custom-inputs" class="no-print" style="display:none;margin-top:16px;padding:16px 18px 18px;background:var(--a1-tl);border-radius:var(--a1-radius-m);">
+        <div class="inline-notice inline-notice-info" style="margin-bottom:14px;">
+          <span class="inline-notice-icon"><svg width="16" height="16" aria-hidden="true"><use href="#ico-info"/></svg></span>
+          <span data-i18n="custom_returns_warning">Custom returns are hypothetical &mdash; results are illustrative only.</span>
+        </div>
         <div style="font-size:13px;font-weight:700;color:var(--a1-brand);margin-bottom:12px;">
           <span data-i18n="annual_returns">Annual Index Returns</span>
         </div>
@@ -773,14 +801,10 @@ var STRINGS = {
     "multi_strategy": "Multi Strategy",
     "multi_strategy_desc": "Blend strategies into one portfolio",
     "cap_info_title": "Annual Cap Rate",
-    "cap_info_body": "Each policy year, your index participation is subject to a cap, the maximum credited return regardless of how strongly the market performs.",
-    "cap_info_default": "Today's rate is guaranteed for your first policy year; from Year 2 it is reviewed and reset by Allianz at each annual anniversary. Default rates shown are Allianz's current indicative rates for your investment amount and term. Actual future caps will differ from this illustration.",
+    "cap_info_body": "Each policy year, your return is subject to a cap. This is the maximum return that can be credited, no matter how well the index performs.",
+    "cap_info_default": "The cap rate shown is guaranteed for your first policy year. Allianz reviews and may reset the cap at each policy anniversary. Displayed rates are indicative for your selected amount and term — actual future caps may differ.",
     "important_label": "Important:",
     "cap_info_link": "How are cap rates set?",
-    "panel_notice_hypo_title": "These are hypothetical scenarios, not historical performance.",
-    "panel_notice_hypo_body": "Each scenario applies a historical Euro Stoxx 50® return sequence as if those market conditions occurred starting today, using an assumed cap rate. The cap is reviewed at each annual policy anniversary. Use",
-    "panel_notice_hypo_scenarios": "Lower Cap / Current Cap / Higher Cap",
-    "panel_notice_hypo_suffix": "to see how outcomes vary.",
     "cap_scenario_low": "Lower Cap",
     "cap_scenario_current": "Current Cap",
     "cap_scenario_high": "Higher Cap",
@@ -790,8 +814,7 @@ var STRINGS = {
     "cap_print_warning": "Cap stress comparison shown above: Low {0}% · Current {1}% · High {2}% per year (Year 2+).",
     "cap_stress_info_title": "Cap Rate Stress Test",
     "cap_stress_info_body": "The cap is only guaranteed for Year 1. From Year 2 onwards it resets annually — so the Lower and Higher lines stress-test what happens if future caps settle consistently below or above today's rate. All three lines start from the same point because Year 1 is fixed.",
-    "cap_stress_info_warning": "Actual future cap rates can differ from the Lower/Higher lines shown here — they are illustrative bounds, not guaranteed floors or ceilings.",
-    "cap_scenario_zero_notice": "In a low interest rate environment, the Guarantee 100 strategy may not be available as the economics do not support offering a cap. Select Current Cap or Higher Cap to see illustrative results.",
+    "cap_stress_info_warning": "Actual future cap rates may differ from the Lower and Higher lines shown here. These are illustrative bounds, not guaranteed floors or ceilings.",
     "crisis_info_title": "Market Crash Scenario",
     "crisis_info_body": "One year's simulated return is replaced with a historical return from a period when the Euro Stoxx 50® fell by more than 10%. This shows how the buffer or floor absorbs losses in a genuine downturn. The severity reflects a typical historical crash — not the most extreme on record. All other years remain unchanged.",
     "investment_amount": "Investment Amount (€)",
@@ -810,25 +833,22 @@ var STRINGS = {
     "adjust_cap": "Adjust Cap:",
     "pct": "%",
     "reset": "Reset",
-    "caps_indicative": "Caps are indicative for premiums above €20m. Confirmed rates only guaranteed once the premium has been received.",
+    "caps_indicative": "Cap rates shown are indicative for premiums above €20m.",
     "cap_reset_link": "How are cap rates set?",
-    "cap_year1_note": "Guaranteed for Year 1 only, resets annually.",
+    "cap_year1_note": "Cap rate guaranteed for Year 1 only. Reviewed at each policy anniversary.",
     "edit_cap_btn": "Edit ›",
-    "edit_cap_modal_title": "Set Annual Cap Rate",
-    "edit_cap_modal_sub": "Enter a cap rate to see how it would affect your results, then confirm.",
+    "edit_cap_modal_title": "Choose Cap Rate",
+    "edit_cap_modal_sub": "Choose which month's rate to use, or enter your own.",
     "edit_cap_modal_confirm": "Confirm",
-    "edit_cap_modal_default_note": "Current default rate: {0}",
-    "cap_modal_mode_flat": "Same rate every year",
+    "cap_custom_warning": "This is a hypothetical rate. Today's actual rate is <strong>{0}</strong> and is reviewed at each policy anniversary.",
+    "cap_custom_warning_link": "What factors influence cap rates →",
+    "cap_modal_mode_flat": "Flat rate",
     "cap_modal_mode_byyear": "Vary by year",
-    "cap_varies_by_year": "Varies by year",
-    "sim_notice_title": "This is a simulation, not a forecast.",
     "sim_model_notice_body": "These scenarios are simulated, not forecast. Actual outcomes could be better or worse than the range shown. The cap rate is guaranteed for the first policy year only and resets annually from Year 2.",
     "sim_model_notice_link": "How are cap rates set?",
-    "sim_notice_body": " To reflect a realistic range of outcomes, the tool generates {0} hypothetical {1}-year paths using a statistical model of returns calibrated from the Euro Stoxx 50®'s historical monthly performance. These paths illustrate what could happen, not what will happen, and future performance could fall outside the range shown.",
     "crisis_select_label": "Simulate a market crash in:",
     "crisis_none": "No Market Crash",
     "crisis_year_option": "Market Crash in Year {0}",
-    "sim_notice_crisis": " Market crash scenario replaces year {0} with a historical annual return from a market crash period (loss greater than 10%). All other years reflect the original simulated path.",
     "crisis_year_badge": "Market Crash Year",
     "simulated_label": "Simulated",
     "sim_pct_pessimistic": "10th percentile",
@@ -885,13 +905,12 @@ var STRINGS = {
     // sim_window_label deliberately removed: the panel no longer names the period a
     // sequence was sampled from, so a "Period" label would have nothing to introduce.
     "sim_endpoint_caveat": "The model assumes returns are lognormal and independent from month to month, which does not capture real-world volatility clustering or extreme ('fat-tail') events. Its drift and volatility are estimated from a limited history, so the calibration itself carries uncertainty. Figures are rounded to the nearest €{0}: the underlying range is an estimate, not a precise value.",
-    "custom_panel_notice": "The scenario percentiles selected for each year are applied to today's cap rates and protection structure. Results are hypothetical and for illustrative purposes only.",
     "cap_context_general": "Cap rates default to the latest month's rates and can be adjusted above.",
     "annual_cap": "Annual Cap",
     "annual_cap_rate_label": "Annual Cap Rate",
     "annual_cap_rates_heading": "Annual Cap Rate:",
-    "cap_source_previous": "Current Month",
-    "cap_source_current": "Following Month",
+    "cap_source_currentmonth": "Current Month",
+    "cap_source_followingmonth": "Following Month",
     "cap_source_custom": "Custom",
     "per_year": "per year",
     "protection": "Protection",
@@ -916,9 +935,7 @@ var STRINGS = {
     "portfolio_credited": "Portfolio Credited",
     "portfolio_value_label": "Portfolio Value",
     "download_excel": "Download Excel",
-    "cap_rate_notice": "Cap Rate Adjustment Notice",
     "results_adjusted": "Results in this analysis reflect the adjusted cap rate and may not represent current product terms.",
-    "cap_notice_title": "Cap Rate Notice",
     "cap_annual_text": "Results are based on the cap rates selected for each policy year. In practice, cap rates are reviewed at each annual policy anniversary and will vary based on market conditions at the time. Actual outcomes will differ from those illustrated.",
     "tool_disc_heading": "Important information",
     "tool_disc_p1": "This material is for information and illustrative purposes only and does not constitute financial, investment, or tax advice. You should seek independent financial advice before making any investment decision.",
@@ -951,6 +968,7 @@ var STRINGS = {
     "cap": "Cap:",
     "cap_label": "Cap",
     "annual_returns": "Annual Index Returns",
+    "custom_returns_warning": "Custom returns are hypothetical — results are illustrative only.",
     "yr_scenario_hint": "Pessimistic represents a 1-in-10 adverse annual outcome. Average represents the median. Optimistic represents a 1-in-10 favourable outcome. Combining different outcomes across years creates a hypothetical illustration — the combined result does not represent a defined probability for the full term.",
     "calculate": "Calculate",
     "clear_reset": "Clear / Reset",
@@ -1006,7 +1024,7 @@ var STRINGS = {
     "dyo_outcome_crash_opportunity": "The shock is absorbed up to the size of the buffer, while still participating in the rebound up to the cap.",
     "dyo_outcome_crash_balance": "The shock beyond the floor is limited, while still participating in the rebound up to the cap.",
     "dyo_outcome_crash_protection": "The shock is absorbed in full, while still participating in the rebound up to the cap.",
-    "dyo_scenario_info_footnote": "These scenarios are hypothetical and for illustrative purposes only. Cap rates and protection levels shown are indicative and reset at each annual policy anniversary.",
+    "dyo_scenario_info_footnote": "These scenarios are for illustrative purposes only. Cap rates and protection levels shown are indicative and may be reset at each policy anniversary.",
     "index_final": "Index Value",
     "approx_annual": "approx. p.a.",
     "custom_summary": "In this custom scenario, a {0} investment in {1} returned {2} over {3} years, compared to {4} for a direct index investment, assuming a cap of {5} per year.",
@@ -1037,10 +1055,10 @@ var STRINGS = {
     "balance_short": "Guarantee 95: −5% Floor",
     "protection_short": "Guarantee 100: 0% Floor",
     "opportunity_desc": "If the index falls within -10% during the policy year, you register no losses and your capital is guaranteed at 100%. If the index falls beyond -10%, your loss is limited to the amount beyond the buffer. For example, if the index falls 7% you lose nothing; if it falls 14%, you lose only 4%. Upside is subject to the annual cap. Suits investors comfortable carrying some tail risk in exchange for the highest cap rate of the three strategies.",
-    "opportunity_risk_warning": "Losses beyond the 10% buffer are borne in full by you. In a severe market downturn, this could result in the loss of a substantial part, or all, of your investment.",
+    "opportunity_risk_warning": "If the index falls beyond the 10% buffer, you bear the full loss beyond that point. In a severe downturn, this could mean losing a substantial part of your investment.",
     "balance_desc": "An annual guarantee of 95% of the coverage value applies. The floor on index returns is never below -5%. You absorb small declines in full, but any loss beyond 5% is covered by Allianz. Positive annual returns are credited and locked in to your guaranteed minimum. Suited to investors seeking a balance between protection and cap rate.",
     "balance_risk_warning": "You may lose up to 5% of your investment value in any policy year.",
-    "protection_desc": "An annual guarantee of 100% of the coverage value applies. The floor on index returns is never below 0%. Whatever the index does, you cannot lose money: if the index falls, your credited return is 0% and your capital is preserved. Positive annual returns are credited and locked in to your guaranteed minimum. Suited to investors prioritising full capital protection.",
+    "protection_desc": "An annual guarantee of 100% of the coverage value applies. The floor on index returns is never below 0%. If the index falls, your credited return is 0% and your invested capital is preserved. Positive annual returns are credited and locked in to your guaranteed minimum. Suited to investors prioritising full capital protection.",
     "crediting_strategies": "Crediting Strategies",
     "strategies_intro": "Each strategy applies a different level of downside protection in exchange for a cap on upside participation. Higher protection means a lower cap rate.",
     "sri_inline_label": "SRI: {0}",
@@ -1196,14 +1214,10 @@ var STRINGS = {
     "multi_strategy": "Multi-Strategia",
     "multi_strategy_desc": "Combina le strategie in un unico portafoglio",
     "cap_info_title": "Tasso Cap Annuale",
-    "cap_info_body": "Per ogni anno di polizza, la partecipazione all'indice è soggetta a un cap, il rendimento massimo accreditabile indipendentemente dalla performance del mercato.",
-    "cap_info_default": "Il tasso attuale è garantito per il primo anno di polizza; dall'Anno 2 viene rivisto e reimpostato da Allianz ad ogni anniversario annuale. I tassi predefiniti mostrati sono i tassi indicativi attuali di Allianz per il tuo importo di investimento e durata. I cap futuri effettivi differiranno da questa illustrazione.",
+    "cap_info_body": "Ogni anno di polizza, il tuo rendimento è soggetto a un cap: il rendimento massimo che può essere accreditato, indipendentemente dalla performance dell'indice.",
+    "cap_info_default": "Il cap rate mostrato è garantito per il primo anno di polizza. Allianz lo rivede e può reimpostarlo a ogni anniversario di polizza. I tassi mostrati sono indicativi per l'importo e la durata selezionati — i cap futuri effettivi potranno differire.",
     "important_label": "Importante:",
     "cap_info_link": "Come vengono fissati i cap rate?",
-    "panel_notice_hypo_title": "Questi sono scenari ipotetici, non performance storiche.",
-    "panel_notice_hypo_body": "Ogni scenario applica una sequenza storica di rendimenti dell'Euro Stoxx 50® come se quelle condizioni di mercato si verificassero a partire da oggi, utilizzando un cap rate assunto. Il cap viene rivisto ad ogni anniversario annuale della polizza. Utilizza",
-    "panel_notice_hypo_scenarios": "Cap Basso / Cap Attuale / Cap Alto",
-    "panel_notice_hypo_suffix": "per vedere come varia il risultato.",
     "cap_scenario_low": "Cap Basso",
     "cap_scenario_current": "Cap Attuale",
     "cap_scenario_high": "Cap Alto",
@@ -1213,8 +1227,7 @@ var STRINGS = {
     "cap_print_warning": "Confronto stress cap mostrato sopra: Basso {0}% · Attuale {1}% · Alto {2}% all'anno (dall'Anno 2).",
     "cap_stress_info_title": "Stress Test del Cap Rate",
     "cap_stress_info_body": "Il cap è garantito solo per l'Anno 1. Dall'Anno 2 in poi viene reimpostato ogni anno e non può essere garantito in anticipo — le linee Basso e Alto mostrano cosa accade se i cap futuri si stabilizzano costantemente al di sotto o al di sopra del tasso attuale. Tutte e tre le linee partono dallo stesso punto perché l'Anno 1 è fisso.",
-    "cap_stress_info_warning": "I cap rate futuri effettivi possono differire dalle linee Basso/Alto qui mostrate — sono limiti illustrativi, non pavimenti o tetti garantiti.",
-    "cap_scenario_zero_notice": "In un contesto di tassi bassi, la strategia Garanzia 100 potrebbe non essere disponibile in quanto le condizioni economiche non supportano l'offerta di un cap. Seleziona Cap Attuale o Cap Alto per visualizzare i risultati illustrativi.",
+    "cap_stress_info_warning": "I cap rate futuri effettivi possono differire dalle linee Basso e Alto qui mostrate. Sono limiti illustrativi, non pavimenti o tetti garantiti.",
     "crisis_info_title": "Scenario di Crollo di Mercato",
     "crisis_info_body": "Il rendimento simulato di un anno viene sostituito con un rendimento storico registrato durante un periodo in cui l'Euro Stoxx 50® è sceso di oltre il 10%. Mostra come il buffer o il floor assorbe le perdite durante una vera flessione di mercato. La gravità riflette un crollo storico tipico — non il più estremo mai registrato. Tutti gli altri anni rimangono invariati.",
     "investment_amount": "Importo Investimento (€)",
@@ -1233,25 +1246,22 @@ var STRINGS = {
     "adjust_cap": "Regola Cap:",
     "pct": "%",
     "reset": "Ripristina",
-    "caps_indicative": "I cap sono indicativi per premi superiori a €20 milioni. I tassi confermati sono garantiti solo dopo la ricezione del premio.",
+    "caps_indicative": "I cap rate mostrati sono indicativi per premi superiori a €20 milioni.",
     "cap_reset_link": "Come vengono fissati i cap rate?",
-    "cap_year1_note": "Garantito solo per l'Anno 1, si reimposta ogni anno.",
+    "cap_year1_note": "Cap rate garantito solo per il primo anno. Rivisto a ogni anniversario di polizza.",
     "edit_cap_btn": "Modifica ›",
-    "edit_cap_modal_title": "Imposta il Cap Rate Annuale",
-    "edit_cap_modal_sub": "Inserisci un cap rate per vedere come influirebbe sui tuoi risultati, poi confermalo.",
+    "edit_cap_modal_title": "Scegli il Cap Rate",
+    "edit_cap_modal_sub": "Scegli il tasso di quale mese utilizzare, oppure inseriscine uno personalizzato.",
     "edit_cap_modal_confirm": "Confermare",
-    "edit_cap_modal_default_note": "Tasso predefinito attuale: {0}",
-    "cap_modal_mode_flat": "Stesso tasso ogni anno",
+    "cap_custom_warning": "Si tratta di un tasso ipotetico. Il tasso effettivo di oggi è <strong>{0}</strong> ed è rivisto a ogni anniversario di polizza.",
+    "cap_custom_warning_link": "Quali fattori influenzano i Parametri finanziari →",
+    "cap_modal_mode_flat": "Tasso fisso",
     "cap_modal_mode_byyear": "Varia per anno",
-    "cap_varies_by_year": "Varia per anno",
-    "sim_notice_title": "Questa è una simulazione, non una previsione.",
     "sim_model_notice_body": "Questi scenari sono simulati, non previsionali. I risultati effettivi potrebbero essere migliori o peggiori dell'intervallo mostrato. Il cap rate è garantito solo per il primo anno di polizza e si reimposta annualmente dall'Anno 2.",
     "sim_model_notice_link": "Come vengono fissati i cap rate?",
-    "sim_notice_body": " Per rappresentare una gamma realistica di risultati, lo strumento genera {0} percorsi ipotetici di {1} anni utilizzando un modello statistico dei rendimenti calibrato sulla performance mensile storica dell'Euro Stoxx 50®. Questi percorsi illustrano ciò che potrebbe accadere, non ciò che accadrà, e la performance futura potrebbe collocarsi al di fuori dell'intervallo mostrato.",
     "crisis_select_label": "Simula un crollo di mercato in:",
     "crisis_none": "Nessun Crollo di Mercato",
     "crisis_year_option": "Crollo di Mercato nell'Anno {0}",
-    "sim_notice_crisis": " Lo scenario di crollo di mercato sostituisce l'anno {0} con un rendimento annuale storico registrato durante un periodo di crollo di mercato (perdita superiore al 10%). Tutti gli altri anni riflettono il percorso simulato originale.",
     "crisis_year_badge": "Anno di Crollo di Mercato",
     "simulated_label": "Simulato",
     "sim_pct_pessimistic": "10° percentile",
@@ -1305,14 +1315,13 @@ var STRINGS = {
     "sim_range_to": "e",
     "sim_range_suffix": "(dal 10° al 90° percentile)",
     "sim_endpoint_caveat": "Il modello presuppone che i rendimenti siano log-normali e indipendenti da un mese all'altro, e non riproduce l'effettiva concentrazione della volatilità né gli eventi estremi ('code pesanti') dei mercati reali. La deriva e la volatilità sono stimate da una storia limitata, quindi la calibrazione stessa comporta un margine di incertezza. Gli importi sono arrotondati ai €{0} più prossimi: l'intervallo sottostante è una stima, non un valore preciso.",
-    "custom_panel_notice": "I percentili di scenario selezionati per ciascun anno vengono applicati ai cap rate attuali e alla struttura di protezione. I risultati sono ipotetici e a solo scopo illustrativo.",
     "cap_context_general": "I cap rate vengono impostati ai tassi dell'ultimo mese e possono essere modificati.",
     "historic_seq_note": "Solo illustrativo: i cap rate attuali applicati alle sequenze storiche dell'indice — non le performance effettive del prodotto.",
     "annual_cap": "Cap Annuale",
     "annual_cap_rate_label": "Cap Rate Annuale",
     "annual_cap_rates_heading": "Parametri finanziari annuali:",
-    "cap_source_previous": "Mese Corrente",
-    "cap_source_current": "Mese Successivo",
+    "cap_source_currentmonth": "Mese Corrente",
+    "cap_source_followingmonth": "Mese Successivo",
     "cap_source_custom": "Personalizzato",
     "per_year": "per anno",
     "protection": "Protezione",
@@ -1337,9 +1346,7 @@ var STRINGS = {
     "portfolio_credited": "Rendimento Portafoglio",
     "portfolio_value_label": "Valore Portafoglio",
     "download_excel": "Scarica Excel",
-    "cap_rate_notice": "Avviso di Regolazione del Cap",
     "results_adjusted": "I risultati in questa analisi riflettono il cap regolato e potrebbero non rappresentare i termini attuali del prodotto.",
-    "cap_notice_title": "Avviso sul Cap Rate",
     "cap_annual_text": "I risultati si basano sui cap rate selezionati per ogni anno di polizza. In pratica, i cap rate vengono rivisti ad ogni anniversario annuale della polizza e varieranno in base alle condizioni di mercato del momento. I risultati effettivi potrebbero differire da quelli illustrati.",
     "tool_disc_heading": "Informazioni importanti",
     "tool_disc_p1": "Il presente materiale è fornito a scopo informativo e illustrativo e non costituisce una consulenza finanziaria, di investimento o fiscale. Prima di prendere qualsiasi decisione di investimento, dovresti richiedere una consulenza finanziaria indipendente.",
@@ -1372,6 +1379,7 @@ var STRINGS = {
     "cap": "Cap:",
     "cap_label": "Cap",
     "annual_returns": "Rendimenti Annuali dell'Indice",
+    "custom_returns_warning": "I rendimenti personalizzati sono ipotetici — i risultati sono a solo scopo illustrativo.",
     "yr_scenario_hint": "Pessimistico rappresenta un esito annuale sfavorevole con probabilità 1 su 10. Medio rappresenta la mediana. Ottimistico rappresenta un esito annuale favorevole con probabilità 1 su 10. Combinare esiti diversi tra gli anni crea un'illustrazione ipotetica — il risultato combinato non rappresenta una probabilità definita per l'intero periodo.",
     "calculate": "Calcola",
     "clear_reset": "Cancella / Ripristina",
@@ -1427,7 +1435,7 @@ var STRINGS = {
     "dyo_outcome_crash_opportunity": "Lo shock viene assorbito fino all'entità del buffer, pur continuando a partecipare al rimbalzo fino al cap.",
     "dyo_outcome_crash_balance": "Lo shock oltre il floor viene limitato, pur continuando a partecipare al rimbalzo fino al cap.",
     "dyo_outcome_crash_protection": "Lo shock viene assorbito per intero, pur continuando a partecipare al rimbalzo fino al cap.",
-    "dyo_scenario_info_footnote": "Questi scenari sono ipotetici e a solo scopo illustrativo. I cap rate e i livelli di protezione mostrati sono indicativi e si reimpostano ad ogni anniversario annuale della polizza.",
+    "dyo_scenario_info_footnote": "Questi scenari sono a solo scopo illustrativo. I cap rate e i livelli di protezione mostrati sono indicativi e potranno essere reimpostati a ogni anniversario di polizza.",
     "index_final": "Valore Indice",
     "approx_annual": "circa p.a.",
     "custom_summary": "In questo scenario personalizzato, un investimento di {0} in {1} ha restituito {2} in {3} anni, rispetto a {4} per un investimento diretto nell'indice, assumendo un cap del {5} annuo.",
@@ -1458,10 +1466,10 @@ var STRINGS = {
     "balance_short": "Garanzia 95: −5% Floor",
     "protection_short": "Garanzia 100: 0% Floor",
     "opportunity_desc": "Se l'indice ha un rendimento negativo entro il -10% nel corso dell'annualità, non registri perdite e il capitale è garantito al 100%. Se l'indice ha un rendimento negativo oltre il -10%, la perdita è limitata alla parte oltre il Buffer. Ad esempio, se l'indice scende del 7% non perdi nulla; se scende del 14%, perdi solo il 4%. Il rendimento al rialzo è soggetto al cap annuale. Adatto agli investitori che accettano un certo rischio residuo in cambio del cap più elevato delle tre strategie.",
-    "opportunity_risk_warning": "Le perdite che superano il Buffer del 10% sono interamente a tuo carico. In caso di un forte ribasso di mercato, ciò potrebbe comportare la perdita di una parte sostanziale, o della totalità, del capitale investito.",
+    "opportunity_risk_warning": "Se l'indice scende oltre il Buffer del 10%, la perdita che supera tale soglia è interamente a tuo carico. In caso di un forte ribasso, ciò potrebbe comportare la perdita di una parte sostanziale del capitale investito.",
     "balance_desc": "Viene applicata una garanzia annuale del 95% del controvalore della copertura. Il Floor di rendimento dell'indice non scende mai sotto il -5%. Assorbi i piccoli cali per intero, ma qualsiasi perdita oltre il 5% è coperta da Allianz. I rendimenti annuali positivi vengono accreditati e consolidati nel valore minimo garantito. Adatto agli investitori che cercano un equilibrio tra protezione e cap rate.",
     "balance_risk_warning": "Puoi perdere fino al 5% del valore del tuo investimento in ciascun anno di polizza.",
-    "protection_desc": "Viene applicata una garanzia annuale del 100% del controvalore della copertura. Il Floor di rendimento dell'indice non scende mai sotto lo 0%. Qualunque cosa faccia l'indice, non puoi perdere denaro: se l'indice scende, il rendimento accreditato è 0% e il capitale è preservato. I rendimenti annuali positivi vengono accreditati e consolidati nel valore minimo garantito. Adatto agli investitori che privilegiano la piena protezione del capitale.",
+    "protection_desc": "Viene applicata una garanzia annuale del 100% del controvalore della copertura. Il Floor di rendimento dell'indice non scende mai sotto lo 0%. Se l'indice scende, il rendimento accreditato è 0% e il capitale investito è preservato. I rendimenti annuali positivi vengono accreditati e consolidati nel valore minimo garantito. Adatto agli investitori che privilegiano la piena protezione del capitale.",
     "crediting_strategies": "Strategie di Accredito",
     "strategies_intro": "Ogni strategia applica un diverso livello di protezione al ribasso in cambio di un cap sulla partecipazione al rialzo. Una protezione più elevata significa un tasso di cap inferiore.",
     "sri_inline_label": "SRI: {0}",
@@ -1782,7 +1790,7 @@ function dAmtDebounce(){
        carrying it over. */
     dCapOverride=null;
     dCapOverrideByYear=null;
-    dCapSource='current';
+    dCapSource='currentMonth';
     dUpdateCapDisplay();
     dAutoCalc();
   },600);
@@ -1800,17 +1808,25 @@ var dCapOverride=null;
    per-year cap support (resolveCapI already accepts an array). Mutually exclusive with
    dCapOverride: only one is ever non-null at a time. */
 var dCapOverrideByYear=null;
-/* Which cap "source" the Following/Previous/Custom toggle has selected — internally still
-   keyed 'current' for the Following Month option (its display label, not the key name).
-   Read by getTierDefault to pick CAP_HISTORY_FOLLOWING_MONTH ('current') or
-   CAP_HISTORY_PREVIOUS_MONTH ('previous') out of cap_history_data.js. */
-var dCapSource='current';
+/* Which cap "source" the Current Month/Following Month/Custom toggle has selected — keyed
+   to match its own display label directly ('currentMonth'/'followingMonth'/'custom').
+   Read by getTierDefault to pick CAP_HISTORY_PREVIOUS_MONTH ('currentMonth' — the most
+   recently published month, i.e. the rate currently in force) or CAP_HISTORY_FOLLOWING_MONTH
+   ('followingMonth' — the newest, not-yet-started month) out of cap_history_data.js. */
+var dCapSource='currentMonth';
 /* Which panel the cap-edit popup itself is showing — 'flat' (one stepper input) or 'byyear'
    (one input per policy year). Read by dCapEditModalConfirm to decide what to commit. */
 var dCapEditModalMode='flat';
-/* The Previous/Current/Custom choice as currently selected *inside the open popup* — only a
-   pending choice until Confirm commits it to dCapSource; Cancel/Escape/backdrop discards it. */
-var dCapModalPendingSource='current';
+/* The Current Month/Following Month/Custom choice as currently selected *inside the open
+   popup* — only a pending choice until Confirm commits it to dCapSource; Cancel/Escape/
+   backdrop discards it. */
+var dCapModalPendingSource='currentMonth';
+/* Set by dUpdateCapDisplay whenever the active cap is a Custom figure genuinely different
+   from today's real rate — read by dApplyOverlaysAndChart when it builds the print-only
+   cap-print-warning box, so the PDF/print output also discloses the figure is hypothetical
+   (not just the on-screen readout). dCapModifiedRealCap carries the real rate to quote. */
+var dCapModified=false;
+var dCapModifiedRealCap=0;
 var dShowFixedRate=false;
 /* Remembers the last-confirmed rate across toggle off/on within the session, so re-enabling
    the comparison doesn't force the user to retype it — only Remove (in the popup) clears it. */
@@ -1907,17 +1923,17 @@ function lookupCapHistoryRate(tierLabel,term,method,month){
    whole tiers array is ever missing/non-positive, fall back to the 20000 floor already
    enforced elsewhere (sAmtDebounce) so a blank input never runs the sim on amt=0, which
    would divide-by-zero into NaN/Infinity in PCT display mode.
-   source picks which real month's rate to use — 'previous' (Previous Month) or 'current'
-   (Following Month, dCapSource's default) — defaulting to dCapSource when the caller doesn't
-   care which one it's asking about. Falls back to premium_tiers' own figure if the archive
-   has no matching row for that month/tier/term/method. */
+   source picks which real month's rate to use — 'currentMonth' (dCapSource's default) or
+   'followingMonth' — defaulting to dCapSource when the caller doesn't care which one it's
+   asking about. Falls back to premium_tiers' own figure if the archive has no matching row
+   for that month/tier/term/method. */
 function getTierDefault(amt,method,term,source){
   var tiers=D&&D.premium_tiers;
   if(!tiers||!tiers.length) return 0;
   var tier=tiers[tiers.length-1];
   for(var i=0;i<tiers.length;i++){if(amt>=tiers[i].min&&amt<tiers[i].max){tier=tiers[i];break;}}
   var src=source||dCapSource;
-  var month=src==='previous'?CAP_HISTORY_PREVIOUS_MONTH:CAP_HISTORY_FOLLOWING_MONTH;
+  var month=src==='currentMonth'?CAP_HISTORY_PREVIOUS_MONTH:CAP_HISTORY_FOLLOWING_MONTH;
   var historic=lookupCapHistoryRate(tier.label,Number(term),method,month);
   return roundCap(historic!=null?historic:tier.caps[method][String(term)],method);
 }
@@ -2143,7 +2159,7 @@ function setMethod(val){
      vs ~4.5% Protection) — a manual override typed for one has no bearing on another. */
   dCapOverride=null;
   dCapOverrideByYear=null;
-  dCapSource='current';
+  dCapSource='currentMonth';
   dUpdateCapDisplay();
   dAutoCalc();
 }
@@ -2456,16 +2472,23 @@ var CAP_STRESS_ORDER=['low','current','high'];
    turning it off removes them and reverts to the single strategy line. Both directions go
    through a full sRenderResult() rebuild, since the chart's dataset count is changing. */
 
-/* Fills the (screen-hidden) print-only cap-stress box with the Low/Current/High values, so a
-   printed page still explains the extra chart lines cap stress adds — the floating on-screen
-   legend it normally shows through is deliberately excluded from print. No-op (and hides the
-   box) when cap stress is off, so this never has stale content left over from a prior state. */
-function updateCapPrintWarning(prefix,capStressOn,scenarios){
+/* Fills the (screen-hidden) print-only cap box with whatever needs disclosing on a printed
+   page that the on-screen layout already covers some other way: the Low/Current/High values
+   when cap stress is on (the floating on-screen legend it explains is deliberately excluded
+   from print), and/or (customWarningHtml, 'd' tab only) that the cap in use is a hypothetical
+   Custom figure, not today's real rate — same wording as the on-screen d-cap-modified-note box.
+   Either, both or neither may apply, so they're joined rather than one replacing the other.
+   No-op (and hides the box) when neither applies, so it never has stale content left over
+   from a prior state. */
+function updateCapPrintWarning(prefix,capStressOn,scenarios,customWarningHtml){
   var el=document.getElementById(prefix+'-cap-print-warning');
   if(!el) return;
-  if(!capStressOn){ el.classList.remove('show-on-print'); el.textContent=''; return; }
-  el.textContent=replaceTemplate(T('cap_print_warning'),
-    [scenarios.low.toFixed(2),scenarios.current.toFixed(2),scenarios.high.toFixed(2)]);
+  var parts=[];
+  if(customWarningHtml) parts.push(customWarningHtml);
+  if(capStressOn) parts.push(replaceTemplate(T('cap_print_warning'),
+    [scenarios.low.toFixed(2),scenarios.current.toFixed(2),scenarios.high.toFixed(2)]));
+  if(!parts.length){ el.classList.remove('show-on-print'); el.textContent=''; return; }
+  el.innerHTML=parts.join('<br><br>');
   el.classList.add('show-on-print');
 }
 
@@ -2813,16 +2836,24 @@ function dUpdateCapDisplay(){
   var dpw=document.getElementById('d-cap-print-warning');
   if(dpw) dpw.style.display='none';
   var note=document.getElementById('d-indicative-note');
-  if(note) note.style.display=isAboveMaxTier(amt)?'block':'none';
+  if(note) note.style.display=isAboveMaxTier(amt)?'':'none';
 
   /* Live "Annual Cap Rate" readout, directly under the amount/term/display inputs — reflects
      whatever the chart/engine is actually using right now: the selected cap-stress line
-     (low/current/high) when Cap Stress is on, otherwise today's current cap, or "Varies by
-     year" when a per-year Custom override is active. Mirrors the same figure the print-only
-     sbar (d-pcap) already shows (Year 1's rate, in the per-year case). */
+     (low/current/high) when Cap Stress is on, otherwise today's current cap, or the
+     lowest–highest range of the entered figures when a per-year Custom override is active.
+     The print-only sbar (d-pcap) still shows a single headline figure (Year 1's rate, in the
+     per-year case) since there's less room there for a range. */
   var resolvedCap=dResolveCap(amt);
   var capVal=document.getElementById('d-cap-readout-val');
-  if(capVal) capVal.textContent=resolvedCap.byYear?T('cap_varies_by_year'):resolvedCap.cap.toFixed(2)+'%';
+  if(capVal){
+    if(resolvedCap.byYear){
+      var byYearLo=Math.min.apply(null,resolvedCap.byYear), byYearHi=Math.max.apply(null,resolvedCap.byYear);
+      capVal.textContent=byYearLo===byYearHi?byYearLo.toFixed(2)+'%':byYearLo.toFixed(2)+'%–'+byYearHi.toFixed(2)+'%';
+    } else {
+      capVal.textContent=resolvedCap.cap.toFixed(2)+'%';
+    }
+  }
   /* Edit is always available now (Previous/Current/Custom all live inside its popup) except
      while a cap-stress line other than 'current' is selected — low/high are illustrative
      stress bands derived off it, so there's no base figure left to edit (and any open edit
@@ -2836,11 +2867,35 @@ function dUpdateCapDisplay(){
     editBtn.style.cursor=lockedOut?'not-allowed':'';
     if(lockedOut) dCapEditModalCancel();
   }
+  /* A Custom figure left equal to today's real rate (e.g. rows pre-filled on open and never
+     touched) isn't actually a hypothetical departure from the guaranteed terms — so both the
+     caption below and the warning box only switch over once it's genuinely been changed. */
+  var realCap2=getTierDefault(amt,selMethod,dTerm,'currentMonth');
+  var customModified=dCapSource==='custom'&&(dCapOverrideByYear
+    ?dCapOverrideByYear.some(function(v){return Math.abs(v-realCap2)>0.001;})
+    :dCapOverride!=null&&Math.abs(dCapOverride-realCap2)>0.001);
+  dCapModified=customModified;
+  dCapModifiedRealCap=realCap2;
   /* d-cap-readout-sub carries the static "guaranteed Year 1 only" caption (data-i18n=
      cap_year1_note in the markup, kept in sync here so it survives a language switch
      without depending on translateUI() having already run). */
   var capSub=document.getElementById('d-cap-readout-sub');
-  if(capSub) capSub.textContent=T('cap_year1_note');
+  if(capSub){
+    capSub.style.display=customModified?'none':'';
+    capSub.textContent=T('cap_year1_note');
+  }
+  /* Flags on the main screen (not just inside the edit popup) whenever the cap in use is a
+     Custom figure genuinely different from today's real rate. */
+  var modNote=document.getElementById('d-cap-modified-note');
+  var modNoteText=document.getElementById('d-cap-modified-note-text');
+  if(modNote&&modNoteText){
+    if(customModified){
+      modNoteText.innerHTML=replaceTemplate(T('cap_custom_warning'),[realCap2.toFixed(2)+'%']);
+      modNote.style.display='';
+    } else {
+      modNote.style.display='none';
+    }
+  }
   /* A per-year Custom override has no single "current" figure to stress-test proportionally
      against, so Cap Stress is force-disabled (and its toggle greyed out) while one is set —
      same lockout treatment the Advanced-mode switch already applies to this same toggle. */
@@ -2861,7 +2916,7 @@ function dUpdateCapDisplay(){
    discards it), same as typing a new flat figure already worked. */
 function dCapEditModalSelectSource(src){
   dCapModalPendingSource=src;
-  ['previous','current','custom'].forEach(function(s){
+  ['currentMonth','followingMonth','custom'].forEach(function(s){
     var b=document.getElementById('cap-modal-src-'+s);
     if(b) b.classList.toggle('active',s===src);
   });
@@ -2878,10 +2933,30 @@ function dCapEditModalSelectSource(src){
       preview.textContent='';
     } else {
       var def=getTierDefault(parseAmt('d-amt')||100000,selMethod,dTerm,src);
-      preview.innerHTML=T(src==='previous'?'cap_source_previous':'cap_source_current')+
+      preview.innerHTML=T(src==='currentMonth'?'cap_source_currentmonth':'cap_source_followingmonth')+
         ': <strong style="color:var(--a1-brand)">'+def.toFixed(2)+'%</strong>';
     }
   }
+  /* One notice box, always in the same place and always the same amber colour — only its
+     text swaps with the selected source, so switching Previous/Current/Custom never shifts
+     the layout or changes the visual weight of the warning. For Previous/Current it states
+     the real product's Year-1 guarantee; for Custom (where the figure is one the user typed
+     in themselves) it switches to the hypothetical-rate disclosure instead. The "What
+     influences cap rates" link stays constant throughout. */
+  var year1NoticeText=document.getElementById('cap-modal-year1-notice-text');
+  if(year1NoticeText){
+    if(src==='custom'){
+      var realCap=getTierDefault(parseAmt('d-amt')||100000,selMethod,dTerm,dCapSource==='custom'?'followingMonth':dCapSource);
+      year1NoticeText.innerHTML=replaceTemplate(T('cap_custom_warning'),[realCap.toFixed(2)+'%']);
+    } else {
+      year1NoticeText.innerHTML='<strong>'+T('important_label')+'</strong> '+T('cap_year1_note');
+    }
+  }
+  /* The Reset button only means anything for Custom (it reverts the typed-in figure/rows
+     back to today's tier default) — Previous/Current have no editable field in this popup
+     for it to act on, so hide it outside Custom mode. */
+  var resetBtn=document.getElementById('cap-modal-reset-btn');
+  if(resetBtn) resetBtn.style.display=src==='custom'?'':'none';
 }
 /* Opens the cap-edit popup on whatever's currently active — Previous/Current/Custom, and for
    Custom, the flat figure or the per-year breakdown if "vary by year" is already set. */
@@ -2890,8 +2965,7 @@ function dCapEditOpen(){
   if(btn&&btn.disabled) return;
   var valEl=document.getElementById('d-cap-readout-val'),
       inp=document.getElementById('cap-edit-modal-inp'),
-      modal=document.getElementById('cap-edit-modal'),
-      defEl=document.getElementById('cap-edit-modal-default');
+      modal=document.getElementById('cap-edit-modal');
   if(!inp||!modal) return;
   dCapEditModalSelectSource(dCapSource);
   var def=getTierDefault(parseAmt('d-amt')||100000,selMethod,dTerm);
@@ -2908,7 +2982,6 @@ function dCapEditOpen(){
     var defaults=[]; for(var y=0;y<dTerm;y++) defaults.push(def);
     dCapEditModalBuildYearRows(defaults);
   }
-  if(defEl) defEl.textContent=T('edit_cap_modal_default_note').replace('{0}',def.toFixed(2)+'%');
   modal.style.display='flex';
 }
 /* Nudges the popup's flat input by the given delta (±0.5), clamped to the input's own range. */
@@ -3225,7 +3298,7 @@ function dSetTerm(t){
      term isn't a meaningful figure for the other, flat or per-year. */
   dCapOverride=null;
   dCapOverrideByYear=null;
-  dCapSource='current';
+  dCapSource='currentMonth';
   document.getElementById('dt3').classList.toggle('active',t===3);
   document.getElementById('dt5').classList.toggle('active',t===5);
   dRenderCustomInputs();
@@ -3279,7 +3352,8 @@ function dApplyOverlaysAndChart(ctx, rebuild){
     };
   }
   renderCapStressLegend('d-cap-legend-rows',scenarios,dCapScenario,'dSetCapScenario');
-  updateCapPrintWarning('d',dCapStressOn,scenarios);
+  updateCapPrintWarning('d',dCapStressOn,scenarios,
+    dCapModified?replaceTemplate(T('cap_custom_warning'),[dCapModifiedRealCap.toFixed(2)+'%']):null);
 
   /* Fixed-rate comparison overlay — flat user-entered rate compounded across the term (see
      dToggleFixedRate), added as an extra chart line and legend row rather than replacing the
@@ -3465,8 +3539,8 @@ function boot(data){
   if(pmg) pmg.textContent=CURRENT_LANG==='it'?'Generato:':'Generated:';
   var pmd=document.getElementById('print-meta-disclaimer');
   if(pmd) pmd.innerHTML=CURRENT_LANG==='it'
-    ?'<strong>Solo a scopo dimostrativo del prodotto</strong> – non è un\'illustrazione formale per il cliente. I cap rate, la performance dell\'indice e tutti i valori mostrati sono illustrativi e soggetti a variazione.'
-    :'<strong>For product demonstration purposes only</strong> – not a formal client illustration. Cap rates, index performance and all figures shown are illustrative and subject to change.';
+    ?'<strong>Solo a scopo illustrativo</strong> – non è un preventivo formale per il cliente. I cap rate, la performance dell\'indice e tutti i valori mostrati sono indicativi e soggetti a variazione.'
+    :'<strong>For illustrative purposes only</strong> – not a formal client quotation. Cap rates, index performance and all figures shown are indicative and subject to change.';
   buildMethodSelectors();
   initMonths();
   dRenderCustomInputs();
@@ -3499,10 +3573,10 @@ setTimeout(updateModals, 10);
   <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:480px;width:92%;max-height:90vh;overflow-y:auto;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="capInfoClose()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--a1-text-s);line-height:1;">&times;</button>
     <div id="cap-modal-title" style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:16px;">Annual Cap Rate</div>
-    <div id="cap-modal-body" style="font-size:13px;color:var(--a1-text-s);line-height:1.7;margin-bottom:16px;">Each policy year, your index participation is subject to a cap, the maximum credited return regardless of how strongly the market performs.</div>
+    <div id="cap-modal-body" style="font-size:13px;color:var(--a1-text-s);line-height:1.7;margin-bottom:16px;">Each policy year, your return is subject to a cap. This is the maximum return that can be credited, no matter how well the index performs.</div>
     <div id="cap-modal-default" class="inline-notice" style="margin-bottom:0;">
-      <span class="inline-notice-icon">&#9432;</span>
-      <span><strong data-i18n="important_label">Important:</strong> <span id="cap-modal-default-text">Today's rate is guaranteed for your first policy year; from Year 2 it is reviewed and reset by Allianz at each annual anniversary. Default rates shown are Allianz's current indicative rates for your investment amount and term. Actual future caps will differ from this illustration.</span></span>
+      <span class="inline-notice-icon"><svg width="16" height="16" aria-hidden="true"><use href="#ico-info"/></svg></span>
+      <span><strong data-i18n="important_label">Important:</strong> <span id="cap-modal-default-text">The cap rate shown is guaranteed for your first policy year. Allianz reviews and may reset the cap at each policy anniversary. Displayed rates are indicative for your selected amount and term — actual future caps may differ.</span></span>
     </div>
     <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--a1-border-t);text-align:center;">
       <a id="cap-modal-link" href="info.html#caps" target="_blank" rel="noopener" onclick="capInfoClose()" style="font-size:12px;color:var(--a1-brand);font-weight:600;text-decoration:none;">How are cap rates set?</a> <span style="font-size:12px;color:var(--a1-brand);">→</span>
@@ -3512,47 +3586,55 @@ setTimeout(updateModals, 10);
 <div id="cap-edit-modal" onclick="if(event.target===this)dCapEditModalCancel()" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:9999;align-items:center;justify-content:center;padding:16px;">
   <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:380px;width:100%;padding:28px 28px 24px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="dCapEditModalCancel()" class="cap-modal-close-btn" aria-label="Close">&times;</button>
-    <div style="font-size:17px;font-weight:700;color:var(--a1-brand);margin-bottom:6px;" data-i18n="edit_cap_modal_title">Set Annual Cap Rate</div>
-    <div style="font-size:12.5px;color:var(--a1-text-s);line-height:1.55;margin:0 0 16px;" data-i18n="edit_cap_modal_sub">Enter a cap rate to see how it would affect your results, then confirm.</div>
+    <div style="font-size:17px;font-weight:700;color:var(--a1-brand);margin-bottom:6px;" data-i18n="edit_cap_modal_title">Choose Cap Rate</div>
+    <div style="font-size:12.5px;color:var(--a1-text-s);line-height:1.55;margin:0 0 16px;" data-i18n="edit_cap_modal_sub">Choose which month's rate to use, or enter your own.</div>
+
+    <div id="cap-modal-year1-notice" class="inline-notice" style="margin-bottom:16px;">
+      <span class="inline-notice-icon"><svg width="16" height="16" aria-hidden="true"><use href="#ico-info"/></svg></span>
+      <span class="inline-notice-body">
+        <span id="cap-modal-year1-notice-text"><strong data-i18n="important_label">Important:</strong> <span data-i18n="cap_year1_note">Cap rate guaranteed for Year 1 only. Reviewed at each policy anniversary.</span></span>
+        <a href="info.html#caps" target="_blank" rel="noopener" data-i18n="cap_custom_warning_link" class="inline-notice-link">What factors influence cap rates &rarr;</a>
+      </span>
+    </div>
 
     <div class="tgg cap-src-tgg" style="width:100%;margin-bottom:8px;">
-      <button class="tg" id="cap-modal-src-previous" onclick="dCapEditModalSelectSource('previous')" style="flex:1;" data-i18n="cap_source_previous">Current Month</button>
-      <button class="tg active" id="cap-modal-src-current" onclick="dCapEditModalSelectSource('current')" style="flex:1;" data-i18n="cap_source_current">Following Month</button>
+      <button class="tg active" id="cap-modal-src-currentMonth" onclick="dCapEditModalSelectSource('currentMonth')" style="flex:1;" data-i18n="cap_source_currentmonth">Current Month</button>
+      <button class="tg" id="cap-modal-src-followingMonth" onclick="dCapEditModalSelectSource('followingMonth')" style="flex:1;" data-i18n="cap_source_followingmonth">Following Month</button>
       <button class="tg" id="cap-modal-src-custom" onclick="dCapEditModalSelectSource('custom')" style="flex:1;" data-i18n="cap_source_custom">Custom</button>
     </div>
     <div id="cap-modal-src-preview" style="font-size:12.5px;color:var(--a1-text-s);text-align:center;min-height:18px;margin-bottom:12px;"></div>
 
     <div id="cap-modal-custom-section" style="display:none;">
       <div class="tgg" style="width:100%;margin-bottom:16px;">
-        <button class="tg active" id="cap-modal-mode-flat" onclick="dCapEditModalSetMode('flat')" style="flex:1;font-size:12px;" data-i18n="cap_modal_mode_flat">Same rate every year</button>
+        <button class="tg active" id="cap-modal-mode-flat" onclick="dCapEditModalSetMode('flat')" style="flex:1;font-size:12px;" data-i18n="cap_modal_mode_flat">Flat rate</button>
         <button class="tg" id="cap-modal-mode-byyear" onclick="dCapEditModalSetMode('byyear')" style="flex:1;font-size:12px;" data-i18n="cap_modal_mode_byyear">Vary by year</button>
       </div>
 
       <div id="cap-modal-flat-panel">
-        <div style="background:var(--a1-bg);border-radius:var(--a1-radius-m);padding:18px;margin-bottom:8px;">
-          <div style="display:flex;align-items:center;justify-content:center;gap:16px;">
-            <button type="button" onclick="dCapEditModalStep(-0.5)" class="cap-stepper-btn" aria-label="Decrease">&minus;</button>
-            <div style="display:flex;align-items:baseline;gap:3px;">
+        <div style="background:var(--a1-bg);border-radius:var(--a1-radius-m);padding:14px;margin-bottom:8px;">
+          <div style="display:flex;align-items:center;justify-content:center;gap:12px;">
+            <button type="button" onclick="dCapEditModalStep(-0.5)" class="cap-stepper-btn cap-stepper-btn-sm" aria-label="Decrease">&minus;</button>
+            <div style="display:flex;align-items:baseline;gap:2px;">
               <input type="number" inputmode="decimal" id="cap-edit-modal-inp" step="0.5" min="0" max="100"
-                style="width:88px;text-align:center;font-size:30px;font-weight:800;color:var(--a1-brand);border:none;background:none;outline:none;padding:0;font-family:'Allianz Neo', sans-serif;"
+                style="width:68px;text-align:center;font-size:22px;font-weight:800;color:var(--a1-brand);border:none;background:none;outline:none;padding:0;font-family:'Allianz Neo', sans-serif;"
                 onkeydown="dCapEditModalKeydown(event)">
-              <span style="font-size:19px;font-weight:800;color:var(--a1-brand);">%</span>
+              <span style="font-size:14px;font-weight:800;color:var(--a1-brand);">%</span>
             </div>
-            <button type="button" onclick="dCapEditModalStep(0.5)" class="cap-stepper-btn" aria-label="Increase">&plus;</button>
+            <button type="button" onclick="dCapEditModalStep(0.5)" class="cap-stepper-btn cap-stepper-btn-sm" aria-label="Increase">&plus;</button>
           </div>
         </div>
-        <div id="cap-edit-modal-default" style="font-size:11.5px;color:var(--a1-text-s);text-align:center;min-height:16px;margin-bottom:10px;"></div>
       </div>
       <div id="cap-modal-byyear-panel" style="display:none;background:var(--a1-bg);border-radius:var(--a1-radius-m);padding:16px;margin-bottom:18px;">
         <div id="cap-modal-byyear-rows"></div>
       </div>
     </div>
 
+
     <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:18px;border-top:1px solid var(--a1-border-t);">
-      <button onclick="dCapEditModalReset()" class="cap-modal-reset-btn">
+      <button id="cap-modal-reset-btn" onclick="dCapEditModalReset()" class="cap-modal-reset-btn">
         <svg width="13" height="13" aria-hidden="true"><use href="#ico-refresh"/></svg><span data-i18n="reset">Reset</span>
       </button>
-      <button onclick="dCapEditModalConfirm()" class="cap-modal-confirm-btn" data-i18n="edit_cap_modal_confirm">Confirm</button>
+      <button onclick="dCapEditModalConfirm()" class="cap-modal-confirm-btn" data-i18n="edit_cap_modal_confirm" style="margin-left:auto;">Confirm</button>
     </div>
   </div>
 </div>
@@ -3671,7 +3753,7 @@ setTimeout(updateModals, 10);
         </div>
       </div>
     </div>
-    <div style="font-size:11.5px;color:var(--a1-text-s);margin-top:18px;padding-top:14px;border-top:1px solid var(--a1-border-t);line-height:1.55;" data-i18n="dyo_scenario_info_footnote">These scenarios are hypothetical and for illustrative purposes only. Cap rates and protection levels shown are indicative and reset at each annual policy anniversary.</div>
+    <div style="font-size:11.5px;color:var(--a1-text-s);margin-top:18px;padding-top:14px;border-top:1px solid var(--a1-border-t);line-height:1.55;" data-i18n="dyo_scenario_info_footnote">These scenarios are for illustrative purposes only. Cap rates and protection levels shown are indicative and may be reset at each policy anniversary.</div>
   </div>
 </div>
 <div id="cap-stress-info-modal" onclick="if(event.target===this)capStressInfoClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;">
@@ -3680,7 +3762,7 @@ setTimeout(updateModals, 10);
     <div style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:16px;" data-i18n="cap_stress_info_title">Cap Rate Stress Test</div>
     <div style="font-size:13px;color:var(--a1-text-s);line-height:1.7;" data-i18n="cap_stress_info_body">The cap is only guaranteed for Year 1. From Year 2 onwards it resets annually — so the Lower and Higher lines stress-test what happens if future caps settle consistently below or above today's rate. All three lines start from the same point because Year 1 is fixed.</div>
     <div class="inline-notice" style="margin-top:16px;margin-bottom:0;">
-      <span class="inline-notice-icon">&#9432;</span>
+      <span class="inline-notice-icon"><svg width="16" height="16" aria-hidden="true"><use href="#ico-info"/></svg></span>
       <span>
         <span data-i18n="cap_stress_info_warning">Actual future cap rates can differ from the Lower/Higher lines shown here — they are illustrative bounds, not guaranteed floors or ceilings.</span>
         <a href="info.html#caps" target="_blank" rel="noopener"
@@ -3700,7 +3782,7 @@ setTimeout(updateModals, 10);
         <div style="width:32px;height:32px;border-radius:50%;background:var(--a1-tl);color:var(--a1-brand);font-size:13px;font-weight:800;flex-shrink:0;display:flex;align-items:center;justify-content:center;">1</div>
         <div style="flex:1;min-width:0;">
           <div style="font-weight:700;color:var(--a1-brand);font-size:15px;margin-bottom:4px;" id="prot-modal-title" data-i18n="protection_short">Guarantee 100: 0% Floor</div>
-          <div style="font-size:13px;color:var(--a1-text-s);line-height:1.6;" id="prot-modal-desc" data-i18n="protection_desc">An annual guarantee of 100% of the coverage value applies. The floor on index returns is never below 0%. Whatever the index does, you cannot lose money: if the index falls, your credited return is 0% and your capital is preserved. Positive annual returns are credited and locked in to your guaranteed minimum. Suited to investors prioritising full capital protection.</div>
+          <div style="font-size:13px;color:var(--a1-text-s);line-height:1.6;" id="prot-modal-desc" data-i18n="protection_desc">An annual guarantee of 100% of the coverage value applies. The floor on index returns is never below 0%. If the index falls, your credited return is 0% and your invested capital is preserved. Positive annual returns are credited and locked in to your guaranteed minimum. Suited to investors prioritising full capital protection.</div>
         </div>
       </div>
       <div style="display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--a1-border-t);">
@@ -3709,7 +3791,7 @@ setTimeout(updateModals, 10);
           <div style="font-weight:700;color:var(--a1-brand);font-size:15px;margin-bottom:4px;" id="bal-modal-title" data-i18n="balance_short">Guarantee 95: &minus;5% Floor</div>
           <div style="font-size:13px;color:var(--a1-text-s);line-height:1.6;" id="bal-modal-desc" data-i18n="balance_desc">An annual guarantee of 95% of the coverage value applies. The floor on index returns is never below -5%. You absorb small declines in full, but any loss beyond 5% is covered by Allianz. Positive annual returns are credited and locked in to your guaranteed minimum. Suited to investors seeking a balance between protection and cap rate.</div>
           <div class="inline-notice" style="margin-top:10px;margin-bottom:0;">
-            <span class="inline-notice-icon">&#9432;</span>
+            <span class="inline-notice-icon"><svg width="16" height="16" aria-hidden="true"><use href="#ico-info"/></svg></span>
             <span><strong data-i18n="important_label">Important:</strong> <span id="bal-modal-risk" data-i18n="balance_risk_warning">You may lose up to 5% of your investment value in any policy year.</span></span>
           </div>
         </div>
@@ -3720,8 +3802,8 @@ setTimeout(updateModals, 10);
           <div style="font-weight:700;color:var(--a1-brand);font-size:15px;margin-bottom:4px;" id="opp-modal-title" data-i18n="opportunity_short">Protection Buffer 10: 10% Buffer</div>
           <div style="font-size:13px;color:var(--a1-text-s);line-height:1.6;" id="opp-modal-desc" data-i18n="opportunity_desc">If the index falls within -10% during the policy year, you register no losses and your capital is guaranteed at 100%. If the index falls beyond -10%, your loss is limited to the amount beyond the buffer. For example, if the index falls 7% you lose nothing; if it falls 14%, you lose only 4%. Upside is subject to the annual cap. Suits investors comfortable carrying some tail risk in exchange for the highest cap rate of the three strategies.</div>
           <div class="inline-notice" style="margin-top:10px;margin-bottom:0;">
-            <span class="inline-notice-icon">&#9432;</span>
-            <span><strong data-i18n="important_label">Important:</strong> <span id="opp-modal-risk" data-i18n="opportunity_risk_warning">Losses beyond the 10% buffer are borne in full by you. In a severe market downturn, this could result in the loss of a substantial part, or all, of your investment.</span></span>
+            <span class="inline-notice-icon"><svg width="16" height="16" aria-hidden="true"><use href="#ico-info"/></svg></span>
+            <span><strong data-i18n="important_label">Important:</strong> <span id="opp-modal-risk" data-i18n="opportunity_risk_warning">If the index falls beyond the 10% buffer, you bear the full loss beyond that point. In a severe downturn, this could mean losing a substantial part of your investment.</span></span>
           </div>
         </div>
       </div>

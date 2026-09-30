@@ -88,14 +88,14 @@ body { font-family: 'Allianz Neo', 'Segoe UI', Arial, sans-serif; background: va
 body::before { content: ''; display: block; height: 4px; background: var(--navy); }
 
 /* ── Header ── */
-.hdr { background: var(--white); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 72px; border-bottom: 1px solid var(--gb); box-shadow: var(--a1-shadow-100); }
+.hdr { background: var(--white); padding: 12px 48px; display: flex; flex-wrap: wrap; row-gap: 10px; align-items: center; justify-content: space-between; min-height: 72px; border-bottom: 1px solid var(--gb); box-shadow: var(--a1-shadow-100); }
 .hdr-l { display: flex; align-items: center; gap: 20px; }
 .hdr-logo { height: 36px; width: auto; display: block; }
 .hdr-divider { width: 1px; height: 32px; background: var(--gb); margin: 0 4px; }
 .htitle { color: var(--navy); font-size: 18px; font-weight: 700; line-height: 1.25; }
 .hsub { color: var(--tm2); font-size: 11px; margin-top: 2px; font-weight: 400; letter-spacing: 0.5px; text-transform: uppercase; }
-.hdr-r { display: flex; align-items: center; gap: 20px; }
-.hdr-nav { display: flex; align-items: center; gap: 22px; }
+.hdr-r { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 20px; }
+.hdr-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
 .hdr-link { font-size: 13px; font-weight: 600; color: var(--tm2); text-decoration: none; transition: color .18s; }
 .hdr-link:hover { color: var(--navy); }
 .hdr-link.active { color: var(--navy); font-weight: 700; pointer-events: none; }
@@ -468,8 +468,15 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
 .disc p + p { margin-top: 10px; }
 
 /* ── Responsive ── */
+@media (max-width: 1300px) {
+  .hdr { padding: 10px 28px; }
+  .page-hero { padding: 48px 28px 60px; }
+  .section-tabs { padding: 0 28px; }
+  .sec-inner { padding: 0 28px; }
+  .esempio-section { margin: 52px -28px -60px; padding: 36px 28px 60px; }
+}
 @media (max-width: 760px) {
-  .hdr { padding: 0 20px; }
+  .hdr { padding: 10px 20px; }
   .page-hero { padding: 48px 20px 60px; }
   .page-hero-title { font-size: 32px; letter-spacing: -0.8px; }
   .section-tabs { padding: 0 20px; }
