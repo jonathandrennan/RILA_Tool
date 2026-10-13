@@ -465,6 +465,7 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
   margin: 0 auto;
 }
 .disc-heading { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+.disc p { font-size: 11px; line-height: 1.65; margin-bottom: 0; }
 .disc p + p { margin-top: 10px; }
 
 /* ── Responsive ── */
@@ -597,17 +598,6 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
 .caps-why-text  { font-size: 15px; color: var(--td); line-height: 1.85; margin-bottom: 22px; }
 
 /* ── Premium split stat blocks ── */
-.premium-split-wrap { margin: 32px 0 8px; }
-.premium-split-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--tm2); margin-bottom: 16px; display: block; }
-.prem-alloc-bar { display: flex; height: 44px; gap: 4px; margin-bottom: 8px; }
-.prem-bar-labels { display: flex; gap: 4px; margin-bottom: 20px; }
-.prem-bar-lbl-bonds { flex: 88; font-size: 11px; font-weight: 600; color: var(--navy); }
-.prem-bar-lbl-hedge { flex: 12; font-size: 11px; font-weight: 600; color: var(--teal); min-width: 0; }
-.prem-alloc-seg { display: flex; align-items: center; padding: 0 18px; border-radius: var(--a1-radius-s); }
-.prem-alloc-bonds { flex: 88; background: var(--navy); border-radius: var(--a1-radius-m) var(--a1-radius-s) var(--a1-radius-s) var(--a1-radius-m); }
-.prem-alloc-hedge { flex: 12; background: var(--teal); border-radius: var(--a1-radius-s) var(--a1-radius-m) var(--a1-radius-m) var(--a1-radius-s); }
-.prem-alloc-seg-lbl { font-size: 12px; font-weight: 700; color: #fff; letter-spacing: 0.2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.premium-explain-block { margin-bottom: 8px; }
 
 /* ── 3-factor compact panel ── */
 .nf-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--gb); border-radius: var(--a1-radius-m); overflow: hidden; margin: 4px 0 44px; }
@@ -675,7 +665,7 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
       <a href="index.html" class="hdr-link" id="nav-home">Home</a>
       <a href="info.html" class="hdr-link active" id="nav-guide">Product Guide</a>
       <a href="tool.html" class="hdr-link" id="nav-tool">Illustration Tool</a>
-      <a href="cap-history.html" class="hdr-link" id="nav-history">Cap Rate History</a>
+      <a href="cap-history.html" class="hdr-link" id="nav-history">Cap History</a>
     </nav>
     <div class="hdr-divider"></div>
     <div class="lang-toggle">
@@ -690,7 +680,7 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
   <div class="page-hero-inner">
     <div class="page-hero-eyebrow" id="hero-eyebrow">Allianz Active4Life Evolution · Product Guide</div>
     <div class="page-hero-title" id="hero-title">How Active4Life Evolution works</div>
-    <div class="page-hero-sub" id="hero-sub">The four investment strategies, protection mechanics, and cap rate dynamics — explained.</div>
+    <div class="page-hero-sub" id="hero-sub">The four investment strategies, protection mechanics, and the dynamics of the financial parameters (Cap and Coupon) — explained.</div>
   </div>
 </div>
 
@@ -699,8 +689,7 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
   <div class="stab-group">
     <a href="#about"    class="stab active" id="anav-about">Il prodotto</a>
     <a href="#g100"        class="stab" id="anav-strategies">Strategies</a>
-    <a href="#how-it-works" class="stab" id="anav-how">How your premium is invested</a>
-    <a href="#caps"        class="stab" id="anav-caps">Cap rates</a>
+    <a href="#caps"        class="stab" id="anav-caps">Financial Parameters</a>
   </div>
 </div>
 
@@ -709,7 +698,7 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
 <div class="page-section" id="about">
   <div class="sec-inner">
     <span class="section-label" id="slabel-about">About the product</span>
-    <div class="i18n-html" id="pdf-intro"><p class="pdf-intro">Allianz Active4Life Evolution è un prodotto assicurativo di tipo misto, Unit e Index Linked. Le coperture Index Linked, di durata 3 o 5 anni, prevedono 4 strategie di investimento. Potrai investire in una o più delle strategie e modificare le scelte nel corso della durata del contratto. Tutte le garanzie sono fornite direttamente dalla compagnia Allianz Global Life dac. Questo strumento illustra le 3 strategie indicizzate.</p></div>
+    <div class="i18n-html" id="pdf-intro"><p class="pdf-intro">Allianz Active4Life Evolution è un prodotto assicurativo di tipo misto, Unit e Index Linked. Le coperture Index Linked, di durata 3 o 5 anni, prevedono 4 strategie di investimento. Potrai investire in una o più delle strategie e modificare le scelte nel corso della durata della copertura. Tutte le garanzie sono fornite direttamente dalla compagnia Allianz Global Life dac. Questo strumento illustra le 3 strategie indicizzate.</p></div>
 
   </div>
 </div>
@@ -735,12 +724,12 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
 
         <div class="strat-bullet">
           <div class="bullet-icon-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <div class="bullet-body i18n-html" id="g100-b2">Una <strong>garanzia annuale del 100%</strong> del controvalore della copertura. Il Floor di rendimento dell’indice <strong>mai sotto 0%</strong>.</div>
+          <div class="bullet-body i18n-html" id="g100-b2">Una <strong>garanzia annuale del 100%</strong> del controvalore della copertura. Il rendimento negativo dell’Indice <strong>non impatterà mai</strong> il valore della tua copertura (Floor 0%).</div>
         </div>
 
         <div class="strat-bullet">
           <div class="bullet-icon-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-          <div class="bullet-body i18n-html" id="g100-b3">Ad ogni ricorrenza annua, <strong>le performance positive dell’indice verranno accreditate all’importo della polizza</strong> consolidandole annualmente nel valore minimo garantito.</div>
+          <div class="bullet-body i18n-html" id="g100-b3">Ad ogni ricorrenza annua, <strong>le performance dell’indice verranno accreditate, nei limiti di Cap e Floor, all’importo della copertura</strong> consolidandole annualmente nel valore minimo garantito.</div>
         </div>
 
       </div>
@@ -868,12 +857,12 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
 
         <div class="strat-bullet">
           <div class="bullet-icon-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-          <div class="bullet-body i18n-html" id="g95-b2">Una <strong>garanzia annuale del 95%</strong> del controvalore della copertura. Il Floor di rendimento dell’indice <strong>mai sotto il -5%</strong>.</div>
+          <div class="bullet-body i18n-html" id="g95-b2">Una <strong>garanzia annuale del 95%</strong> del controvalore della copertura. Il rendimento negativo dell’Indice impatterà il valore della tua copertura <strong>nei limiti del Floor pari al -5%</strong>.</div>
         </div>
 
         <div class="strat-bullet">
           <div class="bullet-icon-wrap"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
-          <div class="bullet-body i18n-html" id="g95-b3">Ad ogni ricorrenza annua, <strong>le performance positive dell’indice verranno accreditate all’importo della polizza</strong> consolidandole annualmente nel valore minimo garantito.</div>
+          <div class="bullet-body i18n-html" id="g95-b3">Ad ogni ricorrenza annua, <strong>le performance dell’indice verranno accreditate, nei limiti di Cap e Floor, all’importo della copertura</strong> consolidandole annualmente nel valore minimo garantito.</div>
         </div>
 
       </div>
@@ -973,7 +962,7 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
             </div>
             <div class="scen-box">
               <div class="scen-num" id="scen-num-g95-4">Scenario 4:</div>
-              <div class="scen-desc i18n-html" id="g95-s4-desc">Se la performance annuale è negativa, oltre il Floor, l’Investitore subisce una perdita limitatamente alla perdita entro il Floor.</div>
+              <div class="scen-desc i18n-html" id="g95-s4-desc">Se la performance annuale è negativa, oltre il Floor, l’Investitore subisce una perdita limitata pari al Floor.</div>
             </div>
           </div>
         </div>
@@ -1135,76 +1124,70 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
       </div>
       <div class="cedola-text">
         <p class="cedola-p i18n-html" id="cedola-p1">In alternativa alle Strategie Indicizzate (il cui rendimento dipende dall'indice azionario), puoi scegliere di ricevere una <strong>cedola garantita</strong>, indipendentemente dall'andamento dell'Indice (c.d. "<strong>Strategia a Reddito Fisso</strong>"). In tal caso, il tuo investimento non subisce variazioni dovute all'andamento dell'Indice.</p>
-        <p class="cedola-p i18n-html" id="cedola-p2">Al termine dell'annualità di contratto, l'importo della cedola è utilizzato per acquistare quote del Fondo <span class="tip" data-tip-key="pimco">PIMCO GIS Euro Short-Term Fund</span> dal quale puoi riscattare liberamente senza costi o vincoli.</p>
+        <p class="cedola-p i18n-html" id="cedola-p2">Al termine dell'annualità di copertura, l'importo della cedola è utilizzato per acquistare quote del Fondo <span class="tip" data-tip-key="pimco">PIMCO GIS Euro Short-Term Fund</span> (ISIN: IE00B0XJBQ64) dal quale puoi riscattare liberamente senza costi o vincoli.</p>
       </div>
     </div>
 
-  </div>
-</div>
-
-<!-- ══════════════════════════ HOW PREMIUM IS INVESTED ══ -->
-<div class="page-section" id="how-it-works">
-  <div class="sec-inner">
-    <span class="section-label" id="slabel-how">How your premium is invested</span>
-
-    <!-- Premium split visual -->
-    <div class="premium-split-wrap" id="prem-split-wrap">
-      <div class="prem-alloc-bar">
-        <div class="prem-alloc-seg prem-alloc-bonds"></div>
-        <div class="prem-alloc-seg prem-alloc-hedge"></div>
+    <div class="esempio-section">
+      <div class="esempio-header">
+        <span class="esempio-pre" id="esempio-pre-ced">Esempio strategia</span>
+        <div class="esempio-title" id="esempio-title-ced">Cedola</div>
       </div>
-      <div class="prem-bar-labels">
-        <div class="prem-bar-lbl-bonds" id="prem-bonds-bar-lbl">High-quality fixed income (bonds)</div>
-        <div class="prem-bar-lbl-hedge" id="prem-hedge-bar-lbl">Hedging instruments</div>
-      </div>
+      <p class="cedola-p i18n-html" id="ced-lead" style="margin-bottom:14px;">La cedola <strong>non è influenzata dai rendimenti dell’indice</strong>.</p>
+      <table style="border-collapse:collapse;background:#fff;border:1px solid var(--gb);border-radius:var(--a1-radius-m);">
+        <thead><tr>
+          <th id="ced-th-prem" style="text-align:left;padding:8px 14px;font-size:11.5px;font-weight:700;color:var(--tm2);border-bottom:1px solid var(--gb);">Premio</th>
+          <th id="ced-th-rate" style="text-align:left;padding:8px 14px;font-size:11.5px;font-weight:700;color:var(--tm2);border-bottom:1px solid var(--gb);">Tasso della cedola (1° anno)</th>
+          <th id="ced-th-coupon" style="text-align:left;padding:8px 14px;font-size:11.5px;font-weight:700;color:var(--tm2);border-bottom:1px solid var(--gb);">Cedola a fine 1° anno</th>
+        </tr></thead>
+        <tbody><tr>
+          <td id="ced-td-prem" style="text-align:left;padding:10px 14px;font-size:15px;font-weight:700;color:var(--navy);">€100.000</td>
+          <td id="ced-td-rate" style="text-align:left;padding:10px 14px;font-size:15px;font-weight:700;color:var(--navy);">2,2%</td>
+          <td id="ced-td-coupon" style="text-align:left;padding:10px 14px;font-size:15px;font-weight:700;color:var(--navy);">€2.200</td>
+        </tr></tbody>
+      </table>
+      <div class="cedola-infobox i18n-html" id="ced-note" style="margin-top:16px;"><strong>Esempio puramente illustrativo.</strong> Il tasso della cedola è garantito solo per il primo anno di copertura e viene rivisto a ogni anniversario della copertura.</div>
     </div>
 
-    <p class="pdf-intro" id="wk-p2">Each year, Allianz earns a yield from its investment portfolio. That yield funds operating expenses, product benefits and guarantees, and the hedging budget that makes index-linked returns possible. Any remaining income forms Allianz's profit.</p>
-
-    <!-- How hedging works explanation -->
-    <div class="premium-explain-block">
-      <p class="pdf-intro i18n-html" id="prem-explain-p1">The vast majority of your premium is invested in a diversified portfolio of high-quality fixed income assets, designed to grow back to at least your original investment over the contract term. This portfolio funds the guarantees and fixed interest benefits of the product, which are provided directly by Allianz Global Life dac according to the protection level of your chosen strategy.</p>
-      <p class="pdf-intro i18n-html" id="prem-explain-p2">A small share is used as a hedging budget — used to purchase financial instruments (options) that make it possible to offer index-linked returns on top of your capital protection. Without this hedging budget, Allianz could not offer the indexed returns that the strategies provide.</p>
-    </div>
   </div>
 </div>
 
 <!-- ══════════════════════════ SECTION 4 ══ -->
 <div class="page-section" id="caps" style="background:var(--bg);">
   <div class="sec-inner">
-    <span class="section-label" id="slabel-caps">Cap rates</span>
+    <span class="section-label" id="slabel-caps">Financial Parameters</span>
 
     <div class="strat-heading">
-      <span class="strat-pre" id="cr-eyebrow">Cap Rate Mechanics</span>
-      <div class="strat-title-block"><span id="cr-title">What determines the cap rate</span></div>
+      <span class="strat-pre" id="cr-eyebrow">Financial Parameters Mechanics</span>
+      <div class="strat-title-block"><span id="cr-title">What determines the Financial Parameters (the Cap)</span></div>
     </div>
 
-    <p class="caps-intro" id="cr-intro">You've seen that each strategy carries an annual cap — the maximum index return it can credit in any policy year. That cap is not fixed for the life of the contract; it is reviewed and may change at each annual policy anniversary based on market conditions. If your cap is 13% and the market rises 25%, you receive 13%. If the market rises 10%, you receive the full 10%.</p>
+    <p class="caps-intro" id="cr-intro">You've seen that each strategy carries an annual cap — the maximum index return it can credit in any coverage year. That cap is not fixed for the life of the coverage; it is reviewed and may change at each annual coverage anniversary based on market conditions. If your cap is 13% and the reference equity index rises 25%, you receive 13%. If the reference equity index rises 10%, you receive the full 10%.</p>
 
     <!-- 3 factors that set the cap rate -->
     <div class="caps-why-block">
-      <h3 class="caps-why-title" id="cr-factors-title">The factors that set your cap rate</h3>
-      <p class="caps-why-text" id="cr-factors-intro">Each year, Allianz sets the cap rate based on a combination of interconnected factors that determine how much is available to fund your index-linked returns.</p>
+      <h3 class="caps-why-title" id="cr-factors-title">The factors that set your Cap</h3>
+      <p class="caps-why-text" id="cr-factors-intro">Each year, Allianz Global Life dac sets the Cap based on a combination of interconnected factors that determine how much is available to fund your index-linked returns.</p>
     </div>
 
     <div class="nf-cols">
       <div class="nf-col">
         <div class="nf-col-num" id="nf1-title">01 &mdash; Investment yield</div>
-        <div class="nf-col-desc i18n-html" id="nf1-desc">Allianz invests your premium largely in fixed income assets. The performance of these assets is the primary source of funding for the cap rate. A higher yield means a larger hedging budget is available.</div>
+        <div class="nf-col-desc i18n-html" id="nf1-desc">Allianz Global Life dac invests your premium largely in fixed income assets. The performance of these assets is the primary source of funding for the financial parameters (Cap and Coupon). A higher yield means a larger hedging budget is available.</div>
       </div>
       <div class="nf-col">
         <div class="nf-col-num" id="nf2-title">02 &mdash; Hedging budget</div>
-        <div class="nf-col-desc i18n-html" id="nf2-desc">A portion of that income becomes the hedging budget: the pool used to buy options that deliver index-linked returns. Market conditions affect the size of this budget every year.</div>
+        <div class="nf-col-desc i18n-html" id="nf2-desc">A portion of that income becomes the budget for purchasing derivative instruments: the pool used to buy options that deliver index-linked returns. Market conditions affect the size of this budget every year.</div>
       </div>
       <div class="nf-col">
         <div class="nf-col-num" id="nf3-title">03 &mdash; Hedging cost</div>
-        <div class="nf-col-desc i18n-html" id="nf3-desc">The hedging budget is used to build a portfolio of options. When option costs rise, the same budget buys less, which can limit the cap rate available.</div>
+        <div class="nf-col-desc i18n-html" id="nf3-desc">The hedging budget is used to build a portfolio of options. When option costs rise, the same budget buys less, which can limit the Cap available.</div>
       </div>
     </div>
 
     <div class="caps-why-block">
-      <h3 class="caps-why-title" id="cr-why-title">Why do cap rates change?</h3>
-      <p class="caps-why-text" id="cr-why-text">These factors combine to set the overall budget available each year. The factors below then determine how that budget translates into your specific cap rate:</p>
+      <h3 class="caps-why-title" id="cr-why-title">Why do Caps change?</h3>
+      <p class="caps-why-text" id="cr-why-text">These factors combine to set the overall budget available each year. The factors below then determine how that budget translates into your specific Cap:</p>
     </div>
 
         <div class="factor-list">
@@ -1212,7 +1195,7 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
             <div class="factor-num">1</div>
             <div class="factor-body">
               <div class="factor-title" id="f1-title">Investment yield &amp; bond income</div>
-              <div class="factor-desc" id="f1-desc">Bond yields directly affect the income available to fund cap rates. When yields are higher, more income flows into the hedging budget and cap rates tend to be higher. When yields fall, the budget contracts and cap rates drop accordingly.</div>
+              <div class="factor-desc" id="f1-desc">Bond yields directly affect the income available to fund Caps. When yields are higher, more income flows into the hedging budget and Caps tend to be higher. When yields fall, the budget contracts and Caps drop accordingly.</div>
               <span class="factor-tag tag-up" id="f1-tag">Higher yields → higher caps</span>
             </div>
           </div>
@@ -1220,7 +1203,7 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
             <div class="factor-num">2</div>
             <div class="factor-body">
               <div class="factor-title" id="f2-title">Options costs &amp; market volatility</div>
-              <div class="factor-desc" id="f2-desc">Allianz uses the hedging budget to build a portfolio of options on the index. In volatile markets, those options become more expensive, leaving less of the budget available for Guarantee 95 and Guarantee 100, so their cap rates tend to fall. Protection Buffer 10 is different: it sells options as part of its structure, earning more income when volatility rises. Its cap rate may improve in high-volatility conditions.</div>
+              <div class="factor-desc" id="f2-desc">Allianz Global Life dac uses the hedging budget to build a portfolio of options on the index. In volatile markets, those options become more expensive, leaving less of the budget available for Guarantee 95 and Guarantee 100, so their Caps tend to fall. Protection Buffer 10 is different: it sells options as part of its structure, earning more income when volatility rises. Its Cap may improve in high-volatility conditions.</div>
               <span class="factor-tag tag-both" id="f2-tag">Diverges by strategy — see table below</span>
             </div>
           </div>
@@ -1228,21 +1211,21 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
             <div class="factor-num">3</div>
             <div class="factor-body">
               <div class="factor-title" id="f3-title">Your protection choice</div>
-              <div class="factor-desc" id="f3-desc">Every strategy requires Allianz to spend part of the hedging budget on downside protection. The more protection the strategy offers, the more of that budget is consumed on the downside, leaving less available to fund the cap on the upside. Your choice of strategy will therefore directly influence the cap rate available to you.</div>
+              <div class="factor-desc" id="f3-desc">Every strategy requires Allianz Global Life dac to spend part of the hedging budget on downside protection. The more protection the strategy offers, the more of that budget is consumed on the downside (Floor and Buffer), leaving less available to fund the cap on the upside. Your choice of strategy will therefore directly influence the Cap available to you.</div>
               <span class="factor-tag tag-both" id="f3-tag">More protection → lower cap</span>
             </div>
           </div>
           <div class="factor">
             <div class="factor-num">4</div>
             <div class="factor-body">
-              <div class="factor-title" id="f4-title">Contract term</div>
-              <div class="factor-desc" id="f4-desc">Cap rates vary based on the selected term. A longer policyholder commitment allows Allianz to invest in longer-duration bonds, which can generate more income and therefore a larger hedging budget. This may translate into a higher cap rate, though the difference will depend on market conditions at the time.</div>
+              <div class="factor-title" id="f4-title">Coverage term</div>
+              <div class="factor-desc" id="f4-desc">Caps vary based on the selected duration of the Index Linked coverage (3 or 5 years). A longer policyholder commitment allows Allianz Global Life dac to invest in longer-duration bonds, which can generate more income and therefore a larger hedging budget. This may translate into a higher Cap, though the difference will depend on market conditions at the time.</div>
               <span class="factor-tag tag-up" id="f4-tag">Longer term → higher cap</span>
             </div>
           </div>
         </div>
 
-        <p class="caps-why-text" id="wk-p1">Cap rates are the net result of several interacting market factors. Improvements in one can be offset by adverse movements in another, meaning a favourable shift does not always produce a higher cap rate.</p>
+        <p class="caps-why-text" id="wk-p1">Caps are the net result of several interacting market factors. Improvements in one can be offset by adverse movements in another, meaning a favourable shift does not always produce a higher Cap.</p>
 
         <span class="driver-table-label" id="driver-table-title">At a glance — how market conditions affect each strategy</span>
         <div class="driver-table">
@@ -1253,39 +1236,39 @@ p { font-size: 14px; color: var(--tm2); line-height: 1.82; margin-bottom: 16px; 
           </div>
           <div class="driver-row">
             <div class="driver-cell driver-cell-lbl" id="dr-r1-lbl">Bond yields rise</div>
-            <div class="driver-cell"><span class="cell-up">↑ </span><span id="dr-r1-floor">Cap rates increase</span></div>
-            <div class="driver-cell"><span class="cell-up">↑ </span><span id="dr-r1-buffer">Cap rates increase</span></div>
+            <div class="driver-cell"><span class="cell-up">↑ </span><span id="dr-r1-floor">Caps increase</span></div>
+            <div class="driver-cell"><span class="cell-up">↑ </span><span id="dr-r1-buffer">Caps increase</span></div>
           </div>
           <div class="driver-row">
             <div class="driver-cell driver-cell-lbl" id="dr-r2-lbl">Bond yields fall</div>
-            <div class="driver-cell"><span class="cell-down">↓ </span><span id="dr-r2-floor">Cap rates decrease</span></div>
-            <div class="driver-cell"><span class="cell-down">↓ </span><span id="dr-r2-buffer">Cap rates decrease</span></div>
+            <div class="driver-cell"><span class="cell-down">↓ </span><span id="dr-r2-floor">Caps decrease</span></div>
+            <div class="driver-cell"><span class="cell-down">↓ </span><span id="dr-r2-buffer">Caps decrease</span></div>
           </div>
           <div class="driver-row">
             <div class="driver-cell driver-cell-lbl" id="dr-r3-lbl">Options costs rise (volatile markets)</div>
-            <div class="driver-cell"><span class="cell-down">↓ </span><span id="dr-r3-floor">Cap rates decrease</span></div>
-            <div class="driver-cell"><span class="cell-up">↑ </span><span id="dr-r3-buffer">Cap rates can increase</span></div>
+            <div class="driver-cell"><span class="cell-down">↓ </span><span id="dr-r3-floor">Caps decrease</span></div>
+            <div class="driver-cell"><span class="cell-up">↑ </span><span id="dr-r3-buffer">Caps can increase</span></div>
           </div>
           <div class="driver-row">
             <div class="driver-cell driver-cell-lbl" id="dr-r4-lbl">Options costs fall (calm markets)</div>
-            <div class="driver-cell"><span class="cell-up">↑ </span><span id="dr-r4-floor">Cap rates increase</span></div>
-            <div class="driver-cell"><span class="cell-down">↓ </span><span id="dr-r4-buffer">Cap rates can decrease</span></div>
+            <div class="driver-cell"><span class="cell-up">↑ </span><span id="dr-r4-floor">Caps increase</span></div>
+            <div class="driver-cell"><span class="cell-down">↓ </span><span id="dr-r4-buffer">Caps can decrease</span></div>
           </div>
         </div>
 
-        <div class="cedola-infobox" id="cedola-info" style="margin-bottom:28px;">Cap rate changes are made at the sole discretion of Allianz Global Life dac and are reviewed on a monthly basis. It is not possible to foresee every event or combination of events that may influence rates, or the direction in which they may move.</div>
+        <div class="cedola-infobox" id="cedola-info" style="margin-bottom:28px;">Cap changes are made at the sole discretion of Allianz Global Life dac and are reviewed on a monthly basis. It is not possible to foresee every event or combination of events that may influence rates, or the direction in which they may move.</div>
 
 
         <div class="cta-block">
           <div class="cta-title" id="cta-title">Explore the numbers yourself</div>
-          <div class="cta-sub" id="cta-sub">Use the illustration tool to build market scenarios for each strategy at today's cap rates.</div>
+          <div class="cta-sub" id="cta-sub">Use the illustration tool to build market scenarios for each strategy at today's Caps.</div>
           <a href="tool.html" class="cta-btn" id="cta-btn">Open the Illustration Tool →</a>
         </div>
 
   </div>
 </div>
 
-<div class="disc" id="cr-disc"><p class="disc-heading">Important information</p><p>This material is for information and illustrative purposes only and does not constitute financial, investment, or tax advice. You should seek independent financial advice before making any investment decision.</p><p>Capital at risk. Investment in the Indexed Strategies is subject to investment risk, including the possible loss of some or all of the amount invested. The Guarantee 100 strategy protects the full amount invested; the Guarantee 95 and Protection Buffer 10 strategies do not offer full capital protection, and you may lose a portion of your investment in adverse market conditions.</p><p>Cap rates, coupon values, and other financial parameters shown are indicative only. They are reviewed and may be reset by Allianz at each annual policy anniversary and are not guaranteed beyond the first policy year. Past index performance and past cap rates do not guarantee future results.</p><p>Although index performance affects your policy values, the policy does not involve direct investment in equities or any index constituent. EURO STOXX 50® performance is referenced for illustrative purposes only and represents a price return index, excluding dividends.</p><p>EURO STOXX 50® is the intellectual property (including registered trademarks) of STOXX Ltd., Zug, Switzerland ("STOXX"), Deutsche Börse Group or their licensors, which is used under licence. Allianz Active4Life Evolution is neither sponsored nor promoted, distributed, or in any other manner supported by STOXX, Deutsche Börse Group or their licensors, research partners or data providers. STOXX, Deutsche Börse Group and their licensors, research partners or data providers do not give any warranty, and exclude any liability (whether in negligence or otherwise) with respect thereto generally or specifically in relation to any errors, omissions or interruptions in the EURO STOXX 50® or its data.</p><p>Allianz Active4Life Evolution is issued by Allianz Global Life Designated Activity Company (Allianz Global Life dac), a company of the Allianz SE Group. Registered address: Maple House, Temple Road, Blackrock, Dublin, A94 Y9E8. Regulated by the Central Bank of Ireland. Company Registration Number: 458565.</p></div>
+<div class="disc" id="cr-disc"><p class="disc-heading">Important information</p><p>This material is for information and illustrative purposes only and does not constitute financial, investment, or tax advice. You should seek independent financial advice before making any investment decision.</p><p>Capital at risk. Investment in the Indexed Strategies is subject to investment risk, including the possible loss of some or all of the amount invested. The Guarantee 100 strategy protects the full amount invested; the Guarantee 95 and Protection Buffer 10 strategies do not offer full capital protection, and you may lose a portion of your investment in adverse market conditions.</p><p>The values of the financial parameters (Cap and Coupon) shown are indicative only. They are reviewed and may be reset by Allianz Global Life dac at each annual anniversary of the Index Linked coverage and are not guaranteed beyond the first year. Past index performance and past financial parameters (Cap and Coupon) do not guarantee future results.</p><p>Although index performance affects your policy values, the policy does not involve direct investment in equities or any index constituent. EURO STOXX 50® performance is referenced for illustrative purposes only and represents a price return index, excluding dividends.</p><p>EURO STOXX 50® is the intellectual property (including registered trademarks) of STOXX Ltd., Zug, Switzerland ("STOXX"), Deutsche Börse Group or their licensors, which is used under licence. Allianz Active4Life Evolution is neither sponsored nor promoted, distributed, or in any other manner supported by STOXX, Deutsche Börse Group or their licensors, research partners or data providers. STOXX, Deutsche Börse Group and their licensors, research partners or data providers do not give any warranty, and exclude any liability (whether in negligence or otherwise) with respect thereto generally or specifically in relation to any errors, omissions or interruptions in the EURO STOXX 50® or its data.</p><p>Allianz Active4Life Evolution is issued by Allianz Global Life Designated Activity Company (Allianz Global Life dac), a company of the Allianz SE Group. Registered address: Maple House, Temple Road, Blackrock, Dublin, A94 Y9E8. Regulated by the Central Bank of Ireland. Company Registration Number: 458565.</p></div>
 
 <script>
 var CURRENT_LANG = localStorage.getItem('rila_lang') || 'en';
@@ -1296,26 +1279,24 @@ var STRINGS = {
     hdr_sub: 'Guarantee, Protection and Performance, all in one solution',
     nav_home: 'Home',
     nav_guide: 'Product Guide',
-    nav_history: 'Cap Rate History',
+    nav_history: 'Cap History',
     nav_tool: 'Illustration Tool',
     hero_eyebrow: 'Allianz Active4Life Evolution · Product Guide',
     hero_title: 'How Active4Life Evolution works',
-    hero_sub: 'The four investment strategies, protection mechanics, and cap rate dynamics — explained.',
+    hero_sub: 'The four investment strategies, protection mechanics, and the dynamics of the financial parameters (Cap and Coupon) — explained.',
     anav_about: 'About the product',
     slabel_about: 'About the product',
     slabel_strategies: 'Strategies',
-    slabel_how: 'How your premium is invested',
-    slabel_caps: 'Cap rates',
+    slabel_caps: 'Financial Parameters',
     anav_strategies: 'Strategies',
-    anav_how: 'How your premium is invested',
-    anav_caps: 'Cap rates',
+    anav_caps: 'Financial Parameters',
 
-    pdf_intro: '<p class="pdf-intro">Allianz Active4Life Evolution is a mixed Unit and Index Linked insurance investment policy, with a single premium, issued by Allianz Global Life dac. It offers investors the flexibility to choose one or more investment strategies, activate different levels of guarantee or protection, make additional contributions, switch strategies, and make partial withdrawals during the course of their investment.</p><p class="pdf-intro">The product combines two types of investment coverage:</p><p class="pdf-intro"><strong>Unit Linked.</strong> Invest in multiple multi-asset UCITS funds simultaneously, choosing between options with or without a guarantee. The funds offer different risk profiles and include an annual guarantee system, optional and customisable, which can range from 85% to 93%.</p><p class="pdf-intro"><strong>Index Linked.</strong> Three investment strategies offering the opportunity to participate in the EURO STOXX 50® equity index with different levels of guarantee up to 100%. A fourth strategy provides a capital guarantee with a guaranteed annual coupon, independent of index performance.</p><p class="pdf-intro">You can diversify your investment within a single product, by activating multiple coverages, both Index and Unit Linked, and multiple strategies simultaneously.</p><p class="pdf-intro">This guide focuses on the Index Linked element of the product.</p><p class="pdf-intro">Index Linked coverage is available over a fixed term of 3 or 5 years. Gains are credited to your policy each year up to a cap rate, with downside protection built in to limit your exposure to market falls. At each policy anniversary, positive index returns are consolidated into your policy value. You can invest in one or more Index Linked strategies and adjust your allocation during the term.</p><p class="pdf-intro">All guarantees are provided directly by Allianz Global Life dac.</p>',
+    pdf_intro: '<p class="pdf-intro">Allianz Active4Life Evolution is a mixed Unit and Index Linked insurance investment policy, with a single premium, issued by Allianz Global Life dac. It offers investors the flexibility to choose one or more investment strategies, activate different levels of guarantee or protection, make additional contributions, switch strategies, and make partial withdrawals during the course of their investment.</p><p class="pdf-intro">The product combines two types of investment coverage:</p><p class="pdf-intro"><strong>Unit Linked.</strong> Invest in multiple multi-asset UCITS funds simultaneously, choosing between options with or without a guarantee. The funds offer different risk profiles and include an annual guarantee system, optional and customisable, which can range from 85% to 93%.</p><p class="pdf-intro"><strong>Index Linked.</strong> Three investment strategies offering the opportunity to participate in the EURO STOXX 50® equity index with different levels of guarantee up to 100%. A fourth strategy provides a capital guarantee with a guaranteed annual coupon, independent of index performance.</p><p class="pdf-intro">You can diversify your investment within a single product, by activating multiple coverages, both Index and Unit Linked, and multiple strategies simultaneously.</p><p class="pdf-intro">This guide focuses on the Index Linked element of the product.</p><p class="pdf-intro">Index Linked coverage is available over a fixed term of 3 or 5 years. Positive returns are credited to your policy each year up to a cap, with downside protection also built in to limit your exposure to negative returns (the Floor or the Buffer). At each annual anniversary, index returns are consolidated into your policy value. You can invest in one or more Index Linked strategies and adjust your allocation during the term.</p><p class="pdf-intro">All guarantees are provided directly by Allianz Global Life dac.</p>',
 
     g100_title: 'Guarantee <span class="strat-title-accent">100</span>',
     g100_b1: 'Exposure to the return of the <strong>EUROSTOXX50® equity index</strong>, up to a maximum ceiling (the Cap) defined annually at each annual anniversary.',
-    g100_b2: 'An <strong>annual guarantee of 100%</strong> of the coverage value. The index return Floor is <strong>never below 0%</strong>.',
-    g100_b3: 'At each annual anniversary, <strong>positive index returns are credited to the policy amount</strong>, consolidating them annually in the guaranteed minimum value.',
+    g100_b2: 'An <strong>annual guarantee of 100%</strong> of the coverage value. Negative index returns <strong>will never impact</strong> the value of your coverage (Floor 0%).',
+    g100_b3: 'At each annual anniversary, <strong>index returns are credited, within the limits of the Cap and Floor, to the coverage amount</strong>, consolidating them annually in the guaranteed minimum value.',
     legend_allianz_g100: 'Allianz guarantee on losses',
     legend_investor_g100: 'Investor participation in losses',
     legend_cap_g100: 'Maximum upside participation (Cap)',
@@ -1338,8 +1319,8 @@ var STRINGS = {
 
     g95_title: 'Guarantee <span class="strat-title-accent">95</span>',
     g95_b1: 'Exposure to the return of the <strong>EUROSTOXX50® equity index</strong>, up to a maximum ceiling (the Cap) defined annually at each annual anniversary.',
-    g95_b2: 'An <strong>annual guarantee of 95%</strong> of the coverage value. The index return Floor is <strong>never below −5%</strong>.',
-    g95_b3: 'At each annual anniversary, <strong>positive index returns are credited to the policy amount</strong>, consolidating them annually in the guaranteed minimum value.',
+    g95_b2: 'An <strong>annual guarantee of 95%</strong> of the coverage value. Negative index returns will impact the value of your coverage <strong>within the limits of the −5% Floor</strong>.',
+    g95_b3: 'At each annual anniversary, <strong>index returns are credited, within the limits of the Cap and Floor, to the coverage amount</strong>, consolidating them annually in the guaranteed minimum value.',
     legend_allianz_g95: 'Allianz guarantee on losses',
     legend_investor_g95: 'Investor participation in losses',
     legend_cap_g95: 'Maximum upside participation (Cap)',
@@ -1362,8 +1343,8 @@ var STRINGS = {
 
     buf10_title: 'Protection Buffer <span class="strat-title-accent">10</span>',
     buf10_b1: 'Exposure to the return of the <strong>EUROSTOXX50® equity index</strong>, up to a maximum ceiling (the Cap) defined annually at each annual anniversary.',
-    buf10_b2: 'If the index has a negative return <strong>within −10% (Buffer)</strong> during the policy year, you register no losses and your capital is guaranteed at 100%.',
-    buf10_b3: 'If the index has a negative return <strong>beyond −10% (Buffer)</strong> during the policy year, your investment will incur a loss limited to the amount beyond the Buffer.',
+    buf10_b2: 'If the index has a negative return <strong>within −10% (Buffer)</strong> during the coverage year, you register no losses and your capital is guaranteed at 100%.',
+    buf10_b3: 'If the index has a negative return <strong>beyond −10% (Buffer)</strong> during the coverage year, your investment will incur a loss limited to the amount beyond the Buffer.',
     legend_allianz_buf10: 'Allianz guarantee on losses',
     legend_investor_buf10: 'Investor participation in losses',
     legend_cap_buf10: 'Maximum upside participation (Cap)',
@@ -1386,51 +1367,56 @@ var STRINGS = {
 
     cedola_title: 'Coupon',
     cedola_p1: 'As an alternative to the Indexed Strategies (whose return depends on the equity index), you can choose to receive a <strong>guaranteed coupon</strong>, independently of the index performance (the so-called \"<strong>Fixed Income Strategy</strong>\"). In this case, your investment does not vary based on index performance.',
-    cedola_p2: 'At the end of each policy year, the coupon amount is used to purchase units of the <span class="tip" data-tip-key="pimco">PIMCO GIS Euro Short-Term Fund</span>, from which you can freely redeem at any time without costs or restrictions.',
-    cedola_info: 'Cap rate changes are made at the sole discretion of Allianz Global Life dac and are reviewed on a monthly basis. It is not possible to foresee every event or combination of events that may influence rates, or the direction in which they may move.',
+    cedola_p2: 'At the end of each coverage year, the coupon amount is used to purchase units of the <span class="tip" data-tip-key="pimco">PIMCO GIS Euro Short-Term Fund</span> (ISIN: IE00B0XJBQ64), from which you can freely redeem at any time without costs or restrictions.',
+    esempio_pre_ced: 'Strategy example',
+    esempio_title_ced: 'Coupon',
+    ced_lead: 'The coupon is <strong>not affected by index returns</strong>.',
+    ced_th_prem: 'Premium',
+    ced_th_rate: 'Coupon rate (Year 1)',
+    ced_th_coupon: 'Coupon at end of Year 1',
+    ced_td_prem: '€100,000',
+    ced_td_rate: '2.2%',
+    ced_td_coupon: '€2,200',
+    ced_note: '<strong>Illustrative example only.</strong> The coupon rate is guaranteed for the first coverage year only and is reviewed at each coverage anniversary.',
+    cedola_info: 'Cap changes are made at the sole discretion of Allianz Global Life dac and are reviewed on a monthly basis. It is not possible to foresee every event or combination of events that may influence rates, or the direction in which they may move.',
 
-    prem_bonds_bar_lbl: 'High-quality fixed income (bonds)',
-    prem_hedge_bar_lbl: 'Hedging instruments',
-    prem_explain_p1: 'The vast majority of your premium is invested in a diversified portfolio of high-quality fixed income assets, designed to grow back to at least your original investment over the contract term. This portfolio funds the guarantees and fixed interest benefits of the product, which are provided directly by Allianz Global Life dac according to the protection level of your chosen strategy.',
-    prem_explain_p2: 'A small share is used as a hedging budget — used to purchase financial instruments (options) that make it possible to offer index-linked returns on top of your capital protection. Without this hedging budget, Allianz could not offer the indexed returns that the strategies provide.',
 
-    cr_eyebrow: 'Cap Rate Mechanics',
-    cr_title: 'What determines the cap rate',
-    cr_intro: 'You\'ve seen that each strategy carries an annual cap: the maximum index return it can credit in any policy year. That cap is not fixed for the life of the contract; it is reviewed and may change at each annual policy anniversary based on market conditions. If your cap is 13% and the market rises 25%, you receive 13%. If the market rises 10%, you receive the full 10%.',
-    cr_factors_title: 'The factors that set your cap rate',
-    cr_factors_intro: 'Each year, Allianz sets the cap rate based on a combination of interconnected factors that determine how much is available to fund your index-linked returns.',
+    cr_eyebrow: 'Financial Parameters Mechanics',
+    cr_title: 'What determines the Financial Parameters (the Cap)',
+    cr_intro: 'You\'ve seen that each strategy carries an annual cap: the maximum index return it can credit in any coverage year. That cap is not fixed for the life of the coverage; it is reviewed and may change at each annual coverage anniversary based on market conditions. If your cap is 13% and the reference equity index rises 25%, you receive 13%. If the reference equity index rises 10%, you receive the full 10%.',
+    cr_factors_title: 'The factors that set your Cap',
+    cr_factors_intro: 'Each year, Allianz Global Life dac sets the Cap based on a combination of interconnected factors that determine how much is available to fund your index-linked returns.',
     nf1_title: '01 — Investment yield',
-    nf1_desc: 'Allianz invests your premium largely in fixed income assets. The performance of these assets is the primary source of funding for the cap rate. A higher yield means a larger hedging budget is available.',
+    nf1_desc: 'Allianz Global Life dac invests your premium largely in fixed income assets. The performance of these assets is the primary source of funding for the financial parameters (Cap and Coupon). A higher yield means a larger hedging budget is available.',
     nf2_title: '02 — Hedging budget',
-    nf2_desc: 'A portion of that income becomes the hedging budget: the pool used to buy options that deliver index-linked returns. Market conditions affect the size of this budget every year.',
+    nf2_desc: 'A portion of that income becomes the budget for purchasing derivative instruments: the pool used to buy options that deliver index-linked returns. Market conditions affect the size of this budget every year.',
     nf3_title: '03 — Hedging cost',
-    nf3_desc: 'The hedging budget is used to build a portfolio of options. When option costs rise, the same budget buys less, which can limit the cap rate available.',
-    cr_why_title: 'Why do cap rates change?',
-    cr_why_text: 'These factors combine to set the overall budget available each year. The factors below then determine how that budget translates into your specific cap rate:',
+    nf3_desc: 'The hedging budget is used to build a portfolio of options. When option costs rise, the same budget buys less, which can limit the Cap available.',
+    cr_why_title: 'Why do Caps change?',
+    cr_why_text: 'These factors combine to set the overall budget available each year. The factors below then determine how that budget translates into your specific Cap:',
     f1_title: 'Investment yield & bond income',
-    f1_desc: 'Bond yields directly affect the income available to fund cap rates. When yields are higher, more income flows into the hedging budget and cap rates tend to be higher. When yields fall, the budget contracts and cap rates drop accordingly.',
+    f1_desc: 'Bond yields directly affect the income available to fund Caps. When yields are higher, more income flows into the hedging budget and Caps tend to be higher. When yields fall, the budget contracts and Caps drop accordingly.',
     f1_tag: 'Higher yields → higher caps',
     f2_title: 'Options costs & market volatility',
-    f2_desc: 'Allianz uses the hedging budget to build a portfolio of options on the index. In volatile markets, those options become more expensive, leaving less of the budget available for Guarantee 95 and Guarantee 100, so their cap rates tend to fall. Protection Buffer 10 is different: it sells options as part of its structure, earning more income when volatility rises. Its cap rate may improve in high-volatility conditions.',
+    f2_desc: 'Allianz Global Life dac uses the hedging budget to build a portfolio of options on the index. In volatile markets, those options become more expensive, leaving less of the budget available for Guarantee 95 and Guarantee 100, so their Caps tend to fall. Protection Buffer 10 is different: it sells options as part of its structure, earning more income when volatility rises. Its Cap may improve in high-volatility conditions.',
     f2_tag: 'Diverges by strategy — see table below',
     f3_title: 'Your protection choice',
-    f3_desc: 'Every strategy requires Allianz to spend part of the hedging budget on downside protection. The more protection the strategy offers, the more of that budget is consumed on the downside, leaving less available to fund the cap on the upside. Your choice of strategy will therefore directly influence the cap rate available to you.',
+    f3_desc: 'Every strategy requires Allianz Global Life dac to spend part of the hedging budget on downside protection. The more protection the strategy offers, the more of that budget is consumed on the downside (Floor and Buffer), leaving less available to fund the cap on the upside. Your choice of strategy will therefore directly influence the Cap available to you.',
     f3_tag: 'More protection → lower cap',
-    f4_title: 'Contract term',
-    f4_desc: 'Cap rates vary based on the selected term. A longer policyholder commitment allows Allianz to invest in longer-duration bonds, which can generate more income and therefore a larger hedging budget. This may translate into a higher cap rate, though the difference will depend on market conditions at the time.',
+    f4_title: 'Coverage term',
+    f4_desc: 'Caps vary based on the selected duration of the Index Linked coverage (3 or 5 years). A longer policyholder commitment allows Allianz Global Life dac to invest in longer-duration bonds, which can generate more income and therefore a larger hedging budget. This may translate into a higher Cap, though the difference will depend on market conditions at the time.',
     f4_tag: 'Longer term → higher cap',
-    wk_p1: 'Cap rates are the net result of several interacting market factors. Improvements in one can be offset by adverse movements in another, meaning a favourable shift does not always produce a higher cap rate.',
-    wk_p2: 'Each year, Allianz earns a yield from its investment portfolio. That yield funds operating expenses, product benefits and guarantees, and the hedging budget that makes index-linked returns possible. Any remaining income forms Allianz\'s profit.',
+    wk_p1: 'Caps are the net result of several interacting market factors. Improvements in one can be offset by adverse movements in another, meaning a favourable shift does not always produce a higher Cap.',
     driver_table_title: 'At a glance — how market conditions affect each strategy',
     dr_hd_lbl: 'Market driver', dr_hd_floor: 'Guarantee 95 & Guarantee 100', dr_hd_buffer: 'Protection Buffer 10',
-    dr_r1_lbl: 'Bond yields rise', dr_r1_floor: 'Cap rates increase', dr_r1_buffer: 'Cap rates increase',
-    dr_r2_lbl: 'Bond yields fall', dr_r2_floor: 'Cap rates decrease', dr_r2_buffer: 'Cap rates decrease',
-    dr_r3_lbl: 'Options costs rise (volatile markets)', dr_r3_floor: 'Cap rates decrease', dr_r3_buffer: 'Cap rates can increase',
-    dr_r4_lbl: 'Options costs fall (calm markets)', dr_r4_floor: 'Cap rates increase', dr_r4_buffer: 'Cap rates can decrease',
+    dr_r1_lbl: 'Bond yields rise', dr_r1_floor: 'Caps increase', dr_r1_buffer: 'Caps increase',
+    dr_r2_lbl: 'Bond yields fall', dr_r2_floor: 'Caps decrease', dr_r2_buffer: 'Caps decrease',
+    dr_r3_lbl: 'Options costs rise (volatile markets)', dr_r3_floor: 'Caps decrease', dr_r3_buffer: 'Caps can increase',
+    dr_r4_lbl: 'Options costs fall (calm markets)', dr_r4_floor: 'Caps increase', dr_r4_buffer: 'Caps can decrease',
     cta_title: 'Explore the numbers yourself',
-    cta_sub: 'Use the illustration tool to build market scenarios for each strategy at today\'s cap rates.',
+    cta_sub: 'Use the illustration tool to build market scenarios for each strategy at today\'s Caps.',
     cta_btn: 'Open the Illustration Tool →',
-    cr_disc: '<p class="disc-heading">Important information</p><p>This material is for information and illustrative purposes only and does not constitute financial, investment, or tax advice. You should seek independent financial advice before making any investment decision.</p><p>Capital at risk. Investment in the Indexed Strategies is subject to investment risk, including the possible loss of some or all of the amount invested. The Guarantee 100 strategy protects the full amount invested; the Guarantee 95 and Protection Buffer 10 strategies do not offer full capital protection, and you may lose a portion of your investment in adverse market conditions.</p><p>Cap rates, coupon values, and other financial parameters shown are indicative only. They are reviewed and may be reset by Allianz at each annual policy anniversary and are not guaranteed beyond the first policy year. Past index performance and past cap rates do not guarantee future results.</p><p>Although index performance affects your policy values, the policy does not involve direct investment in equities or any index constituent. EURO STOXX 50® performance is referenced for illustrative purposes only and represents a price return index, excluding dividends.</p><p>EURO STOXX 50® is the intellectual property (including registered trademarks) of STOXX Ltd., Zug, Switzerland (\"STOXX\"), Deutsche Börse Group or their licensors, which is used under licence. Allianz Active4Life Evolution is neither sponsored nor promoted, distributed, or in any other manner supported by STOXX, Deutsche Börse Group or their licensors, research partners or data providers. STOXX, Deutsche Börse Group and their licensors, research partners or data providers do not give any warranty, and exclude any liability (whether in negligence or otherwise) with respect thereto generally or specifically in relation to any errors, omissions or interruptions in the EURO STOXX 50® or its data.</p><p>Allianz Active4Life Evolution is issued by Allianz Global Life Designated Activity Company (Allianz Global Life dac), a company of the Allianz SE Group. Registered address: Maple House, Temple Road, Blackrock, Dublin, A94 Y9E8. Regulated by the Central Bank of Ireland. Company Registration Number: 458565.</p>'
+    cr_disc: '<p class="disc-heading">Important information</p><p>This material is for information and illustrative purposes only and does not constitute financial, investment, or tax advice. You should seek independent financial advice before making any investment decision.</p><p>Capital at risk. Investment in the Indexed Strategies is subject to investment risk, including the possible loss of some or all of the amount invested. The Guarantee 100 strategy protects the full amount invested; the Guarantee 95 and Protection Buffer 10 strategies do not offer full capital protection, and you may lose a portion of your investment in adverse market conditions.</p><p>The values of the financial parameters (Cap and Coupon) shown are indicative only. They are reviewed and may be reset by Allianz Global Life dac at each annual anniversary of the Index Linked coverage and are not guaranteed beyond the first year. Past index performance and past financial parameters (Cap and Coupon) do not guarantee future results.</p><p>Although index performance affects your policy values, the policy does not involve direct investment in equities or any index constituent. EURO STOXX 50® performance is referenced for illustrative purposes only and represents a price return index, excluding dividends.</p><p>EURO STOXX 50® is the intellectual property (including registered trademarks) of STOXX Ltd., Zug, Switzerland (\"STOXX\"), Deutsche Börse Group or their licensors, which is used under licence. Allianz Active4Life Evolution is neither sponsored nor promoted, distributed, or in any other manner supported by STOXX, Deutsche Börse Group or their licensors, research partners or data providers. STOXX, Deutsche Börse Group and their licensors, research partners or data providers do not give any warranty, and exclude any liability (whether in negligence or otherwise) with respect thereto generally or specifically in relation to any errors, omissions or interruptions in the EURO STOXX 50® or its data.</p><p>Allianz Active4Life Evolution is issued by Allianz Global Life Designated Activity Company (Allianz Global Life dac), a company of the Allianz SE Group. Registered address: Maple House, Temple Road, Blackrock, Dublin, A94 Y9E8. Regulated by the Central Bank of Ireland. Company Registration Number: 458565.</p>'
   },
   it: {
     hdr_evolution: 'Evolution',
@@ -1441,22 +1427,20 @@ var STRINGS = {
     nav_tool: 'Strumento di Illustrazione',
     hero_eyebrow: 'Allianz Active4Life Evolution · Guida al Prodotto',
     hero_title: 'Come funziona Active4Life Evolution',
-    hero_sub: 'Le quattro strategie di investimento, i meccanismi di protezione e le dinamiche del cap rate — spiegate.',
+    hero_sub: 'Le quattro strategie di investimento, i meccanismi di protezione e le dinamiche dei parametri finanziari (cap e cedola) — spiegate.',
     anav_about: 'Il prodotto',
     slabel_about: 'Il prodotto',
     slabel_strategies: 'Strategie',
-    slabel_how: 'Come viene investito il tuo premio',
-    slabel_caps: 'Cap rate',
+    slabel_caps: 'Parametri Finanziari',
     anav_strategies: 'Strategie',
-    anav_how: 'Come viene investito il tuo premio',
-    anav_caps: 'Cap rate',
+    anav_caps: 'Parametri Finanziari',
 
-    pdf_intro: '<p class="pdf-intro">Allianz Active4Life Evolution è la polizza di investimento assicurativa di tipo misto Unit e Index Linked, a premio unico, emessa da Allianz Global Life dac. Offre la possibilità di scegliere una o più strategie di investimento, di attivare diversi livelli di garanzia o di protezione, di effettuare versamenti aggiuntivi, cambi di strategia e riscatti parziali nel corso del tuo investimento.</p><p class="pdf-intro">Il prodotto combina due tipologie di copertura:</p><p class="pdf-intro"><strong>Unit Linked.</strong> Possibilità di investire su più fondi OICR contemporaneamente, scegliendo tra opzioni con o senza garanzia. I fondi di investimento multi-asset offrono diversi profili di rischio e includono un sistema di garanzia annuale, opzionale e personalizzabile, che può variare dall\'85% al 93%.</p><p class="pdf-intro"><strong>Index Linked.</strong> 3 strategie di investimento che offrono la possibilità di partecipare all\'indice azionario EURO STOXX 50® con diversi livelli di garanzia fino al 100%. Una quarta strategia prevede una garanzia del capitale ed una cedola annua garantita, indipendentemente dall\'andamento dell\'indice.</p><p class="pdf-intro">Puoi diversificare il tuo investimento in un unico prodotto, attivando più coperture, Index e Unit Linked, e più strategie contemporaneamente.</p><p class="pdf-intro"><strong>Questa guida si concentra sulla componente Index Linked del prodotto.</strong></p><p class="pdf-intro">La copertura Index Linked ha una durata prefissata di 3 o di 5 anni. I rendimenti vengono accreditati alla tua polizza ogni anno fino ad un tetto massimo (il CAP), con protezione al ribasso integrata per limitare la tua esposizione alle perdite di mercato. Ad ogni ricorrenza annua, i rendimenti positivi dell\'indice vengono consolidati nel valore di polizza. Puoi investire in una o più strategie Index Linked e modificare la tua allocazione nel corso della durata.</p><p class="pdf-intro">Tutte le garanzie sono fornite direttamente da Allianz Global Life dac.</p>',
+    pdf_intro: '<p class="pdf-intro">Allianz Active4Life Evolution è la polizza di investimento assicurativo di tipo misto Unit e Index Linked, a premio unico, emessa da Allianz Global Life dac. Offre la possibilità di scegliere una o più strategie di investimento, di attivare diversi livelli di garanzia o di protezione, di effettuare versamenti aggiuntivi, cambi di strategia e riscatti parziali nel corso del tuo investimento.</p><p class="pdf-intro">Il prodotto combina due tipologie di copertura:</p><p class="pdf-intro"><strong>Unit Linked.</strong> Possibilità di investire su più fondi OICR contemporaneamente, scegliendo tra opzioni con o senza garanzia. I fondi di investimento multi-asset offrono diversi profili di rischio e includono un sistema di garanzia annuale, opzionale e personalizzabile, che può variare dall\'85% al 93%.</p><p class="pdf-intro"><strong>Index Linked.</strong> 3 strategie di investimento che offrono la possibilità di partecipare all\'indice azionario EURO STOXX 50® con diversi livelli di garanzia fino al 100%. Una quarta strategia prevede una garanzia del capitale ed una cedola annua garantita, indipendentemente dall\'andamento dell\'indice.</p><p class="pdf-intro">Puoi diversificare il tuo investimento in un unico prodotto, attivando più coperture, Index e Unit Linked, e più strategie contemporaneamente.</p><p class="pdf-intro"><strong>Questa guida si concentra sulla componente Index Linked del prodotto.</strong></p><p class="pdf-intro">La copertura Index Linked ha una durata prefissata di 3 o di 5 anni. I rendimenti positivi vengono accreditati alla tua polizza ogni anno fino ad un tetto massimo (il CAP), con altresì una protezione al ribasso integrata per limitare la tua esposizione ai rendimenti negativi (il Floor o il Buffer). Ad ogni ricorrenza annua, i rendimenti dell\'indice vengono consolidati nel valore di polizza. Puoi investire in una o più strategie Index Linked e modificare la tua allocazione nel corso della durata.</p><p class="pdf-intro">Tutte le garanzie sono fornite direttamente da Allianz Global Life dac.</p>',
 
     g100_title: 'Garanzia <span class="strat-title-accent">100</span>',
     g100_b1: 'Esposizione al rendimento dell\'<strong>indice azionario EUROSTOXX50®</strong>, fino ad un tetto massimo (il Cap) definito annualmente ad ogni ricorrenza annua.',
-    g100_b2: 'Una <strong>garanzia annuale del 100%</strong> del controvalore della copertura. Il Floor di rendimento dell\'indice <strong>mai sotto 0%</strong>.',
-    g100_b3: 'Ad ogni ricorrenza annua, <strong>le performance positive dell\'indice verranno accreditate all\'importo della polizza</strong> consolidandole annualmente nel valore minimo garantito.',
+    g100_b2: 'Una <strong>garanzia annuale del 100%</strong> del controvalore della copertura. Il rendimento negativo dell\'Indice <strong>non impatterà mai</strong> il valore della tua copertura (Floor 0%).',
+    g100_b3: 'Ad ogni ricorrenza annua, <strong>le performance dell\'indice verranno accreditate, nei limiti di Cap e Floor, all\'importo della copertura</strong> consolidandole annualmente nel valore minimo garantito.',
     legend_allianz_g100: 'Garanzia AGL sulla perdita',
     legend_investor_g100: 'Partecipazione alla perdita',
     legend_cap_g100: 'Tetto massimo di partecipazione al rialzo',
@@ -1479,8 +1463,8 @@ var STRINGS = {
 
     g95_title: 'Garanzia <span class="strat-title-accent">95</span>',
     g95_b1: 'Esposizione al rendimento dell\'<strong>indice azionario EUROSTOXX50®</strong>, fino ad un tetto massimo (il Cap) definito annualmente ad ogni ricorrenza annua.',
-    g95_b2: 'Una <strong>garanzia annuale del 95%</strong> del controvalore della copertura. Il Floor di rendimento dell\'indice <strong>mai sotto il -5%</strong>.',
-    g95_b3: 'Ad ogni ricorrenza annua, <strong>le performance positive dell\'indice verranno accreditate all\'importo della polizza</strong> consolidandole annualmente nel valore minimo garantito.',
+    g95_b2: 'Una <strong>garanzia annuale del 95%</strong> del controvalore della copertura. Il rendimento negativo dell\'Indice impatterà il valore della tua copertura <strong>nei limiti del Floor pari al -5%</strong>.',
+    g95_b3: 'Ad ogni ricorrenza annua, <strong>le performance dell\'indice verranno accreditate, nei limiti di Cap e Floor, all\'importo della copertura</strong> consolidandole annualmente nel valore minimo garantito.',
     legend_allianz_g95: 'Garanzia AGL sulla perdita',
     legend_investor_g95: 'Partecipazione alla perdita',
     legend_cap_g95: 'Tetto massimo di partecipazione al rialzo',
@@ -1499,7 +1483,7 @@ var STRINGS = {
     g95_s1_desc: 'Se il ritorno annuale dell\'indice è positivo ma inferiore al Cap il ritorno dell\'investimento per l\'investitore sarà pari al ritorno dell\'indice.',
     g95_s2_desc: 'Se il ritorno annuale dell\'Indice supera il Cap il ritorno dell\'investimento per l\'investitore sarà pari al Cap.',
     g95_s3_desc: 'Se il rendimento annuale dell\'indice è negativo ma entro il Floor (-5%), la performance sarà pari al rendimento dell\'Indice.',
-    g95_s4_desc: 'Se la performance annuale è negativa, oltre il Floor, l\'Investitore subisce una perdita limitatamente alla perdita entro il Floor.',
+    g95_s4_desc: 'Se la performance annuale è negativa, oltre il Floor, l\'Investitore subisce una perdita limitata pari al Floor.',
 
     buf10_title: 'Protezione Buffer <span class="strat-title-accent">10</span>',
     buf10_b1: 'Esposizione al rendimento dell\'<strong>indice azionario EUROSTOXX50®</strong>, fino ad un tetto massimo (il Cap) definito annualmente ad ogni ricorrenza annua.',
@@ -1527,52 +1511,56 @@ var STRINGS = {
 
     cedola_title: 'Cedola',
     cedola_p1: 'In alternativa alle Strategie Indicizzate (il cui rendimento dipende dall’indice azionario), puoi scegliere di ricevere una <strong>cedola garantita</strong>, indipendentemente dall’andamento dell’Indice (c.d. “<strong>Strategia a Reddito Fisso</strong>”). In tal caso, il tuo investimento non subisce variazioni dovute all’andamento dell’Indice.',
-    cedola_p2: 'Al termine dell’annualità di contratto, l’importo della cedola è utilizzato per acquistare quote del Fondo <span class="tip" data-tip-key="pimco">PIMCO GIS Euro Short-Term Fund</span> dal quale puoi riscattare liberamente senza costi o vincoli.',
-    cedola_info: 'Le variazioni del cap rate sono effettuate a esclusiva discrezione di Allianz Global Life dac e vengono riviste mensilmente. Non è possibile prevedere ogni evento o combinazione di eventi che potrebbe influenzare i tassi, o la direzione in cui potrebbero muoversi.',
+    cedola_p2: 'Al termine dell’annualità di copertura, l’importo della cedola è utilizzato per acquistare quote del Fondo <span class="tip" data-tip-key="pimco">PIMCO GIS Euro Short-Term Fund</span> (ISIN: IE00B0XJBQ64) dal quale puoi riscattare liberamente senza costi o vincoli.',
+    esempio_pre_ced: 'Esempio strategia',
+    esempio_title_ced: 'Cedola',
+    ced_lead: 'La cedola <strong>non è influenzata dai rendimenti dell’indice</strong>.',
+    ced_th_prem: 'Premio',
+    ced_th_rate: 'Tasso della cedola (1° anno)',
+    ced_th_coupon: 'Cedola a fine 1° anno',
+    ced_td_prem: '€100.000',
+    ced_td_rate: '2,2%',
+    ced_td_coupon: '€2.200',
+    ced_note: '<strong>Esempio puramente illustrativo.</strong> Il tasso della cedola è garantito solo per il primo anno di copertura e viene rivisto a ogni anniversario della copertura.',
+    cedola_info: 'Le variazioni del Cap sono effettuate a esclusiva discrezione di Allianz Global Life dac e vengono riviste mensilmente. Non è possibile prevedere ogni evento o combinazione di eventi che potrebbe influenzare i tassi, o la direzione in cui potrebbero muoversi.',
 
-    prem_bonds_bar_lbl: 'Reddito fisso di alta qualità (obbligazioni)',
-    prem_hedge_bar_lbl: 'Strumenti di copertura',
-    prem_explain_p1: 'La grande maggioranza del tuo premio viene investita in un portafoglio diversificato di attività a reddito fisso di alta qualità, progettato per crescere fino ad almeno il tuo investimento originale nel corso del termine contrattuale. Questo portafoglio finanzia le garanzie e i benefici a tasso fisso del prodotto, forniti direttamente da Allianz Global Life dac in base al livello di protezione della strategia scelta.',
-    prem_explain_p2: 'Una piccola quota viene utilizzata come budget di copertura — impiegato per acquistare strumenti finanziari (opzioni) che rendono possibile offrire accrediti di interessi legati all\'indice in aggiunta alla protezione del capitale. Senza questo budget di copertura, Allianz non potrebbe offrire i rendimenti indicizzati che le strategie forniscono.',
-    prem_ex_result_val: '+ Accredito indice',
 
-        cr_eyebrow: 'Meccanismo del Cap Rate',
-    cr_title: 'Cosa determina il cap rate',
-    cr_intro: 'Hai visto che ogni strategia ha un cap annuale: il rendimento massimo dell’indice che può accreditare in qualsiasi anno di polizza. Quel cap non è fisso per la durata del contratto; viene rivisto e può cambiare ad ogni anniversario annuale della polizza in base alle condizioni di mercato. Se il tuo cap è del 13% e il mercato sale del 25%, ricevi il 13%. Se il mercato sale del 10%, ricevi il 10% completo.',
-    cr_factors_title: 'I fattori che determinano il tuo cap rate',
-    cr_factors_intro: 'Ogni anno, Allianz fissa il cap rate sulla base di una combinazione di fattori interconnessi che determinano quanto è disponibile per finanziare i tuoi rendimenti legati all\'indice.',
+        cr_eyebrow: 'Meccanismo dei Parametri Finanziari',
+    cr_title: 'Cosa determinano i Parametri Finanziari (il Cap)',
+    cr_intro: 'Hai visto che ogni strategia ha un cap annuale: il rendimento massimo dell’indice che può essere accreditato in ciascun anno della copertura Index Linked. Quel cap non è fisso per la durata della copertura; viene rivisto e può cambiare ad ogni anniversario annuale della copertura in base alle condizioni di mercato. Se il tuo cap è del 13% e l’indice azionario di riferimento sale del 25%, ricevi il 13%. Se l’indice azionario di riferimento sale del 10%, ricevi il 10%.',
+    cr_factors_title: 'I fattori che determinano il tuo Cap',
+    cr_factors_intro: 'Ogni anno, Allianz Global Life dac fissa il Cap sulla base di una combinazione di fattori interconnessi che determinano quanto è disponibile per finanziare i tuoi rendimenti legati all\'indice.',
     nf1_title: '01 — Rendimento degli investimenti',
-    nf1_desc: 'Allianz investe il tuo premio prevalentemente in attività a reddito fisso. La performance di questi investimenti è la principale fonte di finanziamento del cap rate. Più rendimento significa più risorse disponibili.',
+    nf1_desc: 'Allianz Global Life dac investe il tuo premio prevalentemente in attività a reddito fisso. La performance di questi investimenti è la principale fonte di finanziamento dei parametri finanziari (Cap e Cedola). Più rendimento significa più risorse disponibili.',
     nf2_title: '02 — Budget di copertura',
-    nf2_desc: 'Una parte di quel reddito diventa il budget di copertura: il fondo utilizzato per acquistare le opzioni che erogano i rendimenti legati all\'indice. Le condizioni di mercato influenzano la dimensione di questo budget ogni anno.',
+    nf2_desc: 'Una parte di quel reddito diventa il budget per l\'acquisto di strumenti derivati: il fondo utilizzato per acquistare le opzioni che erogano i rendimenti legati all\'indice. Le condizioni di mercato influenzano la dimensione di questo budget ogni anno.',
     nf3_title: '03 — Costo di copertura',
-    nf3_desc: 'Il budget di copertura viene utilizzato per costruire un portafoglio di opzioni. Quando i costi delle opzioni aumentano, a causa di maggiore volatilità o movimenti dei tassi di interesse, lo stesso budget acquista meno, il che può limitare il cap rate disponibile.',
-    cr_why_title: 'Perché i cap rate cambiano?',
-    cr_why_text: 'Questi fattori si combinano per determinare il budget complessivo disponibile ogni anno. I fattori seguenti determinano poi come quel budget si traduce nel tuo specifico cap rate:',
+    nf3_desc: 'Il budget di copertura viene utilizzato per costruire un portafoglio di opzioni. Quando i costi delle opzioni aumentano, a causa di maggiore volatilità o movimenti dei tassi di interesse, lo stesso budget acquista meno, il che può limitare il Cap disponibile.',
+    cr_why_title: 'Perché i Cap cambiano?',
+    cr_why_text: 'Questi fattori si combinano per determinare il budget complessivo disponibile ogni anno. I fattori seguenti determinano poi come quel budget si traduce nel tuo specifico Cap:',
     f1_title: 'Rendimento degli investimenti e reddito obbligazionario',
-    f1_desc: 'Allianz investe il tuo premio in un portafoglio obbligazionario. Il reddito generato da quel portafoglio ogni anno crea il budget di copertura, il fondo utilizzato per acquistare le opzioni che erogano il tuo rendimento legato all\'indice. Un ambiente con rendimenti più elevati significa un budget più ampio, e budget più ampi supportano cap rate più alti.',
+    f1_desc: 'Allianz Global Life dac investe il tuo premio in un portafoglio obbligazionario. Il reddito generato da quel portafoglio ogni anno crea il budget di copertura, il fondo utilizzato per acquistare le opzioni che erogano il tuo rendimento legato all\'indice. Un ambiente con rendimenti più elevati significa un budget più ampio, e budget più ampi supportano Cap più alti.',
     f1_tag: 'Rendimenti più alti → cap più alti',
     f2_title: 'Costi delle opzioni e volatilità di mercato',
-    f2_desc: 'Allianz utilizza il budget di copertura per costruire un portafoglio di opzioni sull\'indice. Nei mercati volatili, quelle opzioni diventano più costose, lasciando meno budget disponibile per Garanzia 95 e Garanzia 100, quindi i loro cap rate tendono a scendere. Protezione Buffer 10 è diversa: vende opzioni come parte della sua struttura, guadagnando più reddito quando la volatilità aumenta. Il suo cap rate può migliorare in condizioni di alta volatilità.',
+    f2_desc: 'Allianz Global Life dac utilizza il budget di copertura per costruire un portafoglio di opzioni sull\'indice. Nei mercati volatili, quelle opzioni diventano più costose, lasciando meno budget disponibile per Garanzia 95 e Garanzia 100, quindi i loro Cap tendono a scendere. Protezione Buffer 10 è diversa: vende opzioni come parte della sua struttura, guadagnando più reddito quando la volatilità aumenta. Il suo Cap può migliorare in condizioni di alta volatilità.',
     f2_tag: 'Varia per strategia — vedi tabella sotto',
     f3_title: 'La tua scelta di protezione',
-    f3_desc: 'Ogni strategia richiede ad Allianz di spendere parte del budget di copertura per la protezione al ribasso. Maggiore è la protezione offerta dalla strategia, maggiore è la quota di quel budget consumata sul lato negativo, lasciando meno disponibile per finanziare il cap sul lato positivo. La tua scelta di strategia influenzerà quindi direttamente il cap rate disponibile.',
+    f3_desc: 'Ogni strategia richiede ad Allianz Global Life dac di spendere parte del budget di copertura per la protezione al ribasso. Maggiore è la protezione offerta dalla strategia, maggiore è la quota di quel budget consumata sul lato negativo (Floor e Buffer), lasciando meno disponibile per finanziare il cap sul lato positivo. La tua scelta di strategia influenzerà quindi direttamente il Cap disponibile.',
     f3_tag: 'Più protezione → cap più basso',
-    f4_title: 'Termine contrattuale',
-    f4_desc: 'I cap rate variano in base al termine selezionato. Un impegno più lungo da parte del contraente consente ad Allianz di investire in obbligazioni a più lunga scadenza, che possono generare più reddito e quindi un budget di copertura più ampio. Questo potrebbe tradursi in un cap rate più alto, anche se la differenza dipenderà dalle condizioni di mercato al momento.',
+    f4_title: 'Durata della copertura',
+    f4_desc: 'I Cap variano in base alla durata della Copertura Index Linked scelta (3 o 5 anni). Un impegno più lungo da parte del contraente consente ad Allianz Global Life dac di investire in obbligazioni a più lunga scadenza, che possono generare più reddito e quindi un budget di copertura più ampio. Questo potrebbe tradursi in un Cap più alto, anche se la differenza dipenderà dalle condizioni di mercato al momento.',
     f4_tag: 'Termine più lungo → cap più alto',
-    wk_p1: 'I cap rate riflettono l\'interazione di molteplici fattori di mercato contemporaneamente. Un movimento positivo in un\'area non si tradurrà necessariamente in un cap rate migliorato se altri fattori si stanno muovendo in una direzione sfavorevole nello stesso momento.',
-    wk_p2: 'Ogni anno, Allianz ottiene un rendimento dal suo portafoglio di investimenti. Quel rendimento finanzia le spese operative, i benefici e le garanzie del prodotto, e il budget di copertura che rende possibili i rendimenti legati all\'indice. Il reddito residuo costituisce il profitto di Allianz.',
+    wk_p1: 'I Cap riflettono l\'interazione di molteplici fattori di mercato contemporaneamente. Un movimento positivo in un\'area non si tradurrà necessariamente in un Cap migliorato se altri fattori si stanno muovendo in una direzione sfavorevole nello stesso momento.',
     driver_table_title: 'In sintesi — come le condizioni di mercato influenzano ciascuna strategia',
     dr_hd_lbl: 'Fattore di mercato', dr_hd_floor: 'Garanzia 95 e Garanzia 100', dr_hd_buffer: 'Protezione Buffer 10',
-    dr_r1_lbl: 'Rendimenti obbligazionari in aumento', dr_r1_floor: 'Cap rate in aumento', dr_r1_buffer: 'Cap rate in aumento',
-    dr_r2_lbl: 'Rendimenti obbligazionari in calo', dr_r2_floor: 'Cap rate in diminuzione', dr_r2_buffer: 'Cap rate in diminuzione',
-    dr_r3_lbl: 'Costi delle opzioni in aumento (mercati volatili)', dr_r3_floor: 'Cap rate in diminuzione', dr_r3_buffer: 'Cap rate potenzialmente in aumento',
-    dr_r4_lbl: 'Costi delle opzioni in calo (mercati tranquilli)', dr_r4_floor: 'Cap rate in aumento', dr_r4_buffer: 'Cap rate potenzialmente in diminuzione',
+    dr_r1_lbl: 'Rendimenti obbligazionari in aumento', dr_r1_floor: 'Cap in aumento', dr_r1_buffer: 'Cap in aumento',
+    dr_r2_lbl: 'Rendimenti obbligazionari in calo', dr_r2_floor: 'Cap in diminuzione', dr_r2_buffer: 'Cap in diminuzione',
+    dr_r3_lbl: 'Costi delle opzioni in aumento (mercati volatili)', dr_r3_floor: 'Cap in diminuzione', dr_r3_buffer: 'Cap potenzialmente in aumento',
+    dr_r4_lbl: 'Costi delle opzioni in calo (mercati tranquilli)', dr_r4_floor: 'Cap in aumento', dr_r4_buffer: 'Cap potenzialmente in diminuzione',
     cta_title: 'Esplora i numeri tu stesso',
-    cta_sub: 'Usa lo strumento di illustrazione per creare scenari di mercato per ciascuna strategia ai cap rate attuali.',
+    cta_sub: 'Usa lo strumento di illustrazione per creare scenari di mercato per ciascuna strategia ai Cap attuali.',
     cta_btn: 'Apri lo Strumento di Illustrazione →',
-    cr_disc: '<p class="disc-heading">Informazioni importanti</p><p>Il presente materiale è fornito a scopo informativo e illustrativo e non costituisce una consulenza finanziaria, di investimento o fiscale. Prima di prendere qualsiasi decisione di investimento, dovresti richiedere una consulenza finanziaria indipendente.</p><p>Capitale a rischio. L\'investimento nelle Strategie Indicizzate è soggetto a rischio di investimento, inclusa la possibile perdita di parte o dell\'intero importo investito. La strategia Garanzia 100 protegge l\'intero importo investito; le strategie Garanzia 95 e Protection Buffer 10 non offrono una protezione totale del capitale e, in condizioni di mercato sfavorevoli, potresti perdere una parte del tuo investimento.</p><p>I cap rate, i valori della cedola e gli altri parametri finanziari indicati sono meramente indicativi. Sono rivisti e possono essere modificati da Allianz ad ogni anniversario annuale della polizza e non sono garantiti oltre il primo anno di polizza. Le performance passate dell\'indice e i cap rate passati non garantiscono risultati futuri.</p><p>Sebbene le performance dell\'indice influenzino i valori della polizza, la polizza non comporta un investimento diretto in azioni o in alcun componente dell\'indice. Le performance dell\'EURO STOXX 50® sono riportate solo a scopo illustrativo e rappresentano un indice di rendimento di prezzo, che esclude i dividendi.</p><p>EURO STOXX 50® è proprietà intellettuale (compresi i marchi registrati) di STOXX Ltd., Zug, Svizzera (\"STOXX\"), Deutsche Börse Group o dei loro concedenti, utilizzata su licenza. Allianz Active4Life Evolution non è sponsorizzato, promosso, distribuito o in alcun modo supportato da STOXX, Deutsche Börse Group o dai loro concedenti, partner di ricerca o fornitori di dati. STOXX, Deutsche Börse Group e i loro concedenti, partner di ricerca o fornitori di dati non forniscono alcuna garanzia ed escludono qualsiasi responsabilità (sia per negligenza che altrimenti) rispetto ad esso in generale o in particolare in relazione a eventuali errori, omissioni o interruzioni nell\'EURO STOXX 50® o nei suoi dati.</p><p>Allianz Active4Life Evolution è emessa da Allianz Global Life Designated Activity Company (Allianz Global Life dac), una società del gruppo Allianz SE. Sede Legale: Maple House, Temple Road, Blackrock, Dublino, A94 Y9E8. Regolamentata dalla Central Bank of Ireland. Numero di Registrazione: 458565.</p>'
+    cr_disc: '<p class="disc-heading">Informazioni importanti</p><p>Il presente materiale è fornito a scopo informativo e illustrativo e non costituisce una consulenza finanziaria, di investimento o fiscale. Prima di prendere qualsiasi decisione di investimento, dovresti richiedere una consulenza finanziaria indipendente.</p><p>Capitale a rischio. L\'investimento nelle Strategie Indicizzate è soggetto a rischio di investimento, inclusa la possibile perdita di parte o dell\'intero importo investito. La strategia Garanzia 100 protegge l\'intero importo investito; le strategie Garanzia 95 e Protection Buffer 10 non offrono una protezione totale del capitale e, in condizioni di mercato sfavorevoli, potresti perdere una parte del tuo investimento.</p><p>I valori dei parametri finanziari (Cap e Cedola) indicati sono meramente indicativi. Sono rivisti e possono essere modificati da Allianz Global Life dac ad ogni anniversario annuale della copertura Index Linked e non sono garantiti oltre il primo anno. Le performance passate dell\'indice ed i parametri finanziari (Cap e Cedola) passati non garantiscono risultati futuri.</p><p>Sebbene le performance dell\'indice influenzino i valori della polizza, la polizza non comporta un investimento diretto in azioni o in alcun componente dell\'indice. Le performance dell\'EURO STOXX 50® sono riportate solo a scopo illustrativo e rappresentano un indice di rendimento di prezzo, che esclude i dividendi.</p><p>EURO STOXX 50® è proprietà intellettuale (compresi i marchi registrati) di STOXX Ltd., Zug, Svizzera (\"STOXX\"), Deutsche Börse Group o dei loro concedenti, utilizzata su licenza. Allianz Active4Life Evolution non è sponsorizzato, promosso, distribuito o in alcun modo supportato da STOXX, Deutsche Börse Group o dai loro concedenti, partner di ricerca o fornitori di dati. STOXX, Deutsche Börse Group e i loro concedenti, partner di ricerca o fornitori di dati non forniscono alcuna garanzia ed escludono qualsiasi responsabilità (sia per negligenza che altrimenti) rispetto ad esso in generale o in particolare in relazione a eventuali errori, omissioni o interruzioni nell\'EURO STOXX 50® o nei suoi dati.</p><p>Allianz Active4Life Evolution è emessa da Allianz Global Life Designated Activity Company (Allianz Global Life dac), una società del gruppo Allianz SE. Sede Legale: Maple House, Temple Road, Blackrock, Dublino, A94 Y9E8. Regolamentata dalla Central Bank of Ireland. Numero di Registrazione: 458565.</p>'
   }
 };
 
@@ -1591,8 +1579,8 @@ function translateUI() {
   var ids = [
     'hdr-evolution', 'hdr-sub', 'nav-home', 'nav-guide', 'nav-history', 'nav-tool',
     'hero-eyebrow', 'hero-title', 'hero-sub',
-    'anav-about', 'anav-strategies', 'anav-how', 'anav-caps',
-    'slabel-about', 'slabel-strategies', 'slabel-how', 'slabel-caps',
+    'anav-about', 'anav-strategies', 'anav-caps',
+    'slabel-about', 'slabel-strategies', 'slabel-caps',
     'legend-allianz-g100', 'legend-investor-g100', 'legend-cap-g100',
     'legend-allianz-g95', 'legend-investor-g95', 'legend-cap-g95',
     'legend-allianz-buf10', 'legend-investor-buf10', 'legend-cap-buf10',
@@ -1609,14 +1597,14 @@ function translateUI() {
     'scen-perf-label-buf10', 'buf10-cap-label', 'scen-prot-label-buf10', 'buf10-floor-label',
     'scen-num-buf10-1', 'scen-num-buf10-2', 'scen-num-buf10-3', 'scen-num-buf10-4',
     'cedola-title', 'cedola-info',
-    'prem-bonds-bar-lbl', 'prem-hedge-bar-lbl',
+    'esempio-pre-ced', 'esempio-title-ced', 'ced-th-prem', 'ced-th-rate', 'ced-th-coupon', 'ced-td-prem', 'ced-td-rate', 'ced-td-coupon',
     'cr-eyebrow', 'cr-title', 'cr-intro',
     'cr-factors-title', 'cr-factors-intro',
     'nf1-title', 'nf2-title', 'nf3-title',
     'cr-why-title', 'cr-why-text',
     'f1-title', 'f1-desc', 'f1-tag', 'f2-title', 'f2-desc', 'f2-tag',
     'f3-title', 'f3-desc', 'f3-tag', 'f4-title', 'f4-desc', 'f4-tag',
-    'wk-p1', 'wk-p2',
+    'wk-p1',
     'driver-table-title',
     'dr-hd-lbl', 'dr-hd-floor', 'dr-hd-buffer',
     'dr-r1-lbl', 'dr-r1-floor', 'dr-r1-buffer',
@@ -1634,7 +1622,6 @@ function translateUI() {
   });
   var htmlIds = [
     'pdf-intro',
-    'prem-explain-p1', 'prem-explain-p2',
     'nf1-desc', 'nf2-desc', 'nf3-desc',
     'g100-title', 'g95-title', 'buf10-title',
     'g100-b1', 'g100-b2', 'g100-b3',
@@ -1644,6 +1631,7 @@ function translateUI() {
     'g95-s1-desc', 'g95-s2-desc', 'g95-s3-desc', 'g95-s4-desc',
     'buf10-s1-desc', 'buf10-s2-desc', 'buf10-s3-desc', 'buf10-s4-desc',
     'cedola-p1', 'cedola-p2',
+    'ced-lead', 'ced-note',
     'cr-disc'
   ];
   htmlIds.forEach(function(id) {
@@ -1677,7 +1665,6 @@ function initAnchorNav() {
   var navLinks = [
     document.getElementById('anav-about'),
     document.getElementById('anav-strategies'),
-    document.getElementById('anav-how'),
     document.getElementById('anav-caps')
   ];
 

@@ -298,6 +298,9 @@ tr:last-child td { border-bottom: none; }
 
 /* ── Section question labels ── */
 .qlbl { font-size: 15px; font-weight: 700; color: var(--a1-brand); }
+.rtitle { font-size: 15px; font-weight: 700; color: var(--a1-brand); margin-bottom: 16px; }
+.yr-limit { font-size: 12px; color: var(--a1-text-s); margin: -4px 0 12px; }
+.yr-limit.hit { color: var(--a1-red); font-weight: 600; }
 
 /* ── Tab-bar nav links ── */
 .tabnav-info { font-size:12px;font-weight:700;color:#fff;text-decoration:none;background:var(--a1-brand);border:1px solid var(--a1-brand);border-radius:var(--a1-radius-s);padding:6px 16px;transition:all .2s;white-space:nowrap;flex-shrink:0; }
@@ -467,7 +470,7 @@ tr:last-child td { border-bottom: none; }
   .card { padding: 16px 18px; margin-bottom: 14px; }
   .sbar { padding: 14px 20px; margin-bottom: 14px; }
   .srow { margin-bottom: 14px; }
-  .ctitle, .chdr, .sname { page-break-after: avoid; break-after: avoid; }
+  .ctitle, .rtitle, .chdr, .sname { page-break-after: avoid; break-after: avoid; }
   /* Keep short trailing lines from stranding alone across a page break */
   .disc, .sumbox, p { orphans: 3; widows: 3; }
   /* Disclosure font */
@@ -533,7 +536,7 @@ tr:last-child td { border-bottom: none; }
       <a href="index.html" id="tool-home-link" class="hdr-link" data-i18n="home">Home</a>
       <a href="info.html" id="tool-info-link" target="_blank" rel="noopener" class="hdr-link" data-i18n="how_it_works_link">Product Guide</a>
       <a href="tool.html" id="tool-tool-link" class="hdr-link active" data-i18n="illustration_tool_link">Illustration Tool</a>
-      <a href="cap-history.html" id="tool-history-link" class="hdr-link" data-i18n="cap_history_link">Cap Rate History</a>
+      <a href="cap-history.html" id="tool-history-link" class="hdr-link" data-i18n="cap_history_link">Cap History</a>
     </nav>
     <div class="hdr-divider"></div>
     <div class="lang-toggle">
@@ -555,7 +558,7 @@ tr:last-child td { border-bottom: none; }
 
 <div class="print-meta">
   <div class="print-meta-row"><span id="print-meta-generated">Generated:</span> <span id="print-date"></span> &nbsp;&middot;&nbsp; Allianz Active4Life Evolution</div>
-  <div class="print-meta-warning" id="print-meta-disclaimer"><strong>For illustrative purposes only</strong> &ndash; not a formal client quotation. Cap rates, index performance and all figures shown are indicative and subject to change.</div>
+  <div class="print-meta-warning" id="print-meta-disclaimer"><strong>For illustrative purposes only</strong> &ndash; not a formal client quotation. Caps, index performance and all figures shown are indicative and subject to change.</div>
 </div>
 
 <div class="main">
@@ -565,7 +568,7 @@ tr:last-child td { border-bottom: none; }
   <!-- Print-only: the on-screen input controls (amount/term/strategy/scenario) live in the
        no-print left card, so this restates them clearly at the top of the printed page —
        same .sbar component the Market Scenario and Forward Simulation tabs show on-screen,
-       just scoped to print here since the Annual Cap Rate readout below (#d-cap-readout)
+       just scoped to print here since the Annual Cap readout below (#d-cap-readout)
        covers the on-screen case instead. -->
   <div class="sbar print-only" id="d-sbar" style="display:none;">
     <div>
@@ -608,19 +611,19 @@ tr:last-child td { border-bottom: none; }
         <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;flex-wrap:wrap;">
           <div>
             <div style="display:flex;align-items:center;gap:10px;">
-              <span class="qlbl" data-i18n="annual_cap_rates_heading">Annual Cap Rate:</span>
-              <button onclick="capInfoOpen()" title="About cap rates" style="flex-shrink:0;display:flex;align-items:center;gap:5px;height:22px;padding:0 10px 0 8px;border-radius:11px;border:1px solid var(--a1-border-t);background:#fff;color:var(--a1-text-s);cursor:pointer;font-size:11px;font-weight:600;">
+              <span class="qlbl" data-i18n="annual_cap_rates_heading">Annual Cap:</span>
+              <button onclick="capInfoOpen()" title="About Caps" style="flex-shrink:0;display:flex;align-items:center;gap:5px;height:22px;padding:0 10px 0 8px;border-radius:11px;border:1px solid var(--a1-border-t);background:#fff;color:var(--a1-text-s);cursor:pointer;font-size:11px;font-weight:600;">
                 <svg width="14" height="14" aria-hidden="true"><use href="#ico-info"/></svg><span data-i18n="info_label">Info</span>
               </button>
             </div>
-            <div style="font-size:11.5px;color:var(--a1-text-s);margin-top:4px;" id="d-cap-readout-sub" data-i18n="cap_year1_note">Cap rate guaranteed for Year 1 only. Reviewed at each policy anniversary.</div>
+            <div style="font-size:11.5px;color:var(--a1-text-s);margin-top:4px;" id="d-cap-readout-sub" data-i18n="cap_year1_note">Cap guaranteed for Year 1 only. Reviewed at each coverage anniversary.</div>
           </div>
           <div id="d-cap-readout" style="text-align:right;">
             <div style="display:flex;align-items:center;gap:8px;justify-content:flex-end;margin-bottom:2px;">
               <span style="font-size:18px;font-weight:700;color:var(--a1-brand);line-height:1;" id="d-cap-readout-val">—</span>
               <button id="d-cap-edit-btn" class="cap-vary-link" onclick="dCapEditOpen()"><span data-i18n="edit_cap_btn">Edit ›</span></button>
             </div>
-            <a href="info.html#caps" target="_blank" rel="noopener" style="font-size:11px;color:var(--a1-brand);font-weight:600;text-decoration:none;" data-i18n="cap_reset_link">How are cap rates set?</a>
+            <a href="info.html#caps" target="_blank" rel="noopener" style="font-size:11px;color:var(--a1-brand);font-weight:600;text-decoration:none;" data-i18n="cap_reset_link">How are Caps set?</a>
           </div>
         </div>
         <div id="d-cap-modified-note" class="inline-notice" style="display:none;margin-top:10px;margin-bottom:0;width:fit-content;max-width:100%;">
@@ -630,7 +633,7 @@ tr:last-child td { border-bottom: none; }
       </div>
       <div id="d-indicative-note" class="inline-notice" style="display:none;margin-top:14px;margin-bottom:12px;font-size:11px;">
         <span class="inline-notice-icon"><svg width="14" height="14" aria-hidden="true"><use href="#ico-info"/></svg></span>
-        <span data-i18n="caps_indicative">Cap rates shown are indicative for premiums above &euro;20m.</span>
+        <span data-i18n="caps_indicative">Caps shown are indicative for premiums above &euro;20m.</span>
       </div>
       <div class="cg no-print" style="margin-top:20px;padding-top:20px;border-top:1px solid var(--a1-border-t);width:100%;">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
@@ -670,6 +673,7 @@ tr:last-child td { border-bottom: none; }
         <div style="font-size:13px;font-weight:700;color:var(--a1-brand);margin-bottom:12px;">
           <span data-i18n="annual_returns">Annual Index Returns</span>
         </div>
+        <div class="yr-limit" id="d-yr-limit" data-i18n="custom_return_limit">Enter a return between &minus;100% and +100% for each year.</div>
         <div id="d-yr-inputs"></div>
         <div class="arow">
           <button class="cbtn" onclick="dCalc()" data-i18n="calculate">Calculate</button>
@@ -678,7 +682,7 @@ tr:last-child td { border-bottom: none; }
       </div>
     </div>
     <div class="card">
-      <div class="ctitle" data-i18n="results">Results</div>
+      <div class="rtitle" data-i18n="results">Results</div>
       <div id="d-cap-print-warning" style="display:none;margin-bottom:12px;padding:10px 14px;background:var(--a1-warn-bg);border:1px solid var(--a1-warn-border);border-left:4px solid var(--a1-warn-border);border-radius:var(--a1-radius-s);font-size:12px;color:var(--a1-warn-text);"></div>
       <div id="d-empty-state" class="no-print" style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:44px 24px;background:var(--a1-tl);border-radius:var(--a1-radius-m);">
         <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--a1-brand)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px;opacity:.75;" aria-hidden="true">
@@ -767,7 +771,7 @@ tr:last-child td { border-bottom: none; }
   <div class="warn-box"><strong data-i18n="warn_w4">Warning: If you invest in this product, you may lose some or all of the money you invest.</strong></div>
   <div class="warn-footnote" data-i18n="warn_footnote">While care has been taken in its preparation, this illustration is of a general nature and, on its own, should not be relied on in relation to a specific decision without taking independent financial, insurance, tax or other professional advice. The company cannot accept responsibility for its interpretation, or for any legal or tax advice obtained from independent advisors based on their interpretation of its content.</div>
 </div>
-<div class="disc" id="tool-disc"><p class="disc-heading" data-i18n="tool_disc_heading">Important information</p><p data-i18n="tool_disc_p1">This material is for information and illustrative purposes only and does not constitute financial, investment, or tax advice. You should seek independent financial advice before making any investment decision.</p><p data-i18n="tool_disc_p2">Capital at risk. Investment in the Indexed Strategies is subject to investment risk, including the possible loss of some or all of the amount invested. The Guarantee 100 strategy protects the full amount invested; the Guarantee 95 and Protection Buffer 10 strategies do not offer full capital protection, and you may lose a portion of your investment in adverse market conditions.</p><p data-i18n="tool_disc_p3">Cap rates, coupon values, and other financial parameters shown are indicative only. They are reviewed and may be reset by Allianz at each annual policy anniversary and are not guaranteed beyond the first policy year. Past index performance and past cap rates do not guarantee future results.</p><p data-i18n="tool_disc_p4">Although index performance affects your policy values, the policy does not involve direct investment in equities or any index constituent. EURO STOXX 50® performance is referenced for illustrative purposes only and represents a price return index, excluding dividends.</p><p data-i18n="tool_disc_p5">EURO STOXX 50® is the intellectual property (including registered trademarks) of STOXX Ltd., Zug, Switzerland ("STOXX"), Deutsche Börse Group or their licensors, which is used under licence. Allianz Active4Life Evolution is neither sponsored nor promoted, distributed, or in any other manner supported by STOXX, Deutsche Börse Group or their licensors, research partners or data providers. STOXX, Deutsche Börse Group and their licensors, research partners or data providers do not give any warranty, and exclude any liability (whether in negligence or otherwise) with respect thereto generally or specifically in relation to any errors, omissions or interruptions in the EURO STOXX 50® or its data.</p><p data-i18n="tool_disc_p6">Allianz Active4Life Evolution is issued by Allianz Global Life Designated Activity Company (Allianz Global Life dac), a company of the Allianz SE Group. Registered address: Maple House, Temple Road, Blackrock, Dublin, A94 Y9E8. Regulated by the Central Bank of Ireland. Company Registration Number: 458565.</p></div>
+<div class="disc" id="tool-disc"><p class="disc-heading" data-i18n="tool_disc_heading">Important information</p><p data-i18n="tool_disc_p1">This material is for information and illustrative purposes only and does not constitute financial, investment, or tax advice. You should seek independent financial advice before making any investment decision.</p><p data-i18n="tool_disc_p2">Capital at risk. Investment in the Indexed Strategies is subject to investment risk, including the possible loss of some or all of the amount invested. The Guarantee 100 strategy protects the full amount invested; the Guarantee 95 and Protection Buffer 10 strategies do not offer full capital protection, and you may lose a portion of your investment in adverse market conditions.</p><p data-i18n="tool_disc_p3">The values of the financial parameters (Cap and Coupon) shown are indicative only. They are reviewed and may be reset by Allianz Global Life dac at each annual anniversary of the Index Linked coverage and are not guaranteed beyond the first year. Past index performance and past financial parameters (Cap and Coupon) do not guarantee future results.</p><p data-i18n="tool_disc_p4">Although index performance affects your policy values, the policy does not involve direct investment in equities or any index constituent. EURO STOXX 50® performance is referenced for illustrative purposes only and represents a price return index, excluding dividends.</p><p data-i18n="tool_disc_p5">EURO STOXX 50® is the intellectual property (including registered trademarks) of STOXX Ltd., Zug, Switzerland ("STOXX"), Deutsche Börse Group or their licensors, which is used under licence. Allianz Active4Life Evolution is neither sponsored nor promoted, distributed, or in any other manner supported by STOXX, Deutsche Börse Group or their licensors, research partners or data providers. STOXX, Deutsche Börse Group and their licensors, research partners or data providers do not give any warranty, and exclude any liability (whether in negligence or otherwise) with respect thereto generally or specifically in relation to any errors, omissions or interruptions in the EURO STOXX 50® or its data.</p><p data-i18n="tool_disc_p6">Allianz Active4Life Evolution is issued by Allianz Global Life Designated Activity Company (Allianz Global Life dac), a company of the Allianz SE Group. Registered address: Maple House, Temple Road, Blackrock, Dublin, A94 Y9E8. Regulated by the Central Bank of Ireland. Company Registration Number: 458565.</p></div>
 </div>
 <script>
 
@@ -785,7 +789,7 @@ var STRINGS = {
     "export_pdf_disabled_title": "Enter your investment details and calculate results first",
     "home": "Home",
     "how_it_works_link": "Product Guide",
-    "cap_history_link": "Cap Rate History",
+    "cap_history_link": "Cap History",
     "illustration_tool_link": "Illustration Tool",
     "advanced_mode_label": "Advanced",
     "advanced_mode_title": "Show advanced controls, such as fixed-rate comparison and cap stress testing",
@@ -800,11 +804,11 @@ var STRINGS = {
     "compare_strategies_desc": "View all three strategies side by side",
     "multi_strategy": "Multi Strategy",
     "multi_strategy_desc": "Blend strategies into one portfolio",
-    "cap_info_title": "Annual Cap Rate",
-    "cap_info_body": "Each policy year, your return is subject to a cap. This is the maximum return that can be credited, no matter how well the index performs.",
-    "cap_info_default": "The cap rate shown is guaranteed for your first policy year. Allianz reviews and may reset the cap at each policy anniversary. Displayed rates are indicative for your selected amount and term — actual future caps may differ.",
+    "cap_info_title": "Annual Cap",
+    "cap_info_body": "Each coverage year, your return is subject to a cap. This is the maximum return that can be credited, no matter how well the index performs.",
+    "cap_info_default": "The Cap shown is guaranteed for your first coverage year. Allianz Global Life dac reviews and may reset the cap at each coverage anniversary. Displayed values are indicative for your selected amount and term — actual future caps may differ.",
     "important_label": "Important:",
-    "cap_info_link": "How are cap rates set?",
+    "cap_info_link": "How are Caps set?",
     "cap_scenario_low": "Lower Cap",
     "cap_scenario_current": "Current Cap",
     "cap_scenario_high": "Higher Cap",
@@ -812,9 +816,9 @@ var STRINGS = {
     "cap_stress_toggle_label": "Cap stress",
     "cap_stress_legend_title": "Cap (Yr 2+)",
     "cap_print_warning": "Cap stress comparison shown above: Low {0}% · Current {1}% · High {2}% per year (Year 2+).",
-    "cap_stress_info_title": "Cap Rate Stress Test",
-    "cap_stress_info_body": "The cap is only guaranteed for Year 1. From Year 2 onwards it resets annually — so the Lower and Higher lines stress-test what happens if future caps settle consistently below or above today's rate. All three lines start from the same point because Year 1 is fixed.",
-    "cap_stress_info_warning": "Actual future cap rates may differ from the Lower and Higher lines shown here. These are illustrative bounds, not guaranteed floors or ceilings.",
+    "cap_stress_info_title": "Cap Stress Test",
+    "cap_stress_info_body": "The cap is only guaranteed for Year 1. From Year 2 onwards it resets annually — so the Lower and Higher lines stress-test what happens if future caps settle consistently below or above today's Cap. All three lines start from the same point because Year 1 is fixed.",
+    "cap_stress_info_warning": "Actual future Caps may differ from the Lower and Higher lines shown here. These are illustrative bounds, not guaranteed floors or ceilings.",
     "crisis_info_title": "Market Crash Scenario",
     "crisis_info_body": "One year's simulated return is replaced with a historical return from a period when the Euro Stoxx 50® fell by more than 10%. This shows how the buffer or floor absorbs losses in a genuine downturn. The severity reflects a typical historical crash — not the most extreme on record. All other years remain unchanged.",
     "investment_amount": "Investment Amount (€)",
@@ -823,9 +827,9 @@ var STRINGS = {
     "5_year": "5 Year",
     "start_period": "Return sequence from",
     "start_date_modal_title": "Apply Returns From",
-    "start_date_modal_body": "Selects the historical return sequence to use. Euro Stoxx 50\u00ae returns from the chosen period are applied as if they began today, at the current assumed cap rate. This does not show what the product would have returned during that period.",
-    "start_date_modal_body_btp": "Selects the historical period to use. Euro Stoxx 50\u00ae returns and the BTP yield from the chosen period are applied as if they began today, at the current assumed cap rate. This does not show what the product would have returned during that period.",
-    "start_date_modal_body_gdp": "Selects the historical period to use. Euro Stoxx 50\u00ae returns and Italian GDP growth rates from the chosen period are applied as if they began today, at the current assumed cap rate. This does not show what the product would have returned during that period.",
+    "start_date_modal_body": "Selects the historical return sequence to use. Euro Stoxx 50\u00ae returns from the chosen period are applied as if they began today, at the current assumed Cap. This does not show what the product would have returned during that period.",
+    "start_date_modal_body_btp": "Selects the historical period to use. Euro Stoxx 50\u00ae returns and the BTP yield from the chosen period are applied as if they began today, at the current assumed Cap. This does not show what the product would have returned during that period.",
+    "start_date_modal_body_gdp": "Selects the historical period to use. Euro Stoxx 50\u00ae returns and Italian GDP growth rates from the chosen period are applied as if they began today, at the current assumed Cap. This does not show what the product would have returned during that period.",
     "start_date_modal_note": "Historical index returns are for illustrative purposes only \u2014 past performance is not indicative of future results. Use the Lower Cap / Current Cap / Higher Cap toggle to see how outcomes vary under different cap assumptions.",
     "display": "Display",
     "eur_value": "€ Value",
@@ -833,19 +837,19 @@ var STRINGS = {
     "adjust_cap": "Adjust Cap:",
     "pct": "%",
     "reset": "Reset",
-    "caps_indicative": "Cap rates shown are indicative for premiums above €20m.",
-    "cap_reset_link": "How are cap rates set?",
-    "cap_year1_note": "Cap rate guaranteed for Year 1 only. Reviewed at each policy anniversary.",
+    "caps_indicative": "Caps shown are indicative for premiums above €20m.",
+    "cap_reset_link": "How are Caps set?",
+    "cap_year1_note": "Cap guaranteed for Year 1 only. Reviewed at each coverage anniversary.",
     "edit_cap_btn": "Edit ›",
-    "edit_cap_modal_title": "Choose Cap Rate",
-    "edit_cap_modal_sub": "Choose which month's rate to use, or enter your own.",
+    "edit_cap_modal_title": "Choose Cap",
+    "edit_cap_modal_sub": "Choose which month's Cap to use, or enter your own.",
     "edit_cap_modal_confirm": "Confirm",
-    "cap_custom_warning": "This is a hypothetical rate. Today's actual rate is <strong>{0}</strong> and is reviewed at each policy anniversary.",
-    "cap_custom_warning_link": "What factors influence cap rates →",
-    "cap_modal_mode_flat": "Flat rate",
+    "cap_custom_warning": "This is a hypothetical Cap. Today's actual Cap is <strong>{0}</strong> and is reviewed at each coverage anniversary.",
+    "cap_custom_warning_link": "What factors influence Caps →",
+    "cap_modal_mode_flat": "Flat Cap",
     "cap_modal_mode_byyear": "Vary by year",
-    "sim_model_notice_body": "These scenarios are simulated, not forecast. Actual outcomes could be better or worse than the range shown. The cap rate is guaranteed for the first policy year only and resets annually from Year 2.",
-    "sim_model_notice_link": "How are cap rates set?",
+    "sim_model_notice_body": "These scenarios are simulated, not forecast. Actual outcomes could be better or worse than the range shown. The Cap is guaranteed for the first coverage year only and resets annually from Year 2.",
+    "sim_model_notice_link": "How are Caps set?",
     "crisis_select_label": "Simulate a market crash in:",
     "crisis_none": "No Market Crash",
     "crisis_year_option": "Market Crash in Year {0}",
@@ -867,7 +871,7 @@ var STRINGS = {
     "fixed_rate_modal_sub": "Enter an annual rate to compare against, such as a savings account or bond yield, then confirm.",
     "fixed_rate_remove": "Remove",
     "cap_stress_modal_title": "Set Cap Stress",
-    "cap_stress_modal_sub": "Choose how far the Lower and Higher lines move away from today's cap rate, then confirm.",
+    "cap_stress_modal_sub": "Choose how far the Lower and Higher lines move away from today's Cap, then confirm.",
     "btp_overlay_footnote": "BTP reference uses the current indicative {0}-year yield of {1}% p.a. (as at {2}) compounded annually. Tax treatment differs: RILA 26% / BTP 12.5%. Not a guaranteed return.",
     "btp_terminal_label": "Italian Govt Bond (BTP)",
     "btp_legend_label": "Italian Govt Bond (BTP) — {0}% p.a. — current rate",
@@ -877,7 +881,7 @@ var STRINGS = {
     "index_legend_scenario": "Index — {0} scenario",
     "strategy_legend_scenario": "{0} — {1} scenario",
     "starting_value_label": "Starting Value",
-    "policy_year_axis": "Policy Year",
+    "policy_year_axis": "Coverage Year",
     "portfolio_value_axis": "Portfolio Value (€)",
     "cumulative_return_axis": "Cumulative Return (%)",
     "protection_applied_yes": "Protected — {0}% saved",
@@ -905,10 +909,10 @@ var STRINGS = {
     // sim_window_label deliberately removed: the panel no longer names the period a
     // sequence was sampled from, so a "Period" label would have nothing to introduce.
     "sim_endpoint_caveat": "The model assumes returns are lognormal and independent from month to month, which does not capture real-world volatility clustering or extreme ('fat-tail') events. Its drift and volatility are estimated from a limited history, so the calibration itself carries uncertainty. Figures are rounded to the nearest €{0}: the underlying range is an estimate, not a precise value.",
-    "cap_context_general": "Cap rates default to the latest month's rates and can be adjusted above.",
+    "cap_context_general": "Caps default to the latest month's values and can be adjusted above.",
     "annual_cap": "Annual Cap",
-    "annual_cap_rate_label": "Annual Cap Rate",
-    "annual_cap_rates_heading": "Annual Cap Rate:",
+    "annual_cap_rate_label": "Annual Cap",
+    "annual_cap_rates_heading": "Annual Cap:",
     "cap_source_currentmonth": "Current Month",
     "cap_source_followingmonth": "Following Month",
     "cap_source_custom": "Custom",
@@ -935,12 +939,12 @@ var STRINGS = {
     "portfolio_credited": "Portfolio Credited",
     "portfolio_value_label": "Portfolio Value",
     "download_excel": "Download Excel",
-    "results_adjusted": "Results in this analysis reflect the adjusted cap rate and may not represent current product terms.",
-    "cap_annual_text": "Results are based on the cap rates selected for each policy year. In practice, cap rates are reviewed at each annual policy anniversary and will vary based on market conditions at the time. Actual outcomes will differ from those illustrated.",
+    "results_adjusted": "Results in this analysis reflect the adjusted Cap and may not represent current product terms.",
+    "cap_annual_text": "Results are based on the Caps selected for each coverage year. In practice, Caps are reviewed at each annual coverage anniversary and will vary based on market conditions at the time. Actual outcomes will differ from those illustrated.",
     "tool_disc_heading": "Important information",
     "tool_disc_p1": "This material is for information and illustrative purposes only and does not constitute financial, investment, or tax advice. You should seek independent financial advice before making any investment decision.",
     "tool_disc_p2": "Capital at risk. Investment in the Indexed Strategies is subject to investment risk, including the possible loss of some or all of the amount invested. The Guarantee 100 strategy protects the full amount invested; the Guarantee 95 and Protection Buffer 10 strategies do not offer full capital protection, and you may lose a portion of your investment in adverse market conditions.",
-    "tool_disc_p3": "Cap rates, coupon values, and other financial parameters shown are indicative only. They are reviewed and may be reset by Allianz at each annual policy anniversary and are not guaranteed beyond the first policy year. Past index performance and past cap rates do not guarantee future results.",
+    "tool_disc_p3": "The values of the financial parameters (Cap and Coupon) shown are indicative only. They are reviewed and may be reset by Allianz Global Life dac at each annual anniversary of the Index Linked coverage and are not guaranteed beyond the first year. Past index performance and past financial parameters (Cap and Coupon) do not guarantee future results.",
     "tool_disc_p4": "Although index performance affects your policy values, the policy does not involve direct investment in equities or any index constituent. EURO STOXX 50® performance is referenced for illustrative purposes only and represents a price return index, excluding dividends.",
     "tool_disc_p5": "EURO STOXX 50® is the intellectual property (including registered trademarks) of STOXX Ltd., Zug, Switzerland (\"STOXX\"), Deutsche Börse Group or their licensors, which is used under licence. Allianz Active4Life Evolution is neither sponsored nor promoted, distributed, or in any other manner supported by STOXX, Deutsche Börse Group or their licensors, research partners or data providers. STOXX, Deutsche Börse Group and their licensors, research partners or data providers do not give any warranty, and exclude any liability (whether in negligence or otherwise) with respect thereto generally or specifically in relation to any errors, omissions or interruptions in the EURO STOXX 50® or its data.",
     "tool_disc_p6": "Allianz Active4Life Evolution is issued by Allianz Global Life Designated Activity Company (Allianz Global Life dac), a company of the Allianz SE Group. Registered address: Maple House, Temple Road, Blackrock, Dublin, A94 Y9E8. Regulated by the Central Bank of Ireland. Company Registration Number: 458565.",
@@ -964,10 +968,11 @@ var STRINGS = {
     "strategy": "Strategy",
     "index": "Index",
     "configure_params": "Configure parameters above and the simulation will run automatically.",
-    "disclosure_simulation": "Performance scenarios are hypothetical and for illustrative purposes only, generated by a statistical model calibrated on historical Euro Stoxx 50® data. They do not represent guaranteed future performance. The model does not reproduce real-world volatility clustering or extreme events — actual outcomes could fall outside the range shown. Cap rates and protection levels are indicative and reset at each annual policy anniversary. The value of your investment is not guaranteed. This tool does not constitute financial advice — seek independent advice before making any investment decision.",
+    "disclosure_simulation": "Performance scenarios are hypothetical and for illustrative purposes only, generated by a statistical model calibrated on historical Euro Stoxx 50® data. They do not represent guaranteed future performance. The model does not reproduce real-world volatility clustering or extreme events — actual outcomes could fall outside the range shown. Caps and protection levels are indicative and reset at each annual coverage anniversary. The value of your investment is not guaranteed. This tool does not constitute financial advice — seek independent advice before making any investment decision.",
     "cap": "Cap:",
     "cap_label": "Cap",
     "annual_returns": "Annual Index Returns",
+    "custom_return_limit": "Enter a return between −100% and +100% for each year.",
     "custom_returns_warning": "Custom returns are hypothetical — results are illustrative only.",
     "yr_scenario_hint": "Pessimistic represents a 1-in-10 adverse annual outcome. Average represents the median. Optimistic represents a 1-in-10 favourable outcome. Combining different outcomes across years creates a hypothetical illustration — the combined result does not represent a defined probability for the full term.",
     "calculate": "Calculate",
@@ -1024,7 +1029,7 @@ var STRINGS = {
     "dyo_outcome_crash_opportunity": "The shock is absorbed up to the size of the buffer, while still participating in the rebound up to the cap.",
     "dyo_outcome_crash_balance": "The shock beyond the floor is limited, while still participating in the rebound up to the cap.",
     "dyo_outcome_crash_protection": "The shock is absorbed in full, while still participating in the rebound up to the cap.",
-    "dyo_scenario_info_footnote": "These scenarios are for illustrative purposes only. Cap rates and protection levels shown are indicative and may be reset at each policy anniversary.",
+    "dyo_scenario_info_footnote": "These scenarios are for illustrative purposes only. Caps and protection levels shown are indicative and may be reset at each coverage anniversary.",
     "index_final": "Index Value",
     "approx_annual": "approx. p.a.",
     "custom_summary": "In this custom scenario, a {0} investment in {1} returned {2} over {3} years, compared to {4} for a direct index investment, assuming a cap of {5} per year.",
@@ -1054,13 +1059,13 @@ var STRINGS = {
     "opportunity_short": "Protection Buffer 10: 10% Buffer",
     "balance_short": "Guarantee 95: −5% Floor",
     "protection_short": "Guarantee 100: 0% Floor",
-    "opportunity_desc": "If the index falls within -10% during the policy year, you register no losses and your capital is guaranteed at 100%. If the index falls beyond -10%, your loss is limited to the amount beyond the buffer. For example, if the index falls 7% you lose nothing; if it falls 14%, you lose only 4%. Upside is subject to the annual cap. Suits investors comfortable carrying some tail risk in exchange for the highest cap rate of the three strategies.",
+    "opportunity_desc": "If the index falls within -10% during the coverage year, you register no losses and your capital is guaranteed at 100%. If the index falls beyond -10%, your loss is limited to the amount beyond the buffer. For example, if the index falls 7% you lose nothing; if it falls 14%, you lose only 4%. Upside is subject to the annual cap. Suits investors comfortable carrying some tail risk in exchange for the highest Cap of the three strategies.",
     "opportunity_risk_warning": "If the index falls beyond the 10% buffer, you bear the full loss beyond that point. In a severe downturn, this could mean losing a substantial part of your investment.",
-    "balance_desc": "An annual guarantee of 95% of the coverage value applies. The floor on index returns is never below -5%. You absorb small declines in full, but any loss beyond 5% is covered by Allianz. Positive annual returns are credited and locked in to your guaranteed minimum. Suited to investors seeking a balance between protection and cap rate.",
-    "balance_risk_warning": "You may lose up to 5% of your investment value in any policy year.",
+    "balance_desc": "An annual guarantee of 95% of the coverage value applies. The floor on index returns is never below -5%. You absorb small declines in full, but any loss beyond 5% is covered by Allianz Global Life dac. Positive annual returns are credited, within the limits of the Cap, and locked in to your guaranteed minimum. Suited to investors seeking a balance between protection and upside participation.",
+    "balance_risk_warning": "You may lose up to 5% of your investment value in any coverage year.",
     "protection_desc": "An annual guarantee of 100% of the coverage value applies. The floor on index returns is never below 0%. If the index falls, your credited return is 0% and your invested capital is preserved. Positive annual returns are credited and locked in to your guaranteed minimum. Suited to investors prioritising full capital protection.",
-    "crediting_strategies": "Crediting Strategies",
-    "strategies_intro": "Each strategy applies a different level of downside protection in exchange for a cap on upside participation. Higher protection means a lower cap rate.",
+    "crediting_strategies": "Investment Strategies",
+    "strategies_intro": "Each strategy applies a different level of downside protection in exchange for a cap on upside participation. Higher protection means a lower Cap.",
     "sri_inline_label": "SRI: {0}",
     "sri_info_title": "Summary Risk Indicator (SRI)",
     "sri_info_body": "The SRI is the standardised 1–7 risk score required under the EU PRIIPs Regulation. 1 is lowest risk; 7 is highest. The score reflects combined market and credit risk. A lower SRI indicates stronger downside protection; a higher SRI reflects greater market exposure in exchange for a higher cap.",
@@ -1102,18 +1107,18 @@ var STRINGS = {
     "mismatch_text": "✗ MISMATCH",
     "yes_text": "Yes",
     "no_text": "No",
-    "cap_rates_default": "Cap rates shown are current Allianz rates for your investment amount and term and may be adjusted below.",
+    "cap_rates_default": "Caps shown are current Allianz Global Life dac values for your investment amount and term and may be adjusted below.",
     "opportunity_strategy_legend": "Protection Buffer 10",
     "index_legend": "Index",
     "allocation_weights": "Allocation Weights",
-    "cap_rates_section": "Cap Rates",
-    "scenarios_generated": "Today's cap rates and protection levels are applied to {3} simulated paths generated from a statistical model calibrated on the Euro Stoxx 50® monthly return series, {0}–{1} ({2} monthly observations). The assumed annual growth rate of {4}% and volatility of {5}% are both estimated from the full available history. Results are illustrative only and do not guarantee future performance.",
+    "cap_rates_section": "Caps",
+    "scenarios_generated": "Today's Caps and protection levels are applied to {3} simulated paths generated from a statistical model calibrated on the Euro Stoxx 50® monthly return series, {0}–{1} ({2} monthly observations). The assumed annual growth rate of {4}% and volatility of {5}% are both estimated from the full available history. Results are illustrative only and do not guarantee future performance.",
     "in_pessimistic": "In a pessimistic simulated scenario, the",
     "for_direct_index": "for the Euro Stoxx 50® — a difference of",
     "for_direct_index_tr": "for the Euro Stoxx 50®",
     "in_optimistic": "In an optimistic simulated scenario, the",
     "for_the_index": "for the Euro Stoxx 50®",
-    "growth_subject_to_cap": "Growth is subject to the applicable cap rate.",
+    "growth_subject_to_cap": "Growth is subject to the applicable Cap.",
     "strategy_comparison": "Strategy Comparison",
     "year_strategy": "Year",
     "strategy_label": "Strategy",
@@ -1213,11 +1218,11 @@ var STRINGS = {
     "compare_strategies_desc": "Visualizza tutte e tre le strategie a confronto",
     "multi_strategy": "Multi-Strategia",
     "multi_strategy_desc": "Combina le strategie in un unico portafoglio",
-    "cap_info_title": "Tasso Cap Annuale",
-    "cap_info_body": "Ogni anno di polizza, il tuo rendimento è soggetto a un cap: il rendimento massimo che può essere accreditato, indipendentemente dalla performance dell'indice.",
-    "cap_info_default": "Il cap rate mostrato è garantito per il primo anno di polizza. Allianz lo rivede e può reimpostarlo a ogni anniversario di polizza. I tassi mostrati sono indicativi per l'importo e la durata selezionati — i cap futuri effettivi potranno differire.",
+    "cap_info_title": "Cap Annuale",
+    "cap_info_body": "Ogni anno di copertura, il tuo rendimento è soggetto a un cap: il rendimento massimo che può essere accreditato, indipendentemente dalla performance dell'indice.",
+    "cap_info_default": "Il Cap mostrato è garantito per il primo anno di copertura. Allianz Global Life dac lo rivede e può reimpostarlo a ogni anniversario di copertura. I valori mostrati sono indicativi per l'importo e la durata selezionati — i cap futuri effettivi potranno differire.",
     "important_label": "Importante:",
-    "cap_info_link": "Come vengono fissati i cap rate?",
+    "cap_info_link": "Come vengono fissati i Cap?",
     "cap_scenario_low": "Cap Basso",
     "cap_scenario_current": "Cap Attuale",
     "cap_scenario_high": "Cap Alto",
@@ -1225,9 +1230,9 @@ var STRINGS = {
     "cap_stress_toggle_label": "Stress cap",
     "cap_stress_legend_title": "Cap (dall'Anno 2)",
     "cap_print_warning": "Confronto stress cap mostrato sopra: Basso {0}% · Attuale {1}% · Alto {2}% all'anno (dall'Anno 2).",
-    "cap_stress_info_title": "Stress Test del Cap Rate",
-    "cap_stress_info_body": "Il cap è garantito solo per l'Anno 1. Dall'Anno 2 in poi viene reimpostato ogni anno e non può essere garantito in anticipo — le linee Basso e Alto mostrano cosa accade se i cap futuri si stabilizzano costantemente al di sotto o al di sopra del tasso attuale. Tutte e tre le linee partono dallo stesso punto perché l'Anno 1 è fisso.",
-    "cap_stress_info_warning": "I cap rate futuri effettivi possono differire dalle linee Basso e Alto qui mostrate. Sono limiti illustrativi, non pavimenti o tetti garantiti.",
+    "cap_stress_info_title": "Stress Test del Cap",
+    "cap_stress_info_body": "Il cap è garantito solo per l'Anno 1. Dall'Anno 2 in poi viene reimpostato ogni anno e non può essere garantito in anticipo — le linee Basso e Alto mostrano cosa accade se i cap futuri si stabilizzano costantemente al di sotto o al di sopra del Cap attuale. Tutte e tre le linee partono dallo stesso punto perché l'Anno 1 è fisso.",
+    "cap_stress_info_warning": "I Cap futuri effettivi possono differire dalle linee Basso e Alto qui mostrate. Sono limiti illustrativi, non pavimenti o tetti garantiti.",
     "crisis_info_title": "Scenario di Crollo di Mercato",
     "crisis_info_body": "Il rendimento simulato di un anno viene sostituito con un rendimento storico registrato durante un periodo in cui l'Euro Stoxx 50® è sceso di oltre il 10%. Mostra come il buffer o il floor assorbe le perdite durante una vera flessione di mercato. La gravità riflette un crollo storico tipico — non il più estremo mai registrato. Tutti gli altri anni rimangono invariati.",
     "investment_amount": "Importo Investimento (€)",
@@ -1236,9 +1241,9 @@ var STRINGS = {
     "5_year": "5 Anni",
     "start_period": "Sequenza di rendimenti da",
     "start_date_modal_title": "Applica Rendimenti Da",
-    "start_date_modal_body": "Seleziona la sequenza storica di rendimenti da utilizzare. I rendimenti dell'Euro Stoxx 50\u00ae del periodo scelto vengono applicati come se iniziassero oggi, al cap rate attuale assunto. Non mostra il rendimento che il prodotto avrebbe generato durante quel periodo.",
-    "start_date_modal_body_btp": "Seleziona il periodo storico da utilizzare. I rendimenti dell'Euro Stoxx 50\u00ae e il rendimento del BTP del periodo scelto vengono applicati come se iniziassero oggi, al cap rate attuale assunto. Non mostra il rendimento che il prodotto avrebbe generato durante quel periodo.",
-    "start_date_modal_body_gdp": "Seleziona il periodo storico da utilizzare. I rendimenti dell'Euro Stoxx 50\u00ae e i tassi di crescita del PIL italiano del periodo scelto vengono applicati come se iniziassero oggi, al cap rate attuale assunto. Non mostra il rendimento che il prodotto avrebbe generato durante quel periodo.",
+    "start_date_modal_body": "Seleziona la sequenza storica di rendimenti da utilizzare. I rendimenti dell'Euro Stoxx 50\u00ae del periodo scelto vengono applicati come se iniziassero oggi, al Cap attuale assunto. Non mostra il rendimento che il prodotto avrebbe generato durante quel periodo.",
+    "start_date_modal_body_btp": "Seleziona il periodo storico da utilizzare. I rendimenti dell'Euro Stoxx 50\u00ae e il rendimento del BTP del periodo scelto vengono applicati come se iniziassero oggi, al Cap attuale assunto. Non mostra il rendimento che il prodotto avrebbe generato durante quel periodo.",
+    "start_date_modal_body_gdp": "Seleziona il periodo storico da utilizzare. I rendimenti dell'Euro Stoxx 50\u00ae e i tassi di crescita del PIL italiano del periodo scelto vengono applicati come se iniziassero oggi, al Cap attuale assunto. Non mostra il rendimento che il prodotto avrebbe generato durante quel periodo.",
     "start_date_modal_note": "I rendimenti storici dell'indice sono a solo scopo illustrativo \u2014 le performance passate non sono indicative dei risultati futuri. Usa il selettore Cap Basso / Cap Attuale / Cap Alto per vedere come variano i risultati con diverse ipotesi di cap.",
     "display": "Visualizzazione",
     "eur_value": "Valore €",
@@ -1246,19 +1251,19 @@ var STRINGS = {
     "adjust_cap": "Regola Cap:",
     "pct": "%",
     "reset": "Ripristina",
-    "caps_indicative": "I cap rate mostrati sono indicativi per premi superiori a €20 milioni.",
-    "cap_reset_link": "Come vengono fissati i cap rate?",
-    "cap_year1_note": "Cap rate garantito solo per il primo anno. Rivisto a ogni anniversario di polizza.",
+    "caps_indicative": "I Cap mostrati sono indicativi per premi superiori a €20 milioni.",
+    "cap_reset_link": "Come vengono fissati i Cap?",
+    "cap_year1_note": "Cap garantito solo per il primo anno. Rivisto a ogni anniversario di copertura.",
     "edit_cap_btn": "Modifica ›",
-    "edit_cap_modal_title": "Scegli il Cap Rate",
-    "edit_cap_modal_sub": "Scegli il tasso di quale mese utilizzare, oppure inseriscine uno personalizzato.",
+    "edit_cap_modal_title": "Scegli il Cap",
+    "edit_cap_modal_sub": "Scegli quale mese utilizzare, oppure inserisci un cap personalizzato.",
     "edit_cap_modal_confirm": "Confermare",
-    "cap_custom_warning": "Si tratta di un tasso ipotetico. Il tasso effettivo di oggi è <strong>{0}</strong> ed è rivisto a ogni anniversario di polizza.",
+    "cap_custom_warning": "Si tratta di un Cap ipotetico. Il Cap effettivo di oggi è <strong>{0}</strong> ed è rivisto a ogni anniversario di copertura.",
     "cap_custom_warning_link": "Quali fattori influenzano i Parametri finanziari →",
-    "cap_modal_mode_flat": "Tasso fisso",
+    "cap_modal_mode_flat": "Cap fisso",
     "cap_modal_mode_byyear": "Varia per anno",
-    "sim_model_notice_body": "Questi scenari sono simulati, non previsionali. I risultati effettivi potrebbero essere migliori o peggiori dell'intervallo mostrato. Il cap rate è garantito solo per il primo anno di polizza e si reimposta annualmente dall'Anno 2.",
-    "sim_model_notice_link": "Come vengono fissati i cap rate?",
+    "sim_model_notice_body": "Questi scenari sono simulati, non previsionali. I risultati effettivi potrebbero essere migliori o peggiori dell'intervallo mostrato. Il Cap è garantito solo per il primo anno di copertura e si reimposta annualmente dall'Anno 2.",
+    "sim_model_notice_link": "Come vengono fissati i Cap?",
     "crisis_select_label": "Simula un crollo di mercato in:",
     "crisis_none": "Nessun Crollo di Mercato",
     "crisis_year_option": "Crollo di Mercato nell'Anno {0}",
@@ -1280,7 +1285,7 @@ var STRINGS = {
     "fixed_rate_modal_sub": "Inserisci un rendimento annuo da confrontare, ad esempio un conto di risparmio o un rendimento obbligazionario, poi conferma.",
     "fixed_rate_remove": "Rimuovi",
     "cap_stress_modal_title": "Imposta lo Stress del Cap",
-    "cap_stress_modal_sub": "Scegli quanto le linee Basso e Alto si allontanano dal cap rate attuale, poi conferma.",
+    "cap_stress_modal_sub": "Scegli quanto le linee Basso e Alto si allontanano dal Cap attuale, poi conferma.",
     "btp_overlay_footnote": "Il riferimento BTP utilizza l'attuale rendimento indicativo a {0} anni del {1}% annuo (al {2}) capitalizzato annualmente. Il trattamento fiscale è diverso: RILA 26% / BTP 12,5%. Non è un rendimento garantito.",
     "btp_terminal_label": "Titolo di Stato Italiano (BTP)",
     "btp_legend_label": "Titolo di Stato Italiano (BTP) — {0}% annuo — tasso attuale",
@@ -1290,7 +1295,7 @@ var STRINGS = {
     "index_legend_scenario": "Indice — scenario {0}",
     "strategy_legend_scenario": "{0} — scenario {1}",
     "starting_value_label": "Valore Iniziale",
-    "policy_year_axis": "Anno di Polizza",
+    "policy_year_axis": "Anno di Copertura",
     "portfolio_value_axis": "Valore del Portafoglio (€)",
     "cumulative_return_axis": "Rendimento Cumulativo (%)",
     "protection_applied_yes": "Protetto — {0}% risparmiato",
@@ -1315,10 +1320,10 @@ var STRINGS = {
     "sim_range_to": "e",
     "sim_range_suffix": "(dal 10° al 90° percentile)",
     "sim_endpoint_caveat": "Il modello presuppone che i rendimenti siano log-normali e indipendenti da un mese all'altro, e non riproduce l'effettiva concentrazione della volatilità né gli eventi estremi ('code pesanti') dei mercati reali. La deriva e la volatilità sono stimate da una storia limitata, quindi la calibrazione stessa comporta un margine di incertezza. Gli importi sono arrotondati ai €{0} più prossimi: l'intervallo sottostante è una stima, non un valore preciso.",
-    "cap_context_general": "I cap rate vengono impostati ai tassi dell'ultimo mese e possono essere modificati.",
-    "historic_seq_note": "Solo illustrativo: i cap rate attuali applicati alle sequenze storiche dell'indice — non le performance effettive del prodotto.",
+    "cap_context_general": "I Cap vengono impostati ai valori dell'ultimo mese e possono essere modificati.",
+    "historic_seq_note": "Solo illustrativo: i Cap attuali applicati alle sequenze storiche dell'indice — non le performance effettive del prodotto.",
     "annual_cap": "Cap Annuale",
-    "annual_cap_rate_label": "Cap Rate Annuale",
+    "annual_cap_rate_label": "Cap Annuale",
     "annual_cap_rates_heading": "Parametri finanziari annuali:",
     "cap_source_currentmonth": "Mese Corrente",
     "cap_source_followingmonth": "Mese Successivo",
@@ -1347,11 +1352,11 @@ var STRINGS = {
     "portfolio_value_label": "Valore Portafoglio",
     "download_excel": "Scarica Excel",
     "results_adjusted": "I risultati in questa analisi riflettono il cap regolato e potrebbero non rappresentare i termini attuali del prodotto.",
-    "cap_annual_text": "I risultati si basano sui cap rate selezionati per ogni anno di polizza. In pratica, i cap rate vengono rivisti ad ogni anniversario annuale della polizza e varieranno in base alle condizioni di mercato del momento. I risultati effettivi potrebbero differire da quelli illustrati.",
+    "cap_annual_text": "I risultati si basano sui Cap selezionati per ogni anno di copertura. In pratica, i Cap vengono rivisti ad ogni anniversario annuale della copertura e varieranno in base alle condizioni di mercato del momento. I risultati effettivi potrebbero differire da quelli illustrati.",
     "tool_disc_heading": "Informazioni importanti",
     "tool_disc_p1": "Il presente materiale è fornito a scopo informativo e illustrativo e non costituisce una consulenza finanziaria, di investimento o fiscale. Prima di prendere qualsiasi decisione di investimento, dovresti richiedere una consulenza finanziaria indipendente.",
     "tool_disc_p2": "Capitale a rischio. L'investimento nelle Strategie Indicizzate è soggetto a rischio di investimento, inclusa la possibile perdita di parte o dell'intero importo investito. La strategia Garanzia 100 protegge l'intero importo investito; le strategie Garanzia 95 e Protection Buffer 10 non offrono una protezione totale del capitale e, in condizioni di mercato sfavorevoli, potresti perdere una parte del tuo investimento.",
-    "tool_disc_p3": "I cap rate, i valori della cedola e gli altri parametri finanziari indicati sono meramente indicativi. Sono rivisti e possono essere modificati da Allianz ad ogni anniversario annuale della polizza e non sono garantiti oltre il primo anno di polizza. Le performance passate dell'indice e i cap rate passati non garantiscono risultati futuri.",
+    "tool_disc_p3": "I valori dei parametri finanziari (Cap e Cedola) indicati sono meramente indicativi. Sono rivisti e possono essere modificati da Allianz Global Life dac ad ogni anniversario annuale della copertura Index Linked e non sono garantiti oltre il primo anno. Le performance passate dell'indice ed i parametri finanziari (Cap e Cedola) passati non garantiscono risultati futuri.",
     "tool_disc_p4": "Sebbene le performance dell'indice influenzino i valori della polizza, la polizza non comporta un investimento diretto in azioni o in alcun componente dell'indice. Le performance dell'EURO STOXX 50® sono riportate solo a scopo illustrativo e rappresentano un indice di rendimento di prezzo, che esclude i dividendi.",
     "tool_disc_p5": "EURO STOXX 50® è proprietà intellettuale (compresi i marchi registrati) di STOXX Ltd., Zug, Svizzera (\"STOXX\"), Deutsche Börse Group o dei loro concedenti, utilizzata su licenza. Allianz Active4Life Evolution non è sponsorizzato, promosso, distribuito o in alcun modo supportato da STOXX, Deutsche Börse Group o dai loro concedenti, partner di ricerca o fornitori di dati. STOXX, Deutsche Börse Group e i loro concedenti, partner di ricerca o fornitori di dati non forniscono alcuna garanzia ed escludono qualsiasi responsabilità (sia per negligenza che altrimenti) rispetto ad esso in generale o in particolare in relazione a eventuali errori, omissioni o interruzioni nell'EURO STOXX 50® o nei suoi dati.",
     "tool_disc_p6": "Allianz Active4Life Evolution è emessa da Allianz Global Life Designated Activity Company (Allianz Global Life dac), una società del gruppo Allianz SE. Sede Legale: Maple House, Temple Road, Blackrock, Dublino, A94 Y9E8. Regolamentata dalla Central Bank of Ireland. Numero di Registrazione: 458565.",
@@ -1375,10 +1380,11 @@ var STRINGS = {
     "strategy": "Strategia",
     "index": "Indice",
     "configure_params": "Configura i parametri sopra e la simulazione verrà eseguita automaticamente.",
-    "disclosure_simulation": "Gli scenari di performance sono ipotetici e a solo scopo illustrativo, generati da un modello statistico calibrato sui dati storici dell'Euro Stoxx 50®. Non rappresentano performance future garantite. Il modello non riproduce la concentrazione della volatilità reale né gli eventi estremi — i risultati effettivi potrebbero collocarsi al di fuori dell'intervallo mostrato. I cap rate e i livelli di protezione sono indicativi e si reimpostano ad ogni anniversario annuale della polizza. Il valore del tuo investimento non è garantito. Questo strumento non costituisce consulenza finanziaria — richiedi una consulenza indipendente prima di prendere qualsiasi decisione di investimento.",
+    "disclosure_simulation": "Gli scenari di performance sono ipotetici e a solo scopo illustrativo, generati da un modello statistico calibrato sui dati storici dell'Euro Stoxx 50®. Non rappresentano performance future garantite. Il modello non riproduce la concentrazione della volatilità reale né gli eventi estremi — i risultati effettivi potrebbero collocarsi al di fuori dell'intervallo mostrato. I Cap e i livelli di protezione sono indicativi e si reimpostano ad ogni anniversario annuale della copertura. Il valore del tuo investimento non è garantito. Questo strumento non costituisce consulenza finanziaria — richiedi una consulenza indipendente prima di prendere qualsiasi decisione di investimento.",
     "cap": "Cap:",
     "cap_label": "Cap",
     "annual_returns": "Rendimenti Annuali dell'Indice",
+    "custom_return_limit": "Inserisci un rendimento compreso tra −100% e +100% per ogni anno.",
     "custom_returns_warning": "I rendimenti personalizzati sono ipotetici — i risultati sono a solo scopo illustrativo.",
     "yr_scenario_hint": "Pessimistico rappresenta un esito annuale sfavorevole con probabilità 1 su 10. Medio rappresenta la mediana. Ottimistico rappresenta un esito annuale favorevole con probabilità 1 su 10. Combinare esiti diversi tra gli anni crea un'illustrazione ipotetica — il risultato combinato non rappresenta una probabilità definita per l'intero periodo.",
     "calculate": "Calcola",
@@ -1435,7 +1441,7 @@ var STRINGS = {
     "dyo_outcome_crash_opportunity": "Lo shock viene assorbito fino all'entità del buffer, pur continuando a partecipare al rimbalzo fino al cap.",
     "dyo_outcome_crash_balance": "Lo shock oltre il floor viene limitato, pur continuando a partecipare al rimbalzo fino al cap.",
     "dyo_outcome_crash_protection": "Lo shock viene assorbito per intero, pur continuando a partecipare al rimbalzo fino al cap.",
-    "dyo_scenario_info_footnote": "Questi scenari sono a solo scopo illustrativo. I cap rate e i livelli di protezione mostrati sono indicativi e potranno essere reimpostati a ogni anniversario di polizza.",
+    "dyo_scenario_info_footnote": "Questi scenari sono a solo scopo illustrativo. I Cap e i livelli di protezione mostrati sono indicativi e potranno essere reimpostati a ogni anniversario di copertura.",
     "index_final": "Valore Indice",
     "approx_annual": "circa p.a.",
     "custom_summary": "In questo scenario personalizzato, un investimento di {0} in {1} ha restituito {2} in {3} anni, rispetto a {4} per un investimento diretto nell'indice, assumendo un cap del {5} annuo.",
@@ -1467,11 +1473,11 @@ var STRINGS = {
     "protection_short": "Garanzia 100: 0% Floor",
     "opportunity_desc": "Se l'indice ha un rendimento negativo entro il -10% nel corso dell'annualità, non registri perdite e il capitale è garantito al 100%. Se l'indice ha un rendimento negativo oltre il -10%, la perdita è limitata alla parte oltre il Buffer. Ad esempio, se l'indice scende del 7% non perdi nulla; se scende del 14%, perdi solo il 4%. Il rendimento al rialzo è soggetto al cap annuale. Adatto agli investitori che accettano un certo rischio residuo in cambio del cap più elevato delle tre strategie.",
     "opportunity_risk_warning": "Se l'indice scende oltre il Buffer del 10%, la perdita che supera tale soglia è interamente a tuo carico. In caso di un forte ribasso, ciò potrebbe comportare la perdita di una parte sostanziale del capitale investito.",
-    "balance_desc": "Viene applicata una garanzia annuale del 95% del controvalore della copertura. Il Floor di rendimento dell'indice non scende mai sotto il -5%. Assorbi i piccoli cali per intero, ma qualsiasi perdita oltre il 5% è coperta da Allianz. I rendimenti annuali positivi vengono accreditati e consolidati nel valore minimo garantito. Adatto agli investitori che cercano un equilibrio tra protezione e cap rate.",
-    "balance_risk_warning": "Puoi perdere fino al 5% del valore del tuo investimento in ciascun anno di polizza.",
+    "balance_desc": "Viene applicata una garanzia annuale del 95% del controvalore della copertura. Il Floor di rendimento dell'indice non scende mai sotto il -5%. Assorbi i piccoli cali per intero, ma qualsiasi perdita oltre il 5% è coperta da Allianz Global Life dac. I rendimenti annuali positivi vengono accreditati, nei limiti del Cap, e consolidati nel valore minimo garantito. Adatto agli investitori che cercano un equilibrio tra protezione e partecipazione al rialzo.",
+    "balance_risk_warning": "Puoi perdere fino al 5% del valore del tuo investimento in ciascun anno di copertura.",
     "protection_desc": "Viene applicata una garanzia annuale del 100% del controvalore della copertura. Il Floor di rendimento dell'indice non scende mai sotto lo 0%. Se l'indice scende, il rendimento accreditato è 0% e il capitale investito è preservato. I rendimenti annuali positivi vengono accreditati e consolidati nel valore minimo garantito. Adatto agli investitori che privilegiano la piena protezione del capitale.",
-    "crediting_strategies": "Strategie di Accredito",
-    "strategies_intro": "Ogni strategia applica un diverso livello di protezione al ribasso in cambio di un cap sulla partecipazione al rialzo. Una protezione più elevata significa un tasso di cap inferiore.",
+    "crediting_strategies": "Strategie d'investimento",
+    "strategies_intro": "Ogni strategia applica un diverso livello di protezione al ribasso in cambio di un cap sulla partecipazione al rialzo. Una protezione più elevata significa un Cap inferiore.",
     "sri_inline_label": "SRI: {0}",
     "sri_info_title": "Indicatore Sintetico di Rischio (SRI)",
     "sri_info_body": "L'SRI è il punteggio standardizzato da 1 a 7 previsto dal Regolamento PRIIPs dell'UE. 1 è il rischio più basso; 7 è il più alto. Il punteggio riflette la combinazione di rischio di mercato e rischio di credito. Un SRI più basso indica una protezione al ribasso più solida; un SRI più alto riflette una maggiore esposizione al mercato in cambio di un cap più elevato.",
@@ -1515,18 +1521,18 @@ var STRINGS = {
     "mismatch_text": "✗ NON CORRISPONDE",
     "yes_text": "Sì",
     "no_text": "No",
-    "cap_rates_default": "I cap rate indicati sono i tassi Allianz attuali per il tuo importo di investimento e durata e possono essere regolati di seguito.",
+    "cap_rates_default": "I Cap indicati sono i valori attuali di Allianz Global Life dac per il tuo importo di investimento e durata e possono essere regolati di seguito.",
     "opportunity_strategy_legend": "Protezione Buffer 10",
     "index_legend": "Indice",
     "allocation_weights": "Pesi di Allocazione",
-    "cap_rates_section": "Tassi Cap",
-    "scenarios_generated": "I cap rate e i livelli di protezione attuali vengono applicati a {3} percorsi simulati generati da un modello statistico calibrato sulla serie storica dei rendimenti mensili dell'Euro Stoxx 50®, da {0} a {1} ({2} osservazioni mensili). Il tasso di crescita annuo assunto del {4}% e la volatilità del {5}% sono entrambi stimati dall'intera storia disponibile. I risultati sono solo a scopo illustrativo e non garantiscono performance future.",
+    "cap_rates_section": "Cap",
+    "scenarios_generated": "I Cap e i livelli di protezione attuali vengono applicati a {3} percorsi simulati generati da un modello statistico calibrato sulla serie storica dei rendimenti mensili dell'Euro Stoxx 50®, da {0} a {1} ({2} osservazioni mensili). Il tasso di crescita annuo assunto del {4}% e la volatilità del {5}% sono entrambi stimati dall'intera storia disponibile. I risultati sono solo a scopo illustrativo e non garantiscono performance future.",
     "in_pessimistic": "In uno scenario simulato pessimistico, la strategia",
     "for_direct_index": "per l'Euro Stoxx 50® — una differenza di",
     "for_direct_index_tr": "per l'Euro Stoxx 50®",
     "in_optimistic": "In uno scenario simulato ottimistico, la strategia",
     "for_the_index": "per l'Euro Stoxx 50®",
-    "growth_subject_to_cap": "La crescita è soggetta al tasso di cap applicabile.",
+    "growth_subject_to_cap": "La crescita è soggetta al Cap applicabile.",
     "strategy_comparison": "Confronto Strategie",
     "year_strategy": "Anno",
     "strategy_label": "Strategia",
@@ -1617,6 +1623,19 @@ function translateStrategyName(strategyKey) {
     'protection': T('protection_strat')
   };
   return strategyNames[strategyKey] || strategyKey;
+}
+
+/* Strategy labels. English reads "3-Year Guarantee 100 Strategy"; Italian puts the word first:
+   "3 Anni - Strategia Garanzia 100" (chart legend: "Strategia Garanzia 100"). */
+function stratDisplayLabel(strategyKey) {
+  var n = translateStrategyName(strategyKey);
+  return CURRENT_LANG === 'it' ? T('strategy_label') + ' ' + n : n + ' ' + T('strategy_label');
+}
+function stratHeaderTitle(amt, term, strategyKey) {
+  var n = translateStrategyName(strategyKey);
+  return fEUR(amt) + ' · ' + (CURRENT_LANG === 'it'
+    ? term + ' Anni - ' + T('strategy_label') + ' ' + n
+    : term + '-' + T('year_strategy') + ' ' + n + ' ' + T('strategy_label'));
 }
 
 function translateEventName(eventName) {
@@ -1796,6 +1815,11 @@ function dAmtDebounce(){
   },600);
 }
 var selMethod = 'opportunity';
+/* No crediting strategy is selected when the tool first opens — selMethod above only holds a
+   placeholder until the user picks one (setMethod), and nothing is calculated before then. */
+var stratChosen = false;
+/* Allowed range (in %) for each year of a Custom scenario's typed-in index returns. */
+var CUSTOM_RET_MIN = -100, CUSTOM_RET_MAX = 100;
 var dCapScenario='current';
 var dCapStressOn=false;
 /* User-typed override for the D tab's "today's cap" figure (null = use the computed tier
@@ -2139,7 +2163,7 @@ function buildMethodSelectors(){
     Object.keys(D.crediting_methods).forEach(function(key){
       var m=D.crediting_methods[key];
       var btn=document.createElement('button');
-      btn.className='strat-btn'+(key===selMethod?' active':'');
+      btn.className='strat-btn'+(stratChosen&&key===selMethod?' active':'');
       btn.setAttribute('data-method',key);
       var sriSuffix=m.sri!=null?' | '+replaceTemplate(T('sri_inline_label'),[m.sri]):'';
       var nameNoWrap=translateStrategyName(key).replace(/ (\S+)$/,'&nbsp;$1');
@@ -2152,6 +2176,7 @@ function buildMethodSelectors(){
 
 function setMethod(val){
   selMethod=val;
+  stratChosen=true;
   document.querySelectorAll('.strat-btn[data-method]').forEach(function(btn){
     btn.classList.toggle('active',btn.getAttribute('data-method')===val);
   });
@@ -2854,6 +2879,7 @@ function dUpdateCapDisplay(){
       capVal.textContent=resolvedCap.cap.toFixed(2)+'%';
     }
   }
+  if(capVal&&!stratChosen) capVal.textContent='—';
   /* Edit is always available now (Previous/Current/Custom all live inside its popup) except
      while a cap-stress line other than 'current' is selected — low/high are illustrative
      stress bands derived off it, so there's no base figure left to edit (and any open edit
@@ -2861,7 +2887,7 @@ function dUpdateCapDisplay(){
      see the base value of). */
   var editBtn=document.getElementById('d-cap-edit-btn');
   if(editBtn){
-    var lockedOut=dCapScenario!=='current';
+    var lockedOut=dCapScenario!=='current'||!stratChosen;
     editBtn.disabled=lockedOut;
     editBtn.style.opacity=lockedOut?'.4':'';
     editBtn.style.cursor=lockedOut?'not-allowed':'';
@@ -3139,12 +3165,26 @@ function dGetScenarioReturns(scenarioKey,term){
     case 'custom':
       for(i=1;i<=term;i++){
         var el=document.getElementById('d-y'+i);
-        out.push(el?(parseFloat(el.value)||0):0);
+        out.push(el?dClampCustomReturn(parseFloat(el.value)||0):0);
       }
       return out;
     default: /* stable */
       for(i=0;i<term;i++) out.push(p50);
       return out;
+  }
+}
+
+/* Keeps a typed-in annual return inside CUSTOM_RET_MIN..CUSTOM_RET_MAX. */
+function dClampCustomReturn(v){ return Math.min(CUSTOM_RET_MAX,Math.max(CUSTOM_RET_MIN,v)); }
+function dClampYearInput(el){
+  var v=parseFloat(el.value);
+  if(isNaN(v)||(v>=CUSTOM_RET_MIN&&v<=CUSTOM_RET_MAX)) return;
+  el.value=dClampCustomReturn(v);
+  var note=document.getElementById('d-yr-limit');
+  if(note){
+    note.classList.add('hit');
+    clearTimeout(dClampYearInput.t);
+    dClampYearInput.t=setTimeout(function(){ note.classList.remove('hit'); },2500);
   }
 }
 
@@ -3210,7 +3250,7 @@ function dRenderCustomInputs(){
       row.innerHTML=
         '<span class="yr-lbl">'+T('year_label')+' '+i+'</span>'+
         '<div class="yr-field">'+
-          '<input type="number" class="yr-inp" id="d-y'+i+'" step="0.1" placeholder="%" onkeydown="if(event.key===\'Enter\'){event.preventDefault();dCalc();}">'+
+          '<input type="number" class="yr-inp" id="d-y'+i+'" step="0.1" min="-100" max="100" placeholder="%" oninput="dClampYearInput(this)" onkeydown="if(event.key===\'Enter\'){event.preventDefault();dCalc();}">'+
           '<button type="button" class="yr-dd-btn" onclick="dToggleYearDD('+i+')" title="Choose a preset year type" aria-label="Choose a preset year type">'+
             '<svg width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
           '</button>'+
@@ -3274,7 +3314,7 @@ function dRunScenario(key){
   var outcomeEl=document.getElementById('d-scenario-hint-outcome');
   var outcomeRow=document.getElementById('d-scenario-hint-outcome-row');
   var stratEl=document.getElementById('d-scenario-hint-strat');
-  if(!key){
+  if(!key||!stratChosen){
     if(hintBox) hintBox.style.display='none';
     if(patternEl) patternEl.textContent='';
     if(outcomeEl) outcomeEl.textContent='';
@@ -3314,6 +3354,7 @@ function dSetTerm(t){
 
 function dCalc(){
   dCalculated=true;
+  if(!stratChosen){ dShowGhost(); return; }
   dRender(dGetScenarioReturns('custom',dTerm),'custom');
 }
 
@@ -3424,7 +3465,7 @@ function dRender(returns,scenarioKey){
   var m=getMethod();
   var res=runEngine(returns,capForEngine,m,amt);
   var rr=(res.rilaFinal/amt-1)*100, ir=(res.idxFinal/amt-1)*100;
-  var stratLabel=translateStrategyName(selMethod)+' '+T('strategy_label');
+  var stratLabel=stratDisplayLabel(selMethod);
   var labels=[T('chart_start_label')];
   for(var j=1;j<=dTerm;j++) labels.push(T('year_label')+' '+j);
 
@@ -3451,7 +3492,7 @@ function dRender(returns,scenarioKey){
   dApplyOverlaysAndChart(dLastRenderCtx, true);
 
   var dSnameEl=document.getElementById('d-sname');
-  if(dSnameEl) dSnameEl.textContent=fEUR(amt)+' · '+dTerm+'-'+T('year_strategy')+' '+translateStrategyName(selMethod)+' '+T('strategy_label');
+  if(dSnameEl) dSnameEl.textContent=stratHeaderTitle(amt,dTerm,selMethod);
   var dSsubEl=document.getElementById('d-ssub');
   if(dSsubEl) dSsubEl.textContent=T(scenarioLabelKeys[scenarioKey]);
   var dPcapEl=document.getElementById('d-pcap');
@@ -3539,8 +3580,8 @@ function boot(data){
   if(pmg) pmg.textContent=CURRENT_LANG==='it'?'Generato:':'Generated:';
   var pmd=document.getElementById('print-meta-disclaimer');
   if(pmd) pmd.innerHTML=CURRENT_LANG==='it'
-    ?'<strong>Solo a scopo illustrativo</strong> – non è un preventivo formale per il cliente. I cap rate, la performance dell\'indice e tutti i valori mostrati sono indicativi e soggetti a variazione.'
-    :'<strong>For illustrative purposes only</strong> – not a formal client quotation. Cap rates, index performance and all figures shown are indicative and subject to change.';
+    ?'<strong>Solo a scopo illustrativo</strong> – non è un preventivo formale per il cliente. I Cap, la performance dell\'indice e tutti i valori mostrati sono indicativi e soggetti a variazione.'
+    :'<strong>For illustrative purposes only</strong> – not a formal client quotation. Caps, index performance and all figures shown are indicative and subject to change.';
   buildMethodSelectors();
   initMonths();
   dRenderCustomInputs();
@@ -3572,28 +3613,28 @@ setTimeout(updateModals, 10);
 <div id="cap-info-modal" onclick="if(event.target===this)capInfoClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;">
   <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:480px;width:92%;max-height:90vh;overflow-y:auto;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="capInfoClose()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--a1-text-s);line-height:1;">&times;</button>
-    <div id="cap-modal-title" style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:16px;">Annual Cap Rate</div>
-    <div id="cap-modal-body" style="font-size:13px;color:var(--a1-text-s);line-height:1.7;margin-bottom:16px;">Each policy year, your return is subject to a cap. This is the maximum return that can be credited, no matter how well the index performs.</div>
+    <div id="cap-modal-title" style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:16px;">Annual Cap</div>
+    <div id="cap-modal-body" style="font-size:13px;color:var(--a1-text-s);line-height:1.7;margin-bottom:16px;">Each coverage year, your return is subject to a cap. This is the maximum return that can be credited, no matter how well the index performs.</div>
     <div id="cap-modal-default" class="inline-notice" style="margin-bottom:0;">
       <span class="inline-notice-icon"><svg width="16" height="16" aria-hidden="true"><use href="#ico-info"/></svg></span>
-      <span><strong data-i18n="important_label">Important:</strong> <span id="cap-modal-default-text">The cap rate shown is guaranteed for your first policy year. Allianz reviews and may reset the cap at each policy anniversary. Displayed rates are indicative for your selected amount and term — actual future caps may differ.</span></span>
+      <span><strong data-i18n="important_label">Important:</strong> <span id="cap-modal-default-text">The Cap shown is guaranteed for your first coverage year. Allianz Global Life dac reviews and may reset the cap at each coverage anniversary. Displayed values are indicative for your selected amount and term — actual future caps may differ.</span></span>
     </div>
     <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--a1-border-t);text-align:center;">
-      <a id="cap-modal-link" href="info.html#caps" target="_blank" rel="noopener" onclick="capInfoClose()" style="font-size:12px;color:var(--a1-brand);font-weight:600;text-decoration:none;">How are cap rates set?</a> <span style="font-size:12px;color:var(--a1-brand);">→</span>
+      <a id="cap-modal-link" href="info.html#caps" target="_blank" rel="noopener" onclick="capInfoClose()" style="font-size:12px;color:var(--a1-brand);font-weight:600;text-decoration:none;">How are Caps set?</a> <span style="font-size:12px;color:var(--a1-brand);">→</span>
     </div>
   </div>
 </div>
 <div id="cap-edit-modal" onclick="if(event.target===this)dCapEditModalCancel()" style="display:none;position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:9999;align-items:center;justify-content:center;padding:16px;">
   <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:380px;width:100%;padding:28px 28px 24px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="dCapEditModalCancel()" class="cap-modal-close-btn" aria-label="Close">&times;</button>
-    <div style="font-size:17px;font-weight:700;color:var(--a1-brand);margin-bottom:6px;" data-i18n="edit_cap_modal_title">Choose Cap Rate</div>
-    <div style="font-size:12.5px;color:var(--a1-text-s);line-height:1.55;margin:0 0 16px;" data-i18n="edit_cap_modal_sub">Choose which month's rate to use, or enter your own.</div>
+    <div style="font-size:17px;font-weight:700;color:var(--a1-brand);margin-bottom:6px;" data-i18n="edit_cap_modal_title">Choose Cap</div>
+    <div style="font-size:12.5px;color:var(--a1-text-s);line-height:1.55;margin:0 0 16px;" data-i18n="edit_cap_modal_sub">Choose which month's Cap to use, or enter your own.</div>
 
     <div id="cap-modal-year1-notice" class="inline-notice" style="margin-bottom:16px;">
       <span class="inline-notice-icon"><svg width="16" height="16" aria-hidden="true"><use href="#ico-info"/></svg></span>
       <span class="inline-notice-body">
-        <span id="cap-modal-year1-notice-text"><strong data-i18n="important_label">Important:</strong> <span data-i18n="cap_year1_note">Cap rate guaranteed for Year 1 only. Reviewed at each policy anniversary.</span></span>
-        <a href="info.html#caps" target="_blank" rel="noopener" data-i18n="cap_custom_warning_link" class="inline-notice-link">What factors influence cap rates &rarr;</a>
+        <span id="cap-modal-year1-notice-text"><strong data-i18n="important_label">Important:</strong> <span data-i18n="cap_year1_note">Cap guaranteed for Year 1 only. Reviewed at each coverage anniversary.</span></span>
+        <a href="info.html#caps" target="_blank" rel="noopener" data-i18n="cap_custom_warning_link" class="inline-notice-link">What factors influence Caps &rarr;</a>
       </span>
     </div>
 
@@ -3606,7 +3647,7 @@ setTimeout(updateModals, 10);
 
     <div id="cap-modal-custom-section" style="display:none;">
       <div class="tgg" style="width:100%;margin-bottom:16px;">
-        <button class="tg active" id="cap-modal-mode-flat" onclick="dCapEditModalSetMode('flat')" style="flex:1;font-size:12px;" data-i18n="cap_modal_mode_flat">Flat rate</button>
+        <button class="tg active" id="cap-modal-mode-flat" onclick="dCapEditModalSetMode('flat')" style="flex:1;font-size:12px;" data-i18n="cap_modal_mode_flat">Flat Cap</button>
         <button class="tg" id="cap-modal-mode-byyear" onclick="dCapEditModalSetMode('byyear')" style="flex:1;font-size:12px;" data-i18n="cap_modal_mode_byyear">Vary by year</button>
       </div>
 
@@ -3669,7 +3710,7 @@ setTimeout(updateModals, 10);
   <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:380px;width:100%;padding:28px 28px 24px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="dCapStressModalCancel()" class="cap-modal-close-btn" aria-label="Close">&times;</button>
     <div style="font-size:17px;font-weight:700;color:var(--a1-brand);margin-bottom:6px;" data-i18n="cap_stress_modal_title">Set Cap Stress</div>
-    <div style="font-size:12.5px;color:var(--a1-text-s);line-height:1.55;margin:0 0 16px;" data-i18n="cap_stress_modal_sub">Choose how far the Lower and Higher lines move away from today's cap rate, then confirm.</div>
+    <div style="font-size:12.5px;color:var(--a1-text-s);line-height:1.55;margin:0 0 16px;" data-i18n="cap_stress_modal_sub">Choose how far the Lower and Higher lines move away from today's Cap, then confirm.</div>
 
     <div style="background:var(--a1-bg);border-radius:var(--a1-radius-m);padding:18px;margin-bottom:8px;">
       <div style="display:flex;align-items:center;justify-content:center;gap:16px;">
@@ -3753,21 +3794,21 @@ setTimeout(updateModals, 10);
         </div>
       </div>
     </div>
-    <div style="font-size:11.5px;color:var(--a1-text-s);margin-top:18px;padding-top:14px;border-top:1px solid var(--a1-border-t);line-height:1.55;" data-i18n="dyo_scenario_info_footnote">These scenarios are for illustrative purposes only. Cap rates and protection levels shown are indicative and may be reset at each policy anniversary.</div>
+    <div style="font-size:11.5px;color:var(--a1-text-s);margin-top:18px;padding-top:14px;border-top:1px solid var(--a1-border-t);line-height:1.55;" data-i18n="dyo_scenario_info_footnote">These scenarios are for illustrative purposes only. Caps and protection levels shown are indicative and may be reset at each coverage anniversary.</div>
   </div>
 </div>
 <div id="cap-stress-info-modal" onclick="if(event.target===this)capStressInfoClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;">
   <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:480px;width:92%;max-height:90vh;overflow-y:auto;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="capStressInfoClose()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--a1-text-s);line-height:1;">&times;</button>
-    <div style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:16px;" data-i18n="cap_stress_info_title">Cap Rate Stress Test</div>
-    <div style="font-size:13px;color:var(--a1-text-s);line-height:1.7;" data-i18n="cap_stress_info_body">The cap is only guaranteed for Year 1. From Year 2 onwards it resets annually — so the Lower and Higher lines stress-test what happens if future caps settle consistently below or above today's rate. All three lines start from the same point because Year 1 is fixed.</div>
+    <div style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:16px;" data-i18n="cap_stress_info_title">Cap Stress Test</div>
+    <div style="font-size:13px;color:var(--a1-text-s);line-height:1.7;" data-i18n="cap_stress_info_body">The cap is only guaranteed for Year 1. From Year 2 onwards it resets annually — so the Lower and Higher lines stress-test what happens if future caps settle consistently below or above today's Cap. All three lines start from the same point because Year 1 is fixed.</div>
     <div class="inline-notice" style="margin-top:16px;margin-bottom:0;">
       <span class="inline-notice-icon"><svg width="16" height="16" aria-hidden="true"><use href="#ico-info"/></svg></span>
       <span>
-        <span data-i18n="cap_stress_info_warning">Actual future cap rates can differ from the Lower/Higher lines shown here — they are illustrative bounds, not guaranteed floors or ceilings.</span>
+        <span data-i18n="cap_stress_info_warning">Actual future Caps can differ from the Lower/Higher lines shown here — they are illustrative bounds, not guaranteed floors or ceilings.</span>
         <a href="info.html#caps" target="_blank" rel="noopener"
            style="color:var(--a1-warn-text);font-weight:700;text-decoration:underline;white-space:nowrap;margin-left:4px;"
-           data-i18n="cap_info_link">How are cap rates set?</a>
+           data-i18n="cap_info_link">How are Caps set?</a>
       </span>
     </div>
   </div>
@@ -3775,8 +3816,8 @@ setTimeout(updateModals, 10);
 <div id="strat-info-modal" onclick="if(event.target===this)stratInfoClose()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;">
   <div style="background:#fff;border-radius:var(--a1-radius-l);max-width:580px;width:92%;max-height:90vh;overflow-y:auto;padding:32px 28px;position:relative;box-shadow:var(--a1-shadow-400);">
     <button onclick="stratInfoClose()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:22px;cursor:pointer;color:var(--a1-text-s);line-height:1;">&times;</button>
-    <div style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:6px;" id="strat-modal-title" data-i18n="crediting_strategies">Crediting Strategies</div>
-    <div style="font-size:13px;color:var(--a1-text-s);margin-bottom:22px;" id="strat-modal-intro" data-i18n="strategies_intro">Each strategy applies a different level of downside protection in exchange for a cap on upside participation. Higher protection means a lower cap rate.</div>
+    <div style="font-size:18px;font-weight:700;color:var(--a1-brand);margin-bottom:6px;" id="strat-modal-title" data-i18n="crediting_strategies">Investment Strategies</div>
+    <div style="font-size:13px;color:var(--a1-text-s);margin-bottom:22px;" id="strat-modal-intro" data-i18n="strategies_intro">Each strategy applies a different level of downside protection in exchange for a cap on upside participation. Higher protection means a lower Cap.</div>
     <div style="display:flex;flex-direction:column;">
       <div style="display:flex;gap:14px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--a1-border-t);">
         <div style="width:32px;height:32px;border-radius:50%;background:var(--a1-tl);color:var(--a1-brand);font-size:13px;font-weight:800;flex-shrink:0;display:flex;align-items:center;justify-content:center;">1</div>
@@ -3789,10 +3830,10 @@ setTimeout(updateModals, 10);
         <div style="width:32px;height:32px;border-radius:50%;background:var(--a1-tl);color:var(--a1-brand);font-size:13px;font-weight:800;flex-shrink:0;display:flex;align-items:center;justify-content:center;">2</div>
         <div style="flex:1;min-width:0;">
           <div style="font-weight:700;color:var(--a1-brand);font-size:15px;margin-bottom:4px;" id="bal-modal-title" data-i18n="balance_short">Guarantee 95: &minus;5% Floor</div>
-          <div style="font-size:13px;color:var(--a1-text-s);line-height:1.6;" id="bal-modal-desc" data-i18n="balance_desc">An annual guarantee of 95% of the coverage value applies. The floor on index returns is never below -5%. You absorb small declines in full, but any loss beyond 5% is covered by Allianz. Positive annual returns are credited and locked in to your guaranteed minimum. Suited to investors seeking a balance between protection and cap rate.</div>
+          <div style="font-size:13px;color:var(--a1-text-s);line-height:1.6;" id="bal-modal-desc" data-i18n="balance_desc">An annual guarantee of 95% of the coverage value applies. The floor on index returns is never below -5%. You absorb small declines in full, but any loss beyond 5% is covered by Allianz Global Life dac. Positive annual returns are credited, within the limits of the Cap, and locked in to your guaranteed minimum. Suited to investors seeking a balance between protection and upside participation.</div>
           <div class="inline-notice" style="margin-top:10px;margin-bottom:0;">
             <span class="inline-notice-icon"><svg width="16" height="16" aria-hidden="true"><use href="#ico-info"/></svg></span>
-            <span><strong data-i18n="important_label">Important:</strong> <span id="bal-modal-risk" data-i18n="balance_risk_warning">You may lose up to 5% of your investment value in any policy year.</span></span>
+            <span><strong data-i18n="important_label">Important:</strong> <span id="bal-modal-risk" data-i18n="balance_risk_warning">You may lose up to 5% of your investment value in any coverage year.</span></span>
           </div>
         </div>
       </div>
@@ -3800,7 +3841,7 @@ setTimeout(updateModals, 10);
         <div style="width:32px;height:32px;border-radius:50%;background:var(--a1-tl);color:var(--a1-brand);font-size:13px;font-weight:800;flex-shrink:0;display:flex;align-items:center;justify-content:center;">3</div>
         <div style="flex:1;min-width:0;">
           <div style="font-weight:700;color:var(--a1-brand);font-size:15px;margin-bottom:4px;" id="opp-modal-title" data-i18n="opportunity_short">Protection Buffer 10: 10% Buffer</div>
-          <div style="font-size:13px;color:var(--a1-text-s);line-height:1.6;" id="opp-modal-desc" data-i18n="opportunity_desc">If the index falls within -10% during the policy year, you register no losses and your capital is guaranteed at 100%. If the index falls beyond -10%, your loss is limited to the amount beyond the buffer. For example, if the index falls 7% you lose nothing; if it falls 14%, you lose only 4%. Upside is subject to the annual cap. Suits investors comfortable carrying some tail risk in exchange for the highest cap rate of the three strategies.</div>
+          <div style="font-size:13px;color:var(--a1-text-s);line-height:1.6;" id="opp-modal-desc" data-i18n="opportunity_desc">If the index falls within -10% during the coverage year, you register no losses and your capital is guaranteed at 100%. If the index falls beyond -10%, your loss is limited to the amount beyond the buffer. For example, if the index falls 7% you lose nothing; if it falls 14%, you lose only 4%. Upside is subject to the annual cap. Suits investors comfortable carrying some tail risk in exchange for the highest Cap of the three strategies.</div>
           <div class="inline-notice" style="margin-top:10px;margin-bottom:0;">
             <span class="inline-notice-icon"><svg width="16" height="16" aria-hidden="true"><use href="#ico-info"/></svg></span>
             <span><strong data-i18n="important_label">Important:</strong> <span id="opp-modal-risk" data-i18n="opportunity_risk_warning">If the index falls beyond the 10% buffer, you bear the full loss beyond that point. In a severe downturn, this could mean losing a substantial part of your investment.</span></span>
